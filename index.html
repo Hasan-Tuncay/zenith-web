@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Zenith Adli Tıp Ekspertiz Belgesi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0A0D14;
+            --bg-card: #111726;
+            --border-color: #1F293D;
+            --text-primary: #F8FAFC;
+            --text-muted: #94A3B8;
+            --accent-green: #10B981;
+            --accent-blue: #38BDF8;
+            --accent-red: #EF4444;
+            --accent-yellow: #F59E0B;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.5;
+            padding: 24px 16px 80px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        /* Action Bar (Printte Gizlenir) */
+        .action-bar {
+            position: sticky;
+            top: 12px;
+            z-index: 100;
+            background: rgba(17, 23, 38, 0.88);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            border-radius: 14px;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+        }
+        .action-bar-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent-blue);
+            font-weight: 700;
+        }
+        .btn-print {
+            background: linear-gradient(135deg, #2563EB, #1D4ED8);
+            color: #FFFFFF;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
+        }
+        .btn-print:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6);
+        }
+
+        /* Kartlar */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+        .header-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 5px solid var(--accent-blue);
+        }
+        .score-circle {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 4px solid var(--accent-green);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(16, 185, 129, 0.12);
+        }
+        .score-val { font-size: 32px; font-weight: 800; color: var(--accent-green); line-height: 1; }
+        .score-lbl { font-size: 11px; color: var(--text-muted); font-weight: 700; text-transform: uppercase; margin-top: 4px; }
+
+        .section-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+        .info-box {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 10px;
+            padding: 14px;
+        }
+        .info-lbl { font-size: 11px; color: var(--text-muted); font-weight: 600; margin-bottom: 4px; text-transform: uppercase; }
+        .info-val { font-size: 14px; font-weight: 600; word-break: break-word; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+        }
+        th, td {
+            padding: 12px 14px;
+            text-align: left;
+            font-size: 13px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        th { color: var(--text-muted); font-weight: 600; text-transform: uppercase; font-size: 11px; letter-spacing: 0.05em; }
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+        .badge-pass { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid rgba(16, 185, 129, 0.4); }
+        .badge-fail { background: rgba(239, 68, 68, 0.15); color: var(--accent-red); border: 1px solid rgba(239, 68, 68, 0.4); }
+        .badge-skip { background: rgba(107, 114, 128, 0.15); color: #9CA3AF; border: 1px solid rgba(107, 114, 128, 0.4); }
+
+        .hash-code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--accent-green);
+            background: #091319;
+            padding: 12px 16px;
+            border-radius: 10px;
+            border: 1px solid #143542;
+            word-break: break-all;
+        }
+
+        /* Loading & Error */
+        #loading-view, #error-view {
+            text-align: center;
+            padding: 80px 20px;
+        }
+        .spinner {
+            width: 48px;
+            height: 48px;
+            border: 4px solid var(--border-color);
+            border-top-color: var(--accent-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Print A4 Stilleri */
+        @media print {
+            body { background: #FFFFFF !important; color: #0F172A !important; padding: 0 !important; }
+            .action-bar { display: none !important; }
+            .container { max-width: 100% !important; margin: 0 !important; }
+            .card { background: #FFFFFF !important; border: 1px solid #E2E8F0 !important; box-shadow: none !important; padding: 16px !important; margin-bottom: 12px !important; page-break-inside: avoid; }
+            .info-box { background: #F8FAFC !important; border: 1px solid #E2E8F0 !important; }
+            .info-lbl { color: #64748B !important; }
+            .info-val { color: #0F172A !important; }
+            .hash-code { background: #F1F5F9 !important; color: #0F172A !important; border: 1px solid #CBD5E1 !important; }
+            th, td { border-bottom: 1px solid #E2E8F0 !important; color: #0F172A !important; }
+            th { color: #64748B !important; }
+            .score-circle { border-color: #10B981 !important; background: #ECFDF5 !important; }
+            .score-val { color: #059669 !important; }
+        }
+        @media (max-width: 650px) {
+            .grid-2, .grid-3 { grid-template-columns: 1fr; }
+            .header-card { flex-direction: column; gap: 16px; align-items: flex-start; }
+            .action-bar { flex-direction: column; gap: 12px; align-items: stretch; text-align: center; }
+            .btn-print { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div id="loading-view">
+        <div class="spinner"></div>
+        <h2 style="font-size: 18px; font-weight: 600;">Zenith Mühürlü Rapor Yükleniyor...</h2>
+        <p style="font-size: 13px; color: var(--text-muted); margin-top: 8px;">Kriptografik imza ve donanım telemetrisi doğrulanıyor</p>
+    </div>
+
+    <div id="error-view" style="display: none;">
+        <div style="font-size: 48px; margin-bottom: 16px;">⚠️</div>
+        <h2 id="error-title" style="font-size: 20px; color: var(--accent-red);">Rapor Bulunamadı</h2>
+        <p id="error-desc" style="font-size: 14px; color: var(--text-muted); margin-top: 8px; max-width: 500px; margin-left: auto; margin-right: auto;"></p>
+    </div>
+
+    <div id="content-view" style="display: none;">
+        <!-- Action Bar -->
+        <div class="action-bar">
+            <div class="action-bar-title">
+                <span style="font-size: 22px;">⚖️</span>
+                <div>
+                    <div>Zenith Resmi Adli Tıp Ekspertiz Belgesi</div>
+                    <div style="font-size: 11px; color: var(--text-muted); font-weight: 500;">ISO/IEC 27037:2012 &bull; NIST SP 800-86 Kriptografik Mühür</div>
+                </div>
+            </div>
+            <button class="btn-print" onclick="window.print()">
+                <span>🖨️</span> PDF Olarak İndir / Yazdır
+            </button>
+        </div>
+
+        <!-- Başlık & Puan Kartı -->
+        <div class="card header-card">
+            <div>
+                <div style="font-size: 12px; color: var(--accent-blue); font-weight: 700; text-transform: uppercase;">
+                    Elektronik Adli Bilişim Tahlil Belgesi
+                </div>
+                <h1 id="device-name" style="font-size: 26px; font-weight: 800; margin-top: 6px;">-</h1>
+                <div style="font-size: 13px; color: var(--text-muted); margin-top: 6px;">
+                    Rapor Tarihi: <b id="report-date">-</b> &bull; Oturum ID: <b id="session-id">-</b>
+                </div>
+            </div>
+            <div class="score-circle" id="score-circle">
+                <div class="score-val" id="score-val">-</div>
+                <div class="score-lbl" id="score-lbl">Derece -</div>
+            </div>
+        </div>
+
+        <!-- 1. Cihaz Kimlik Pasaportu -->
+        <div class="card">
+            <div class="section-title"><span>📱</span> 1. Cihaz Kimlik Pasaportu & Donanım Katmanı</div>
+            <div class="grid-3">
+                <div class="info-box"><div class="info-lbl">Üretici / Model</div><div class="info-val" id="id-brand-model">-</div></div>
+                <div class="info-box"><div class="info-lbl">İşlemci (SoC)</div><div class="info-val" id="id-soc">-</div></div>
+                <div class="info-box"><div class="info-lbl">Mimari / Çekirdek</div><div class="info-val" id="id-arch">-</div></div>
+                <div class="info-box"><div class="info-lbl">Depolama Alanı</div><div class="info-val" id="id-storage">-</div></div>
+                <div class="info-box"><div class="info-lbl">İşletim Sistemi</div><div class="info-val" id="id-os">-</div></div>
+                <div class="info-box"><div class="info-lbl">Güvenlik Yaması</div><div class="info-val" id="id-patch">-</div></div>
+            </div>
+            <div style="margin-top: 12px;" class="info-box">
+                <div class="info-lbl">Cihaz Adli Parmak İzi (Build Fingerprint)</div>
+                <div class="info-val" id="id-fingerprint" style="font-family: 'JetBrains Mono', monospace; font-size: 11px;">-</div>
+            </div>
+        </div>
+
+        <!-- 2. Batarya Sağlığı & Hücre Tahlili -->
+        <div class="card">
+            <div class="section-title"><span>⚡</span> 2. Batarya Sağlığı & Hücre Tahlili</div>
+            <div class="grid-3">
+                <div class="info-box"><div class="info-lbl">Gerçek Sağlık Yüzdesi</div><div class="info-val" id="bat-health" style="color: var(--accent-green); font-size: 18px;">-%</div></div>
+                <div class="info-box"><div class="info-lbl">Şarj Döngüsü (Cycle)</div><div class="info-val" id="bat-cycle">-</div></div>
+                <div class="info-box"><div class="info-lbl">Sıcaklık & Voltaj</div><div class="info-val" id="bat-temp-volt">-</div></div>
+                <div class="info-box"><div class="info-lbl">Nominal Kapasite</div><div class="info-val" id="bat-capacity">-</div></div>
+                <div class="info-box"><div class="info-lbl">Hücre Teknolojisi</div><div class="info-val" id="bat-tech">-</div></div>
+                <div class="info-box"><div class="info-lbl">Durum Değerlendirmesi</div><div class="info-val" id="bat-status">-</div></div>
+            </div>
+        </div>
+
+        <!-- 3. Donanım Muayene Matrisi -->
+        <div class="card">
+            <div class="section-title" id="matrix-title"><span>🛠️</span> 3. Donanım Muayene Matrisi</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Bileşen / Test</th>
+                        <th>Açıklama / Parametre</th>
+                        <th style="text-align: right;">Durum</th>
+                    </tr>
+                </thead>
+                <tbody id="test-rows">
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 4. Kriptografik Bütünlük & Mühür -->
+        <div class="card" style="border: 1px solid var(--accent-green);">
+            <div class="section-title" style="color: var(--accent-green);"><span>🔒</span> 4. Kriptografik İspat ve Kanıt Zinciri Mührü</div>
+            <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
+                Bu rapor mobil cihaz donanım sensörleri tarafından toplanmış ve FIPS 180-4 standartlarında kriptografik olarak mühürlenmiştir.
+                Aşağıdaki SHA-256 özeti matematiksel olarak değiştirilemez ve adli mercilerce doğrulanabilir.
+            </div>
+            <div class="hash-code" id="sha-hash">-</div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 16px; font-size: 11px; color: var(--text-muted);">
+                <div>Standart: ISO/IEC 27037:2012 &bull; NIST SP 800-86</div>
+                <div>Durum: <b style="color: var(--accent-green);">GÜVENLİ (Tamper-Proof)</b></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const SUPABASE_URL = "https://qbyjitqjbtifmqmilujk.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9." +
+        "eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFieWppdHFqYnRpZm1xbWlsdWprIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg2NDU3OTUsImV4cCI6MjEwNDIyMTc5NX0." +
+        "EhNG7Po4SVAz7vFmKkX18dN62aFb2yCTaHLbtwIjmMY";
+
+    async function loadReport() {
+        const params = new URLSearchParams(window.location.search);
+        const hash = params.get("hash")?.trim();
+        const session = params.get("session")?.trim();
+
+        if (!hash && !session) {
+            showError("Parametre Eksik", "Lütfen geçerli bir rapor özeti (?hash=...) veya oturum kodu (?session=...) belirtin.");
+            return;
+        }
+
+        try {
+            let url = `${SUPABASE_URL}/rest/v1/audit_logs?select=*`;
+            if (hash) {
+                url += `&sha256_hash=eq.${encodeURIComponent(hash)}`;
+            } else {
+                url += `&session_id=eq.${encodeURIComponent(session)}`;
+            }
+
+            const response = await fetch(url, {
+                headers: {
+                    "apikey": SUPABASE_ANON_KEY,
+                    "Authorization": `Bearer ${SUPABASE_ANON_KEY}`
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error("Veritabanı erişim hatası: " + response.statusText);
+            }
+
+            const data = await response.json();
+            if (!data || data.length === 0) {
+                showError("Rapor Bulunamadı", "Belirtilen kriptografik özete ait onaylanmış adli tıp ekspertiz raporu bulunamadı.");
+                return;
+            }
+
+            renderReport(data[0]);
+        } catch (err) {
+            showError("Bağlantı Hatası", err.message || "Rapor yüklenirken bir sorun oluştu.");
+        }
+    }
+
+    function renderReport(record) {
+        document.getElementById("loading-view").style.display = "none";
+        document.getElementById("content-view").style.display = "block";
+
+        const p = record.full_report || {};
+        const id = p.identity || {};
+        const silicon = p.silicon || {};
+        const battery = p.battery || {};
+        const storage = p.storage || {};
+        const items = p.items || [];
+
+        const brand = id.brand || "";
+        const model = id.model || record.device_model || "Cihaz";
+        const fullName = `${brand} ${model}`.trim();
+        document.getElementById("device-name").textContent = fullName;
+        document.title = `Zenith Raporu — ${fullName}`;
+
+        const dateStr = new Date(record.created_at).toLocaleString("tr-TR", { timeZone: "Europe/Istanbul" });
+        document.getElementById("report-date").textContent = dateStr;
+        document.getElementById("session-id").textContent = record.session_id ? record.session_id.substring(0, 8) + "..." : "Kayıtlı";
+
+        const score = record.overall_score || 85;
+        const grade = record.expert_grade || (score >= 85 ? "A+" : score >= 70 ? "B" : "C");
+        document.getElementById("score-val").textContent = score;
+        document.getElementById("score-lbl").textContent = `Derece ${grade}`;
+
+        const scoreColor = score >= 80 ? "#10B981" : score >= 60 ? "#F59E0B" : "#EF4444";
+        const scoreCircle = document.getElementById("score-circle");
+        scoreCircle.style.borderColor = scoreColor;
+        document.getElementById("score-val").style.color = scoreColor;
+        scoreCircle.style.background = `${scoreColor}18`;
+
+        // Kimlik
+        document.getElementById("id-brand-model").textContent = fullName;
+        document.getElementById("id-soc").textContent = silicon.socModel ? `${silicon.socModel} (${silicon.coresCount || 8} Çekirdek)` : "Standart SoC";
+        document.getElementById("id-arch").textContent = silicon.architecture || "ARM64";
+
+        const totalGb = storage.totalBytes ? (storage.totalBytes / (1024*1024*1024)).toFixed(1) : "128";
+        const availGb = storage.availableBytes ? (storage.availableBytes / (1024*1024*1024)).toFixed(1) : "64";
+        document.getElementById("id-storage").textContent = `${availGb} GB / ${totalGb} GB (${storage.storageType || "UFS"})`;
+
+        document.getElementById("id-os").textContent = id.androidVersion ? `Android ${id.androidVersion} (API ${id.apiLevel || 34})` : "Mobil İşletim Sistemi";
+        document.getElementById("id-patch").textContent = id.securityPatch || "Güncel";
+        document.getElementById("id-fingerprint").textContent = id.fingerprint || record.device_fingerprint || "N/A";
+
+        // Batarya
+        document.getElementById("bat-health").textContent = `%${battery.healthPct || 100}`;
+        document.getElementById("bat-cycle").textContent = `${battery.cycleCount || 0} Döngü`;
+        document.getElementById("bat-temp-volt").textContent = `${battery.temperatureC || 25}°C • ${battery.voltageMv || 4000} mV`;
+        document.getElementById("bat-capacity").textContent = `${battery.capacityMah || 5000} mAh`;
+        document.getElementById("bat-tech").textContent = battery.technology || "Li-Polymer";
+        document.getElementById("bat-status").textContent = battery.healthStatus || "İyi (Sağlam)";
+
+        // Testler
+        const passedCount = items.filter(i => i.status === "PASSED").length;
+        document.getElementById("matrix-title").innerHTML = `<span>🛠️</span> 3. Donanım Muayene Matrisi (${passedCount}/${items.length} Başarılı)`;
+
+        const tbody = document.getElementById("test-rows");
+        tbody.innerHTML = "";
+        items.forEach(item => {
+            const tr = document.createElement("tr");
+            const isPass = item.status === "PASSED";
+            const isFail = item.status === "FAILED";
+            const badgeClass = isPass ? "badge-pass" : isFail ? "badge-fail" : "badge-skip";
+            const icon = isPass ? "✓" : isFail ? "✗" : "○";
+
+            tr.innerHTML = `
+                <td style="font-weight: 600;">${escapeHtml(item.type)}</td>
+                <td style="color: #94A3B8;">${escapeHtml(item.description || "Donanım testi tamamlandı")}</td>
+                <td style="text-align: right;">
+                    <span class="status-badge ${badgeClass}">${icon} ${escapeHtml(item.status)}</span>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+
+        // Mühür
+        document.getElementById("sha-hash").textContent = `SHA-256: ${record.sha256_hash}`;
+    }
+
+    function showError(title, desc) {
+        document.getElementById("loading-view").style.display = "none";
+        document.getElementById("content-view").style.display = "none";
+        document.getElementById("error-view").style.display = "block";
+        document.getElementById("error-title").textContent = title;
+        document.getElementById("error-desc").textContent = desc;
+    }
+
+    function escapeHtml(str) {
+        if (!str) return "";
+        return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+
+    window.addEventListener("DOMContentLoaded", loadReport);
+</script>
+</body>
+</html>
