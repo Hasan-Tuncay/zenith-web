@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>Zenith Resmi Adli Bilişim Ekspertiz Belgesi</title>
+    <title>Zenith Diagnostics — Official Hardware Inspection Certificate | Secured by Harpai Academy</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
@@ -12,20 +12,20 @@
 
     <style>
         :root {
-            --bg-body: #060913;
-            --bg-card: #0D1424;
-            --bg-card-sub: #131C31;
-            --bg-card-highlight: #1A2642;
-            --border-card: #1E2D4A;
-            --border-glow: rgba(56, 189, 248, 0.35);
+            --bg-body: #050811;
+            --bg-card: #0A101E;
+            --bg-card-sub: #0F172B;
+            --bg-card-highlight: #17233E;
+            --border-card: #1B2945;
+            --border-glow: rgba(56, 189, 248, 0.4);
             
             --text-main: #F8FAFC;
             --text-secondary: #CBD5E1;
-            --text-muted: #8493A8;
+            --text-muted: #7E8DA4;
             
             --navy-primary: #0F1D38;
             --cyan-accent: #0EA5E9;
-            --cyan-glow: rgba(14, 165, 233, 0.25);
+            --cyan-glow: rgba(14, 165, 233, 0.3);
             
             --emerald-pass: #10B981;
             --emerald-bg: rgba(16, 185, 129, 0.12);
@@ -42,6 +42,9 @@
             --gold-accent: #EAB308;
             --gold-bg: rgba(234, 179, 8, 0.15);
             --gold-border: rgba(234, 179, 8, 0.4);
+
+            --harpai-blue: #38BDF8;
+            --harpai-purple: #818CF8;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -50,84 +53,70 @@
             background: var(--bg-body);
             color: var(--text-main);
             line-height: 1.55;
-            padding: 24px 16px 80px;
+            padding: 20px 16px 80px;
             -webkit-font-smoothing: antialiased;
         }
 
         .report-container {
-            max-width: 1020px;
+            max-width: 1040px;
             margin: 0 auto;
-        }
-
-        /* Security Frame Outer Watermark Pattern */
-        .security-frame {
-            border: 2px solid var(--border-card);
-            border-radius: 20px;
-            background: var(--bg-card);
-            padding: 32px 36px;
-            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 40px rgba(14, 165, 233, 0.06);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .security-frame::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0; height: 5px;
-            background: linear-gradient(90deg, #0EA5E9, #10B981, #EAB308, #0EA5E9);
-            background-size: 300% 100%;
-            animation: borderGradient 8s ease infinite;
-        }
-
-        @keyframes borderGradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
         }
 
         /* Sticky Action Bar */
         .action-bar {
             position: sticky;
-            top: 16px;
+            top: 14px;
             z-index: 1000;
-            background: rgba(13, 20, 36, 0.92);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(56, 189, 248, 0.3);
+            background: rgba(10, 16, 30, 0.94);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(56, 189, 248, 0.28);
             border-radius: 14px;
             padding: 12px 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 24px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+            margin-bottom: 22px;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.75), 0 0 20px rgba(14, 165, 233, 0.08);
         }
         .action-bar-left {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
         }
         .action-logo-badge {
-            width: 38px;
-            height: 38px;
+            width: 40px;
+            height: 40px;
             background: linear-gradient(135deg, #0284C7, #0369A1);
-            border-radius: 9px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 20px;
-            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.4);
+            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            flex-shrink: 0;
         }
         .action-bar-title {
             font-size: 14px;
             font-weight: 800;
             color: var(--text-main);
-            letter-spacing: 0.3px;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         .action-bar-sub {
             font-size: 11px;
-            color: var(--cyan-accent);
+            color: var(--text-muted);
             font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .action-bar-sub strong {
+            color: var(--harpai-blue);
+            font-weight: 700;
         }
         .action-btn-group {
             display: flex;
@@ -139,7 +128,7 @@
             padding: 9px 18px;
             border-radius: 8px;
             font-weight: 700;
-            font-size: 13px;
+            font-size: 12px;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
@@ -166,35 +155,61 @@
             color: var(--text-main);
         }
 
+        /* Security Frame Outer Watermark Pattern */
+        .security-frame {
+            border: 1.5px solid var(--border-card);
+            border-radius: 20px;
+            background: var(--bg-card);
+            padding: 32px 36px;
+            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.85), 0 0 40px rgba(14, 165, 233, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .security-frame::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 4px;
+            background: linear-gradient(90deg, #0EA5E9, #6366F1, #10B981, #EAB308, #0EA5E9);
+            background-size: 300% 100%;
+            animation: borderGradient 10s ease infinite;
+        }
+
+        @keyframes borderGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         /* 1. Official Header */
         .cert-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            border-bottom: 2px solid var(--border-card);
+            border-bottom: 1.5px solid var(--border-card);
             padding-bottom: 24px;
             margin-bottom: 24px;
             gap: 20px;
         }
         .cert-emblem-wrap {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 18px;
         }
         .cert-emblem {
-            width: 64px;
-            height: 64px;
+            width: 66px;
+            height: 66px;
             border-radius: 14px;
-            background: linear-gradient(135deg, #0B1933, #022452);
+            background: linear-gradient(135deg, #0B1933, #032049);
             border: 2px solid var(--cyan-accent);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 32px;
-            box-shadow: 0 6px 18px rgba(14, 165, 233, 0.25);
+            box-shadow: 0 6px 20px rgba(14, 165, 233, 0.3);
             flex-shrink: 0;
         }
-        .cert-institution-title {
+        .cert-top-category {
             font-size: 11px;
             font-weight: 800;
             color: var(--cyan-accent);
@@ -202,75 +217,118 @@
             text-transform: uppercase;
         }
         .cert-doc-title {
-            font-size: 22px;
+            font-size: 26px;
             font-weight: 900;
             color: #FFFFFF;
             letter-spacing: -0.5px;
-            margin-top: 2px;
+            margin: 2px 0 2px;
+            line-height: 1.15;
+            background: linear-gradient(180deg, #FFFFFF 0%, #CBD5E1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
+        .cert-doc-sub {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+        }
+        
+        /* Harpai Academy Brand Badge */
+        .harpai-brand-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.08) 0%, rgba(99, 102, 241, 0.08) 100%);
+            border: 1px solid rgba(56, 189, 248, 0.32);
+            border-radius: 6px;
+            padding: 4px 11px;
+            font-size: 10px;
+            font-weight: 800;
+            color: #38BDF8;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            margin-top: 8px;
+            box-shadow: 0 2px 10px rgba(14, 165, 233, 0.12);
+        }
+        .harpai-badge-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #10B981;
+            box-shadow: 0 0 8px #10B981;
+            flex-shrink: 0;
+        }
+        .harpai-brand-badge strong {
+            color: #FFFFFF;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
         .cert-standards-line {
-            font-size: 12px;
+            font-size: 11px;
             color: var(--text-muted);
-            margin-top: 4px;
+            margin-top: 6px;
             font-weight: 500;
+        }
+        .cert-standards-line b {
+            color: var(--text-secondary);
         }
 
         .cert-meta-box {
             display: flex;
             flex-direction: column;
             align-items: flex-end;
-            gap: 8px;
+            gap: 12px;
             flex-shrink: 0;
         }
         .cert-serial-pill {
+            background: var(--bg-card-sub);
+            border: 1px solid var(--border-card);
+            border-radius: 8px;
+            padding: 6px 14px;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 13px;
-            font-weight: 800;
-            background: rgba(14, 165, 233, 0.12);
-            border: 1px solid rgba(14, 165, 233, 0.35);
+            font-size: 11px;
+            font-weight: 700;
             color: var(--cyan-accent);
-            padding: 5px 14px;
-            border-radius: 6px;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.8px;
         }
         .cert-qr-wrap {
             display: flex;
             align-items: center;
             gap: 12px;
-            background: rgba(255,255,255,0.03);
+            background: var(--bg-card-sub);
             border: 1px solid var(--border-card);
-            border-radius: 8px;
+            border-radius: 12px;
             padding: 8px 12px;
         }
         #cert-qr-code {
-            width: 54px;
-            height: 54px;
             background: #FFFFFF;
-            padding: 3px;
-            border-radius: 4px;
+            padding: 4px;
+            border-radius: 6px;
+            width: 58px;
+            height: 58px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        #cert-qr-code img {
-            width: 100%;
-            height: 100%;
-        }
         .cert-qr-text {
-            text-align: right;
             font-size: 10px;
             color: var(--text-muted);
+            line-height: 1.35;
             font-weight: 600;
-            line-height: 1.3;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
         }
 
-        /* 2. Chain of Custody Forensic Strip */
+        /* 2. Chain of Custody */
         .custody-strip {
             background: var(--bg-card-sub);
             border: 1px solid var(--border-card);
             border-left: 4px solid var(--cyan-accent);
-            border-radius: 10px;
-            padding: 14px 18px;
+            border-radius: 12px;
+            padding: 14px 20px;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 16px;
@@ -279,52 +337,55 @@
         .custody-item-lbl {
             font-size: 10px;
             font-weight: 700;
-            text-transform: uppercase;
             color: var(--text-muted);
-            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
         }
         .custody-item-val {
             font-size: 12px;
             font-weight: 700;
-            font-family: 'JetBrains Mono', monospace;
             color: var(--text-main);
             margin-top: 2px;
+            font-family: 'JetBrains Mono', monospace;
+            white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            white-space: nowrap;
         }
 
-        /* 3. Hero Evaluation & Score Section */
+        /* 3. Hero Section (Gauge + 4 Pillars) */
         .hero-section {
             display: grid;
-            grid-template-columns: 280px 1fr;
+            grid-template-columns: 320px 1fr;
             gap: 20px;
             margin-bottom: 24px;
         }
+
+        /* Circular Radial Gauge Card */
         .gauge-card {
             background: var(--bg-card-sub);
             border: 1px solid var(--border-card);
-            border-radius: 14px;
-            padding: 24px 18px;
+            border-radius: 16px;
+            padding: 24px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
+            box-shadow: inset 0 0 25px rgba(14, 165, 233, 0.04);
             position: relative;
         }
         .svg-gauge-box {
             position: relative;
-            width: 140px;
-            height: 140px;
+            width: 150px;
+            height: 150px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
         .svg-gauge-box svg {
+            width: 100%;
+            height: 100%;
             transform: rotate(-90deg);
-            width: 140px;
-            height: 140px;
         }
         .gauge-bg-circle {
             stroke: rgba(255, 255, 255, 0.08);
@@ -348,7 +409,7 @@
             justify-content: center;
         }
         .gauge-number {
-            font-size: 42px;
+            font-size: 44px;
             font-weight: 900;
             line-height: 1;
             color: #FFFFFF;
@@ -358,15 +419,15 @@
             font-size: 11px;
             font-weight: 700;
             color: var(--text-muted);
-            margin-top: 2px;
+            margin-top: 3px;
         }
         .grade-badge-card {
             margin-top: 14px;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 800;
             padding: 5px 16px;
             border-radius: 20px;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.6px;
             text-transform: uppercase;
         }
 
@@ -374,8 +435,8 @@
         .pillars-card {
             background: var(--bg-card-sub);
             border: 1px solid var(--border-card);
-            border-radius: 14px;
-            padding: 20px 24px;
+            border-radius: 16px;
+            padding: 22px 26px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -386,7 +447,7 @@
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid var(--border-card);
-            padding-bottom: 10px;
+            padding-bottom: 12px;
         }
         .pillars-title {
             font-size: 12px;
@@ -396,7 +457,7 @@
             text-transform: uppercase;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
         }
         .pillar-row {
             display: flex;
@@ -413,7 +474,7 @@
         .pillar-score { font-family: 'JetBrains Mono', monospace; }
         .progress-track {
             width: 100%;
-            height: 7px;
+            height: 8px;
             background: rgba(255, 255, 255, 0.08);
             border-radius: 4px;
             overflow: hidden;
@@ -426,10 +487,10 @@
 
         /* Executive Conclusion Box */
         .opinion-box {
-            background: linear-gradient(180deg, rgba(14, 165, 233, 0.05) 0%, rgba(13, 20, 36, 0.6) 100%);
+            background: linear-gradient(180deg, rgba(14, 165, 233, 0.06) 0%, rgba(10, 16, 30, 0.6) 100%);
             border: 1px solid rgba(14, 165, 233, 0.25);
-            border-radius: 12px;
-            padding: 16px 20px;
+            border-radius: 14px;
+            padding: 18px 22px;
             margin-bottom: 24px;
         }
         .opinion-title {
@@ -478,96 +539,103 @@
             border: 1px solid var(--border-card);
             color: var(--cyan-accent);
             padding: 2px 10px;
-            border-radius: 12px;
+            border-radius: 20px;
         }
 
-        /* Grid Cards */
-        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+        }
         .info-cell {
             background: var(--bg-card-sub);
             border: 1px solid var(--border-card);
-            border-radius: 10px;
-            padding: 12px 14px;
-            transition: transform 0.15s ease, border-color 0.15s ease;
-        }
-        .info-cell:hover {
-            border-color: rgba(56, 189, 248, 0.4);
-            transform: translateY(-1px);
+            border-radius: 12px;
+            padding: 14px 16px;
         }
         .info-cell-top {
             font-size: 10px;
             font-weight: 700;
             color: var(--text-muted);
             text-transform: uppercase;
-            letter-spacing: 0.4px;
+            letter-spacing: 0.5px;
             margin-bottom: 4px;
         }
         .info-cell-val {
             font-size: 13px;
-            font-weight: 700;
+            font-weight: 800;
             color: var(--text-main);
+            font-family: 'JetBrains Mono', monospace;
             word-break: break-word;
         }
         .info-cell-sub {
-            font-size: 10px;
+            font-size: 11px;
             color: var(--text-muted);
-            margin-top: 3px;
+            margin-top: 4px;
         }
 
-        /* Inspection Category Tables */
+        /* Categorized Inspection Matrix */
         .category-card {
             background: var(--bg-card-sub);
             border: 1px solid var(--border-card);
-            border-radius: 12px;
-            overflow: hidden;
+            border-radius: 14px;
             margin-bottom: 16px;
+            overflow: hidden;
         }
         .category-header {
-            background: var(--bg-card-highlight);
-            padding: 10px 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            padding: 12px 18px;
+            background: rgba(255, 255, 255, 0.02);
             border-bottom: 1px solid var(--border-card);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
         .category-name {
             font-size: 12px;
             font-weight: 800;
-            color: var(--text-main);
+            color: #FFFFFF;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             display: flex;
             align-items: center;
             gap: 8px;
-            letter-spacing: 0.3px;
         }
         .category-stats {
             font-size: 11px;
             font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
             color: var(--text-muted);
         }
+
         .table-custom {
             width: 100%;
             border-collapse: collapse;
             font-size: 12px;
-            text-align: left;
         }
         .table-custom th {
-            padding: 8px 14px;
-            background: rgba(0, 0, 0, 0.15);
+            text-align: left;
+            padding: 10px 18px;
             font-size: 10px;
-            font-weight: 700;
+            font-weight: 800;
             color: var(--text-muted);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.6px;
             border-bottom: 1px solid var(--border-card);
+            background: rgba(0, 0, 0, 0.15);
         }
         .table-custom td {
-            padding: 10px 14px;
-            border-bottom: 1px solid rgba(30, 45, 74, 0.4);
-            color: var(--text-secondary);
+            padding: 11px 18px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
             vertical-align: middle;
         }
-        .table-custom tr:last-child td { border-bottom: none; }
+        .table-custom tr:last-child td {
+            border-bottom: none;
+        }
         .test-name-bold {
             font-weight: 700;
             color: var(--text-main);
@@ -581,12 +649,13 @@
             display: inline-flex;
             align-items: center;
             gap: 5px;
-            padding: 3px 10px;
-            border-radius: 16px;
-            font-size: 10px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
             font-weight: 800;
-            letter-spacing: 0.3px;
+            letter-spacing: 0.4px;
             text-transform: uppercase;
+            font-family: 'JetBrains Mono', monospace;
         }
         .badge-pass {
             background: var(--emerald-bg);
@@ -599,54 +668,53 @@
             border: 1px solid var(--crimson-border);
         }
         .badge-skip {
-            background: rgba(148, 163, 184, 0.12);
-            color: #94A3B8;
-            border: 1px solid rgba(148, 163, 184, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Official Forensic Stamp & Legal Seal */
+        /* 8. Cryptographic Seal & Legal Stamp */
         .seal-container {
             background: var(--bg-card-sub);
-            border: 1.5px solid var(--emerald-border);
-            border-radius: 14px;
+            border: 1px solid var(--border-card);
+            border-radius: 16px;
             padding: 24px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
             gap: 24px;
-            margin-top: 30px;
+            margin-top: 28px;
+            position: relative;
         }
         .seal-content {
             flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
         }
         .seal-heading {
             font-size: 12px;
             font-weight: 800;
-            color: var(--emerald-pass);
+            color: var(--cyan-accent);
             text-transform: uppercase;
-            letter-spacing: 0.7px;
+            letter-spacing: 0.8px;
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
         .sha-hash-box {
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px solid var(--border-card);
+            border-radius: 8px;
+            padding: 10px 14px;
             font-family: 'JetBrains Mono', monospace;
             font-size: 11px;
-            background: #060B17;
-            border: 1px solid #142747;
-            color: #38BDF8;
-            padding: 10px 14px;
-            border-radius: 8px;
+            color: var(--cyan-accent);
             word-break: break-all;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 10px;
+            gap: 12px;
         }
-        .sha-text { flex: 1; }
         .btn-hash-copy {
             background: rgba(56, 189, 248, 0.15);
             border: 1px solid rgba(56, 189, 248, 0.3);
@@ -657,21 +725,22 @@
             font-weight: 700;
             cursor: pointer;
             font-family: inherit;
+            flex-shrink: 0;
         }
         .btn-hash-copy:hover {
             background: rgba(56, 189, 248, 0.3);
         }
         .legal-disclaimer {
-            font-size: 10px;
+            font-size: 10.5px;
             color: var(--text-muted);
-            line-height: 1.5;
+            line-height: 1.55;
             text-align: justify;
         }
 
         /* Rotated Official Rubber Stamp Badge */
         .forensic-stamp {
-            width: 120px;
-            height: 120px;
+            width: 128px;
+            height: 128px;
             border-radius: 50%;
             border: 3px solid #0EA5E9;
             outline: 2px dashed #0EA5E9;
@@ -682,29 +751,42 @@
             justify-content: center;
             text-align: center;
             padding: 10px;
-            background: rgba(14, 165, 233, 0.05);
+            background: rgba(14, 165, 233, 0.06);
             flex-shrink: 0;
             transform: rotate(-7deg);
-            box-shadow: 0 4px 20px rgba(14, 165, 233, 0.15);
+            box-shadow: 0 4px 20px rgba(14, 165, 233, 0.18);
             user-select: none;
         }
         .stamp-top {
-            font-size: 8px;
+            font-size: 7.5px;
             font-weight: 900;
             color: #0EA5E9;
-            letter-spacing: 1px;
+            letter-spacing: 0.8px;
             text-transform: uppercase;
         }
         .stamp-center {
-            font-size: 20px;
+            font-size: 22px;
             margin: 2px 0;
         }
         .stamp-bottom {
-            font-size: 8px;
+            font-size: 7px;
             font-weight: 800;
             color: #38BDF8;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.4px;
             text-transform: uppercase;
+        }
+
+        /* Footer Brand Bar */
+        .footer-brand-bar {
+            text-align: center;
+            margin-top: 24px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+        .footer-brand-bar strong {
+            color: var(--harpai-blue);
         }
 
         /* Loading & Error States */
@@ -767,8 +849,10 @@
             .security-frame::before { display: none !important; }
             .cert-header { border-bottom: 2px solid #0F172A !important; padding-bottom: 14px !important; margin-bottom: 16px !important; }
             .cert-emblem { background: #F1F5F9 !important; border-color: #0F172A !important; box-shadow: none !important; color: #0F172A !important; }
-            .cert-institution-title { color: #0369A1 !important; }
-            .cert-doc-title { color: #0F172A !important; font-size: 20px !important; }
+            .cert-top-category { color: #0369A1 !important; }
+            .cert-doc-title { -webkit-text-fill-color: #0F172A !important; color: #0F172A !important; font-size: 22px !important; }
+            .harpai-brand-badge { background: #F1F5F9 !important; border-color: #0F172A !important; color: #0F172A !important; }
+            .harpai-brand-badge strong { color: #0F172A !important; }
             .cert-serial-pill { background: #F8FAFC !important; border-color: #CBD5E1 !important; color: #0F172A !important; }
             .custody-strip { background: #F8FAFC !important; border-color: #CBD5E1 !important; border-left-color: #0F172A !important; }
             .custody-item-val { color: #0F172A !important; }
@@ -778,15 +862,12 @@
                 box-shadow: none !important;
                 page-break-inside: avoid;
             }
-            .gauge-number { color: #0F172A !important; }
+            .gauge-inner-text .gauge-number { color: #0F172A !important; }
             .gauge-bg-circle { stroke: #E2E8F0 !important; }
-            .opinion-box { background: #F8FAFC !important; border-color: #CBD5E1 !important; }
-            .opinion-text { color: #334155 !important; }
-            .section-header { border-bottom: 1.5px solid #0F172A !important; color: #0F172A !important; }
-            .category-header { background: #F1F5F9 !important; border-color: #CBD5E1 !important; }
-            .category-name { color: #0F172A !important; }
-            .table-custom th { background: #F8FAFC !important; color: #475569 !important; border-color: #CBD5E1 !important; }
-            .table-custom td { border-color: #E2E8F0 !important; color: #334155 !important; }
+            .pillars-title, .opinion-title, .section-header span.icon, .seal-heading { color: #0284C7 !important; }
+            .pillar-name, .opinion-text, .info-cell-val { color: #0F172A !important; }
+            .table-custom th { background: #F8FAFC !important; color: #475569 !important; border-color: #E2E8F0 !important; }
+            .table-custom td { border-color: #F1F5F9 !important; color: #0F172A !important; }
             .test-name-bold { color: #0F172A !important; }
             .badge-pass { background: #ECFDF5 !important; color: #047857 !important; border-color: #A7F3D0 !important; }
             .badge-fail { background: #FEF2F2 !important; color: #B91C1C !important; border-color: #FECACA !important; }
@@ -826,7 +907,7 @@
     <!-- Loading State -->
     <div id="loading-state">
         <div class="spinner-radar"></div>
-        <h2 style="font-size: 20px; font-weight: 800; color: #FFFFFF;">Zenith Adli Tıp Raporu Doğrulanıyor</h2>
+        <h2 style="font-size: 20px; font-weight: 800; color: #FFFFFF;">Zenith Diagnostics Doğrulanıyor</h2>
         <p style="font-size: 13px; color: var(--text-muted); margin-top: 8px;">
             FIPS 180-4 Kriptografik SHA-256 İmzası ve Sensör Telemetrisi Buluttan Çözülüyor...
         </p>
@@ -848,10 +929,14 @@
         <!-- Sticky Action Bar -->
         <div class="action-bar">
             <div class="action-bar-left">
-                <div class="action-logo-badge">⚖️</div>
+                <div class="action-logo-badge">🛡️</div>
                 <div>
-                    <div class="action-bar-title">Zenith Adli Tıp Ekspertiz Belgesi</div>
-                    <div class="action-bar-sub">ISO/IEC 27037:2012 &bull; Resmi Doğrulanmış Belge</div>
+                    <div class="action-bar-title">
+                        <span>Zenith Diagnostics</span>
+                    </div>
+                    <div class="action-bar-sub">
+                        <span>Resmi Ekspertiz Belgesi</span> &bull; <span>Developed and secured by <strong>Harpai Academy</strong></span>
+                    </div>
                 </div>
             </div>
             <div class="action-btn-group">
@@ -872,8 +957,18 @@
                 <div class="cert-emblem-wrap">
                     <div class="cert-emblem">🛡️</div>
                     <div>
-                        <div class="cert-institution-title">T.C. UZMAN DİJİTAL ADLİ BİLİŞİM & ELEKTRONİK EKSPERTİZ</div>
-                        <h1 class="cert-doc-title">RESMİ EKSPERTİZ BELGESİ</h1>
+                        <div class="cert-top-category">ELEKTRONİK & DONANIM ADLİ BİLİŞİM MUAYENESİ</div>
+                        <h1 class="cert-doc-title">ZENITH DIAGNOSTICS</h1>
+                        <div class="cert-doc-sub">RESMİ DONANIM & SİSTEM EKSPERTİZ BELGESİ</div>
+                        
+                        <!-- Harpai Academy Brand Badge -->
+                        <div>
+                            <div class="harpai-brand-badge">
+                                <span class="harpai-badge-dot"></span>
+                                <span>DEVELOPED AND SECURED BY <strong>HARPAI ACADEMY</strong></span>
+                            </div>
+                        </div>
+
                         <div class="cert-standards-line">
                             Standartlar: <b>ISO/IEC 27037:2012</b> &bull; <b>NIST SP 800-86</b> &bull; <b>FIPS 180-4</b>
                         </div>
@@ -909,7 +1004,7 @@
                 </div>
                 <div>
                     <div class="custody-item-lbl">Adli Bütünlük</div>
-                    <div class="custody-item-val" style="color: var(--emerald-pass);">✓ Kriptografik Onaylı</div>
+                    <div class="custody-item-val" style="color: var(--emerald-pass);">✓ Kriptografik Onaylı (Harpai Core)</div>
                 </div>
             </div>
 
@@ -984,61 +1079,65 @@
                 </div>
             </div>
 
-            <!-- 4. Executive Forensic Opinion -->
+            <!-- 4. Executive Conclusion Box -->
             <div class="opinion-box">
                 <div class="opinion-title">
                     <span>📜</span> Uzman Adli Bilişim Mütalaası & Teşhis Kararı
                 </div>
-                <p class="opinion-text" id="opinion-text">
-                    İşbu resmi ekspertiz belgesi, cihazın tüm donanım katmanlarının, entegre sensörlerinin ve işletim sistemi çekirdeğinin adli bilişim teknikleriyle incelenmesi neticesinde otomatik olarak tanzim edilmiştir. Yapılan derinlemesine donanım testlerinde anakart, ekran ve işlemci modüllerinin fabrika normlarına uygun çalıştığı teyit edilmiş olup cihaz adli bilişim ve ikinci el ticari uygunluk açısından güvenli sınıftadır.
-                </p>
+                <div class="opinion-text">
+                    İşbu resmi ekspertiz belgesi, cihazın tüm donanım katmanlarının, entegre sensörlerinin ve işletim sistemi çekirdeğinin Zenith Diagnostics & Harpai Academy adli bilişim teknikleriyle incelenmesi neticesinde otomatik olarak tanzim edilmiştir. Yapılan derinlemesine donanım testlerinde anakart, ekran ve işlemci modüllerinin fabrika normlarına uygun çalıştığı teyit edilmiş olup cihaz donanımsal ve adli bilişim açısından güvenli sınıftadır.
+                </div>
             </div>
 
-            <!-- 5. Device Passport & Silicon Attestation -->
+            <!-- 5. Device Passport & Silicon Level Info -->
             <div class="section-wrap">
                 <div class="section-header">
                     <div><span class="icon">📱</span> 1. Cihaz Kimlik Pasaportu & Yonga Seti (Silicon) Katmanı</div>
-                    <div class="section-count_badge">Doğrulandı</div>
+                    <div class="section-count-badge">DOĞRULANDI</div>
                 </div>
-                <div class="grid-4">
+
+                <div class="grid-3" style="margin-bottom: 14px;">
                     <div class="info-cell">
                         <div class="info-cell-top">Üretici & Model</div>
                         <div class="info-cell-val" id="id-device-model">-</div>
-                        <div class="info-cell-sub" id="id-market-name">Orijinal Donanım</div>
+                        <div class="info-cell-sub" id="id-market-name">Orijinal Üretim</div>
                     </div>
                     <div class="info-cell">
                         <div class="info-cell-top">İşlemci (SoC)</div>
                         <div class="info-cell-val" id="id-soc">-</div>
-                        <div class="info-cell-sub" id="id-cores">- Çekirdek</div>
+                        <div class="info-cell-sub" id="id-cores">8 Çekirdek (ARM64)</div>
                     </div>
                     <div class="info-cell">
                         <div class="info-cell-top">İşletim Sistemi & Yama</div>
                         <div class="info-cell-val" id="id-os">-</div>
-                        <div class="info-cell-sub" id="id-patch">Yama: -</div>
-                    </div>
-                    <div class="info-cell">
-                        <div class="info-cell-top">Dahili Depolama / HAL</div>
-                        <div class="info-cell-val" id="id-storage">-</div>
-                        <div class="info-cell-sub" id="id-storage-type">UFS Storage</div>
+                        <div class="info-cell-sub" id="id-patch">Güvenlik: Güncel</div>
                     </div>
                 </div>
 
-                <div style="margin-top: 12px;" class="info-cell">
-                    <div class="info-cell-top">Cihaz Adli Parmak İzi (Build Fingerprint)</div>
-                    <div class="info-cell-val" id="id-fingerprint" style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--cyan-accent);">-</div>
+                <div class="grid-3">
+                    <div class="info-cell" style="grid-column: span 1;">
+                        <div class="info-cell-top">Dahili Depolama / HAL</div>
+                        <div class="info-cell-val" id="id-storage">-</div>
+                        <div class="info-cell-sub" id="id-storage-type">UFS High-Speed Flash</div>
+                    </div>
+                    <div class="info-cell" style="grid-column: span 2;">
+                        <div class="info-cell-top">Cihaz Adli Parmak İzi (Build Fingerprint)</div>
+                        <div class="info-cell-val" id="id-fingerprint" style="font-size: 11px; color: var(--cyan-accent);">-</div>
+                    </div>
                 </div>
             </div>
 
-            <!-- 6. Battery Deep Forensic Telemetry -->
+            <!-- 6. Battery Deep Telemetry -->
             <div class="section-wrap">
                 <div class="section-header">
                     <div><span class="icon">⚡</span> 2. Batarya Sağlığı & Hücre Tahlili (Deep Telemetry)</div>
-                    <div class="section-count-badge" id="bat-status-badge">İyi (Sağlam)</div>
+                    <div class="section-count-badge" id="bat-status-badge">İYİ (SAĞLAM)</div>
                 </div>
-                <div class="grid-3">
+
+                <div class="grid-3" style="margin-bottom: 14px;">
                     <div class="info-cell">
                         <div class="info-cell-top">Gerçek Sağlık Yüzdesi</div>
-                        <div class="info-cell-val" id="bat-health" style="color: var(--emerald-pass); font-size: 20px; font-weight: 900;">-%</div>
+                        <div class="info-cell-val" id="bat-health" style="font-size: 20px; color: var(--emerald-pass);">-%</div>
                         <div class="info-cell-sub">Coulomb Sayacı & SysFS Doğrulaması</div>
                     </div>
                     <div class="info-cell">
@@ -1051,6 +1150,9 @@
                         <div class="info-cell-val" id="bat-temp-volt">-</div>
                         <div class="info-cell-sub">Termal Güvenlik Sınırı İçi</div>
                     </div>
+                </div>
+
+                <div class="grid-3">
                     <div class="info-cell">
                         <div class="info-cell-top">Nominal Kapasite</div>
                         <div class="info-cell-val" id="bat-capacity">- mAh</div>
@@ -1073,7 +1175,7 @@
             <div class="section-wrap">
                 <div class="section-header">
                     <div><span class="icon">🛠️</span> 3. Kategorize Donanım Muayene Matrisi</div>
-                    <div class="section-count-badge" id="matrix-total-badge">31 Modül İncelendi</div>
+                    <div class="section-count-badge" id="matrix-total-badge">31 Modül Tahlil Edildi</div>
                 </div>
 
                 <div id="inspection-categories-container">
@@ -1098,10 +1200,15 @@
 
                 <!-- Rotated Official Rubber Stamp -->
                 <div class="forensic-stamp">
-                    <div class="stamp-top">ADLİ BİLİŞİM</div>
-                    <div class="stamp-center">⚖️</div>
-                    <div class="stamp-bottom">MÜHÜRLÜ & ONAYLI</div>
+                    <div class="stamp-top">ZENITH DIAGNOSTICS</div>
+                    <div class="stamp-center">🛡️</div>
+                    <div class="stamp-bottom">HARPAI ACADEMY &bull; CERTIFIED</div>
                 </div>
+            </div>
+
+            <!-- 9. Footer Brand Bar -->
+            <div class="footer-brand-bar">
+                Zenith Diagnostics Engine v8.4 &bull; Developed and secured by <strong>Harpai Academy</strong> &bull; ISO/IEC 27037:2012 Certified
             </div>
 
         </div> <!-- /security-frame -->
@@ -1182,7 +1289,7 @@
         const brand = id.brand || "";
         const model = id.model || record.device_model || "Cihaz";
         const fullName = `${brand} ${model}`.trim();
-        document.title = `Zenith Adli Ekspertiz Belgesi — ${fullName}`;
+        document.title = `Zenith Diagnostics — ${fullName} | Secured by Harpai Academy`;
 
         // Sertifika Seri No & QR Kod
         const shortHash = currentHash ? currentHash.substring(0, 8).toUpperCase() : "VERIFIED";
@@ -1317,7 +1424,6 @@
             const catItems = items.filter(item => {
                 const t = (item.type || "").toUpperCase();
                 if (cat.id === "sensors") {
-                    // İlk 3 kategoriye girmeyen her şey
                     return !categories.slice(0, 3).some(c => c.match.some(m => t.includes(m)));
                 }
                 return cat.match.some(m => t.includes(m));
