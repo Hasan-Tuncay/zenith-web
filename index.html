@@ -727,66 +727,112 @@
             word-break: break-all;
         }
 
-        /* Detaylı Yapılandırılmış Telemetri Matrisi */
+        /* Detaylı Yapılandırılmış Ham Telemetri Matrisi */
         .detailed-telemetry-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
+            gap: 10px;
             margin-bottom: 6px;
         }
-        @media (max-width: 768px) {
+        @media (max-width: 820px) {
             .detailed-telemetry-grid {
                 grid-template-columns: 1fr;
             }
         }
         .telemetry-card {
             background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 6px;
-            padding: 8px 12px;
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 8px;
+            padding: 9px 12px;
+            display: flex;
+            flex-direction: column;
         }
         .telemetry-card-title {
-            font-size: 10px;
+            font-size: 10.5px;
             font-weight: 800;
             color: #38BDF8;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.4px;
             margin-bottom: 6px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             padding-bottom: 4px;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
-        .telemetry-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 2.5px 0;
-            font-size: 10px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+        .telemetry-card-badge {
+            font-size: 8.5px;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 1px 6px;
+            border-radius: 3px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            letter-spacing: 0.5px;
         }
-        .telemetry-row:last-child {
+        .telemetry-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .telemetry-table tr {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.025);
+        }
+        .telemetry-table tr:last-child {
             border-bottom: none;
         }
-        .telemetry-k {
-            color: var(--text-muted);
-            font-weight: 500;
-        }
-        .telemetry-v {
-            color: var(--text-primary);
-            font-family: 'JetBrains Mono', monospace;
+        .telemetry-td-key {
+            width: 44%;
+            padding: 3.5px 6px 3.5px 0;
+            font-size: 9.5px;
             font-weight: 600;
+            color: var(--text-muted);
+            vertical-align: top;
+            line-height: 1.35;
+        }
+        .telemetry-td-val {
+            width: 56%;
+            padding: 3.5px 0 3.5px 6px;
+            font-size: 9.5px;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            color: #F1F5F9;
             text-align: right;
+            vertical-align: top;
+            word-break: break-word;
+            line-height: 1.35;
         }
-        .telemetry-v.pass {
+        .telemetry-v-badge {
+            display: inline-block;
+            padding: 1px 5px;
+            border-radius: 3px;
+            font-size: 8.5px;
+            font-weight: 700;
+        }
+        .telemetry-v-badge.pass {
+            background: var(--status-pass-bg);
             color: var(--status-pass);
+            border: 1px solid var(--status-pass-border);
         }
-        .telemetry-v.warn {
+        .telemetry-v-badge.warn {
+            background: var(--status-warn-bg);
             color: var(--status-warn);
+            border: 1px solid var(--status-warn-border);
         }
-        .telemetry-v.info {
+        .telemetry-v-badge.info {
+            background: rgba(56, 189, 248, 0.08);
             color: #38BDF8;
+            border: 1px solid rgba(56, 189, 248, 0.25);
+        }
+        .telemetry-sublist {
+            text-align: left;
+            font-size: 8.5px;
+            line-height: 1.4;
+            margin-top: 2px;
+            color: #CBD5E1;
+        }
+        .telemetry-sublist div {
+            margin-bottom: 2px;
+            word-break: break-all;
         }
 
         /* 7. Kriptografik Doğrulama Şeridi */
@@ -949,8 +995,8 @@
                 background: #FFFFFF !important;
                 border-color: #CBD5E1 !important;
                 margin-bottom: 6px !important;
-                page-break-inside: avoid !important;
-                break-inside: avoid !important;
+                page-break-inside: auto !important;
+                break-inside: auto !important;
             }
             .raw-telemetry-header {
                 background: #F8FAFC !important;
@@ -962,35 +1008,69 @@
             .detailed-telemetry-grid {
                 display: grid !important;
                 grid-template-columns: repeat(2, 1fr) !important;
-                gap: 5px !important;
+                gap: 5px 8px !important;
                 margin-bottom: 4px !important;
             }
             .telemetry-card {
                 background: #F8FAFC !important;
                 border: 1px solid #CBD5E1 !important;
                 border-radius: 4px !important;
-                padding: 5px 8px !important;
+                padding: 4px 6px !important;
                 page-break-inside: avoid !important;
                 break-inside: avoid !important;
+                margin-bottom: 4px !important;
             }
             .telemetry-card-title {
                 color: #0284C7 !important;
                 border-bottom: 1px solid #E2E8F0 !important;
-                font-size: 8pt !important;
+                font-size: 7.5pt !important;
                 font-weight: 800 !important;
                 padding-bottom: 2px !important;
-                margin-bottom: 4px !important;
+                margin-bottom: 3px !important;
             }
-            .telemetry-row {
-                font-size: 7.5pt !important;
-                padding: 1.5px 0 !important;
+            .telemetry-card-badge {
+                color: #475569 !important;
+                background: #E2E8F0 !important;
+                border: 1px solid #CBD5E1 !important;
+                font-size: 6.5pt !important;
+            }
+            .telemetry-table tr {
                 border-bottom: 1px dotted #E2E8F0 !important;
             }
-            .telemetry-k { color: #334155 !important; font-weight: 600 !important; }
-            .telemetry-v { color: #000000 !important; font-family: 'JetBrains Mono', monospace !important; }
-            .telemetry-v.pass { color: #047857 !important; }
-            .telemetry-v.warn { color: #B45309 !important; }
-            .telemetry-v.info { color: #0284C7 !important; }
+            .telemetry-td-key {
+                color: #334155 !important;
+                font-size: 6.8pt !important;
+                font-weight: 700 !important;
+                padding: 1.5px 3px 1.5px 0 !important;
+            }
+            .telemetry-td-val {
+                color: #000000 !important;
+                font-family: 'JetBrains Mono', monospace !important;
+                font-size: 6.8pt !important;
+                padding: 1.5px 0 1.5px 3px !important;
+            }
+            .telemetry-v-badge.pass {
+                color: #047857 !important;
+                background: transparent !important;
+                border: none !important;
+                font-weight: 700 !important;
+            }
+            .telemetry-v-badge.warn {
+                color: #B45309 !important;
+                background: transparent !important;
+                border: none !important;
+                font-weight: 700 !important;
+            }
+            .telemetry-v-badge.info {
+                color: #0284C7 !important;
+                background: transparent !important;
+                border: none !important;
+                font-weight: 700 !important;
+            }
+            .telemetry-sublist {
+                color: #000000 !important;
+                font-size: 6.5pt !important;
+            }
 
             .raw-telemetry-body { display: none !important; }
             .raw-log-terminal { display: none !important; }
@@ -1649,162 +1729,381 @@
     }
 
     /* ==========================================================================
-       DETAYLI HAM TELEMETRİ VE DONANIM HAL MATRİSİ
-       Kullanıcı Talebi: Boş kalan yere detaylı raw telemetrileri güzelce yazarız!
+       GÜVENLİ METİN KAÇIŞI (HTML ESCAPE)
        ========================================================================== */
+    function escapeHtml(str) {
+        if (str === null || str === undefined) return "";
+        return String(str)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
+    /* ==========================================================================
+       DİNAMİK VE KAPSAMLI HAM TELEMETRİ & DONANIM HAL MOTORU
+       Kullanıcı İlkesi: "Ne aldıysak elimizde ne varsa ham telemetri basalım!"
+       - Hiçbir alan elenmez, filtrelenmez veya gizlenmez.
+       - Android, iOS (iPhone/iPad) ve gelecekteki tüm platformların telemetri
+         anahtarları dinamik olarak tanınır ve tablo formatında basılır.
+       - İkili sütunda estetik, teknik ve yüksek yoğunluklu (dense) sunulur.
+       ========================================================================== */
+    const TELEMETRY_KEY_LABELS = {
+        // İşlemci / Silicon / GPU / SoC
+        socModel: "SoC Yonga Seti",
+        socManufacturer: "SoC Üreticisi",
+        cpuArchitecture: "Komut Seti Mimarisi",
+        cpuCoresCount: "Çekirdek Sayısı",
+        cpuClusterSummary: "Çekirdek Küme Mimarisi",
+        cpuGovernor: "CPU Frekans Yöneticisi",
+        cpuFrequenciesMhz: "Aktif Çekirdek Frekansları",
+        gpuVendor: "Grafik Hızlandırıcı Sağlayıcı",
+        gpuRenderer: "GPU Donanım Hızlandırıcı",
+        vulkanVersion: "Vulkan Grafik API",
+        ramTechnology: "RAM Bellek Mimarisi",
+        npuAccelerator: "NPU / AI Hızlandırıcı",
+        hardwarePlatform: "Donanım Platform Kodu",
+        pageSizeKb: "Bellek Sayfa Boyutu",
+
+        // Cihaz Kimlik & Güvenlik Çekirdeği (Android / iOS)
+        brand: "Cihaz Markası",
+        manufacturer: "Üretici Firma",
+        model: "Donanım Model Kodu",
+        product: "Ürün Tanımı (Product)",
+        board: "Anakart Kod Adı",
+        hardware: "Yonga Platformu",
+        androidVersion: "Android OS Sürümü",
+        sdkInt: "API Düzeyi (SDK Level)",
+        securityPatch: "Güvenlik Yama Seviyesi",
+        avbState: "Android AVB Durumu",
+        isDeviceRooted: "Root / İhlal Durumu",
+        selinuxEnforcing: "SELinux Politika Seviyesi",
+        widevineSecurityLevel: "Widevine DRM Seviyesi",
+        widevineSystemId: "Widevine Sistem ID",
+        kernelVersion: "Kernel (Çekirdek) Sürümü",
+        radioVersion: "Radyo Baseband / Modem",
+        buildFingerprint: "Sistem Build Fingerprint",
+        knoxWarrantyBit: "Donanım Güvenlik Sigortası",
+        bootloader: "Önyükleyici (Bootloader)",
+        androidId: "Donanım Cihaz Kimliği (ID)",
+
+        // iOS & Apple Donanım Anahtarları
+        iosVersion: "iOS İşletim Sistemi",
+        iosBuildNumber: "iOS Build Numarası",
+        deviceClass: "Cihaz Sınıfı (iPhone/iPad)",
+        modelName: "Pazarlama Model Adı",
+        machineId: "Donanım Kodu (Machine ID)",
+        thermalState: "Sistem Termal Durumu",
+        metalFeatureSet: "Apple Metal GPU Desteği",
+        neuralEngineCores: "Neural Engine AI Çekirdeği",
+        secureEnclaveState: "Secure Enclave Bütünlüğü",
+        biometricType: "Biyometri Tipi (FaceID/TouchID)",
+        trueToneSupported: "True Tone Ekran Desteği",
+        proMotionSupported: "ProMotion (120Hz) Desteği",
+
+        // Batarya & BMS Güç Kalibrasyonu
+        voltageMv: "Hücre Gerilimi (Voltage)",
+        temperatureCelsius: "Batarya Sıcaklığı",
+        temperatureC: "Batarya Sıcaklığı",
+        chargeDesignMah: "Fabrika Tasarım Kapasitesi",
+        chargeFullMah: "Ölçülen Tam Kapasite",
+        realHealthPct: "BMS Gerçek Sağlık Payı",
+        levelPct: "Mevcut Şarj Seviyesi",
+        scale: "Şarj Skalası",
+        healthStatus: "Batarya Tahlil Durumu",
+        isCharging: "Şarj Durumu",
+        rawBmsSource: "Telemetri Veri Kaynağı",
+        cycleCount: "Döngü Sayısı (Cycle Count)",
+        internalResistanceMo: "Hücre İç Direnci",
+        deviceAssemblyDate: "Cihaz Montaj Tarihi",
+        manufactureDate: "Batarya Üretim Tarihi",
+        dateParityVerdict: "Tarih Parite Doğrulaması",
+        batterySerial: "Batarya Seri Numarası",
+
+        // Depolama HAL
+        storageType: "Flash Blok Arayüzü",
+        totalBytes: "Toplam Depolama Alanı",
+        availableBytes: "Kullanılabilir Boş Alan",
+        preEolStatus: "Pre-EOL Aşınma Durumu",
+        deviceLifeTimeEstA: "Flash Ömür Tahmini A (SLC)",
+        deviceLifeTimeEstB: "Flash Ömür Tahmini B (MLC)",
+        isABPartition: "Sistem Bölüm Yapısı",
+
+        // OEM Donanım HAL & Teşhis
+        vendorName: "OEM Donanım HAL Arayüzü",
+        oemDiagnosticCode: "OEM Donanım Tanı Kodu",
+        trebleHidlAidlSupport: "Treble HIDL / AIDL Desteği",
+        thermalZonesCount: "Aktif Termal Sensör Sayısı",
+        audioDacVendor: "Ses DAC Sağlayıcısı",
+        biometricHalVendor: "Biyometrik HAL Sağlayıcısı",
+        cameraProviderVendor: "Kamera HAL Sağlayıcısı",
+        activeVendorHals: "Aktif Donanım HAL Servisleri",
+
+        // Skor Matrisi & Ekspertiz
+        overallScore: "Genel Donanım Skoru",
+        expertGrade: "Ekspertiz Derecesi",
+        displayScore: "Ekran & Dokunmatik Skoru",
+        sensorsAudioScore: "Sensörler & Akustik Skoru",
+        batteryScore: "Batarya & Güç Skoru",
+        securityIntegrityScore: "Güvenlik & Bütünlük Skoru",
+        siliconStorageScore: "İşlemci & Depolama Skoru"
+    };
+
+    function humanizeKey(key) {
+        if (TELEMETRY_KEY_LABELS[key]) return TELEMETRY_KEY_LABELS[key];
+        return key
+            .replace(/([A-Z])/g, " $1")
+            .replace(/_/g, " ")
+            .trim()
+            .replace(/^\w/, c => c.toUpperCase());
+    }
+
+    function formatTelemetryValue(key, value) {
+        if (value === null || value === undefined || value === "") {
+            return '<span style="color: var(--text-muted); font-style: italic;">N/A (Kısıtlı / Bilgi Yok)</span>';
+        }
+
+        // Özel -1 durumları
+        if ((key === "cycleCount" || key === "internalResistanceMo") && value === -1) {
+            return '<span style="color: var(--text-muted); font-style: italic;">N/A (HAL Kısıtlı / Sağlanmadı)</span>';
+        }
+
+        // Boolean formatlamaları
+        if (typeof value === "boolean") {
+            if (key === "isDeviceRooted") {
+                return value
+                    ? '<span class="telemetry-v-badge warn">✗ ROOT BULUNDU</span>'
+                    : '<span class="telemetry-v-badge pass">✓ Orijinal Stok (Root Yok)</span>';
+            }
+            if (key === "selinuxEnforcing") {
+                return value
+                    ? '<span class="telemetry-v-badge pass">✓ Enforcing (Katı Güvenli)</span>'
+                    : '<span class="telemetry-v-badge info">Permissive (Standart)</span>';
+            }
+            if (key === "isABPartition") {
+                return value
+                    ? '<span class="telemetry-v-badge info">A/B Seamless Çift Slot</span>'
+                    : '<span class="telemetry-v-badge">Tek Bölüm (Slot A)</span>';
+            }
+            if (key === "isCharging") {
+                return value
+                    ? '<span class="telemetry-v-badge info">⚡ Şarj Ediliyor</span>'
+                    : '<span class="telemetry-v-badge">Deşarj / Pilde</span>';
+            }
+            if (key === "trebleHidlAidlSupport") {
+                return value
+                    ? '<span class="telemetry-v-badge pass">✓ Aktif (HIDL / AIDL)</span>'
+                    : '<span class="telemetry-v-badge warn">Desteklenmiyor</span>';
+            }
+            return value
+                ? '<span class="telemetry-v-badge pass">✓ TRUE / ETKİN</span>'
+                : '<span class="telemetry-v-badge">✗ FALSE / PASİF</span>';
+        }
+
+        // Byte hesaplamaları (Depolama)
+        if ((key === "totalBytes" || key === "availableBytes") && typeof value === "number") {
+            const gb = (value / (1024 * 1024 * 1024)).toFixed(1);
+            return `${gb} GB <span style="font-size: 8px; color: var(--text-muted);">(${value.toLocaleString("tr-TR")} B)</span>`;
+        }
+
+        // Gerilim, Sıcaklık ve Kapasite birimleri
+        if (key === "voltageMv") return `${value} mV`;
+        if (key === "temperatureCelsius" || key === "temperatureC") return `${value}°C`;
+        if (key === "chargeDesignMah" || key === "chargeFullMah") return `${value} mAh`;
+        if (key === "realHealthPct" || key === "levelPct") return `%${value}`;
+        if (key === "pageSizeKb") return `${value} KB`;
+        if (key === "thermalZonesCount") return `${value} Sensör Bölgesi`;
+        if (key === "cpuCoresCount") return `${value} Fiziksel Çekirdek`;
+
+        // Skorlar
+        if (key.toLowerCase().includes("score") && typeof value === "number") {
+            return `${value} / 100`;
+        }
+
+        // AVB State
+        if (key === "avbState") {
+            return value === "GREEN"
+                ? '<span class="telemetry-v-badge pass">✓ GREEN (Kilitli Güvenli)</span>'
+                : `<span class="telemetry-v-badge warn">${escapeHtml(String(value))}</span>`;
+        }
+
+        // Widevine Seviyesi
+        if (key === "widevineSecurityLevel") {
+            return value === "L1"
+                ? '<span class="telemetry-v-badge pass">✓ L1 (Donanım Korumalı)</span>'
+                : `<span class="telemetry-v-badge info">${escapeHtml(String(value))}</span>`;
+        }
+
+        // Pre-EOL ve Ömür
+        if (key === "preEolStatus" || key === "deviceLifeTimeEstA" || key === "deviceLifeTimeEstB") {
+            const str = String(value);
+            const isOpt = str.includes("NORMAL") || str.includes("0-10%") || str.includes("Optimal");
+            return isOpt
+                ? `<span class="telemetry-v-badge pass">${escapeHtml(str)}</span>`
+                : `<span class="telemetry-v-badge warn">${escapeHtml(str)}</span>`;
+        }
+
+        // Ekspertiz Derecesi
+        if (key === "expertGrade") {
+            return `<span class="telemetry-v-badge pass">${escapeHtml(String(value))}</span>`;
+        }
+
+        // Diziler (Array)
+        if (Array.isArray(value)) {
+            if (value.length === 0) {
+                return '<span style="color: var(--text-muted); font-style: italic;">(Boş Liste)</span>';
+            }
+            if (key === "cpuFrequenciesMhz") {
+                return `${value.join(" / ")} MHz`;
+            }
+            // HAL servisleri veya çoklu string listesi
+            return `
+                <div class="telemetry-sublist">
+                    ${value.map(item => `<div>• ${escapeHtml(String(item))}</div>`).join("")}
+                </div>
+            `;
+        }
+
+        // Nesne (Object)
+        if (typeof value === "object") {
+            try {
+                return `<code style="font-size: 8.5px;">${escapeHtml(JSON.stringify(value))}</code>`;
+            } catch (e) {
+                return "[Object]";
+            }
+        }
+
+        // Standart String
+        const s = String(value);
+        return escapeHtml(s);
+    }
+
     function renderDetailedTelemetry(record) {
         const container = document.getElementById("detailed-telemetry-grid");
         if (!container) return;
 
         const p = record.full_report || {};
-        const silicon = p.silicon || p.siliconSoc || {};
-        const battery = p.battery || {};
-        const storage = p.storage || {};
-        const id = p.identity || p.deviceIdentity || {};
-        const hal = p.halVendor || {};
 
-        // 1. İşlemci & Grafik HAL (Silicon & GPU)
-        const socModel = silicon.socModel || "MT6893 (MediaTek)";
-        const cpuArch = silicon.cpuArchitecture || "aarch64";
-        const cpuClusters = silicon.cpuClusterSummary || `${silicon.cpuCoresCount || 8} Çekirdek (DynamIQ)`;
-        const cpuGov = silicon.cpuGovernor || "schedutil";
-        const freqList = Array.isArray(silicon.cpuFrequenciesMhz) && silicon.cpuFrequenciesMhz.length > 0
-            ? silicon.cpuFrequenciesMhz.slice(0, 4).join(" / ") + " MHz"
-            : "Dinamik DVFS Aktif";
-        const gpu = silicon.gpuRenderer || "Hardware Accelerated GPU";
-        const vulkan = silicon.vulkanVersion || "Vulkan 1.1 / 1.2";
-        const ramTech = silicon.ramTechnology || "LPDDR5 / LPDDR4X";
+        // Öncelikli / Bilinen Bölümler ve Meta Tanımları
+        const KNOWN_SECTIONS = [
+            {
+                aliases: ["siliconSoc", "silicon", "appleSilicon", "processor", "soc"],
+                title: "İşlemci, Grafik & Silikon HAL",
+                badge: "SILICON-HAL"
+            },
+            {
+                aliases: ["deviceIdentity", "identity", "deviceInfo", "iosDeviceInfo"],
+                title: "Güvenlik Bütünlüğü & Çekirdek (Kernel)",
+                badge: "TRUST-KERNEL"
+            },
+            {
+                aliases: ["battery", "powerBms", "batteryHealth", "power"],
+                title: "Güç Yönetimi & BMS Kalibrasyonu",
+                badge: "POWER-BMS"
+            },
+            {
+                aliases: ["storage", "storageHal", "diskSpace", "fileSystem"],
+                title: "Depolama Sağlığı & Flash Blok HAL",
+                badge: "STORAGE-HAL"
+            },
+            {
+                aliases: ["halVendor", "hardwareVendor", "peripherals", "oemHal"],
+                title: "OEM Donanım HAL & Tanı Servis Protokolü",
+                badge: "OEM-HAL"
+            },
+            {
+                aliases: ["trustScoreMatrix", "scoreMatrix", "diagnosticsScore"],
+                title: "Donanım Güvenilirlik & Skor Matrisi",
+                badge: "TRUST-MATRIX"
+            }
+        ];
 
-        // 2. Güvenlik Çekirdeği, AVB & Kernel
-        const avbState = id.avbState || "GREEN";
-        const isRooted = id.isDeviceRooted === true;
-        const selinux = id.selinuxEnforcing !== false ? "Enforcing (Katı)" : "Permissive / Standart";
-        const widevineL = id.widevineSecurityLevel ? `${id.widevineSecurityLevel} (ID: ${id.widevineSystemId || "N/A"})` : "L1 Donanım Korumalı";
-        const kernel = id.kernelVersion || "Linux 4.19 LTS";
-        const radio = id.radioVersion ? (id.radioVersion.split(",")[0].substring(0, 24) + "...") : "MOLY.NR15 (Aktif Modem)";
-        const secPatch = id.securityPatch || "2025-09-01";
+        // Telemetri harici veya zaten ayrı render edilen anahtarlar
+        const IGNORED_ROOT_KEYS = new Set([
+            "items",
+            "verificationQrPayload",
+            "sha256Checksum",
+            "auditSessionId",
+            "timestampEpochMs",
+            "formattedTimestamp",
+            "cosmeticAssessment",
+            "discoveredComponents"
+        ]);
 
-        // 3. Batarya BMS Kalibrasyonu & Termal
-        const bmsVolt = battery.voltageMv ? `${battery.voltageMv} mV` : "4350 mV";
-        const bmsTemp = battery.temperatureCelsius ? `${battery.temperatureCelsius}°C` : (battery.temperatureC ? `${battery.temperatureC}°C` : "32°C");
-        const designMah = battery.chargeDesignMah || battery.capacityMah || 5000;
-        const fullMah = battery.chargeFullMah || Math.round(designMah * ((battery.realHealthPct || 85) / 100));
-        const realHealth = battery.realHealthPct ? `%${battery.realHealthPct}` : `%${battery.healthPct || 85}`;
-        const bmsSource = battery.rawBmsSource || "BatteryManager + PowerProfile";
+        const processedRootKeys = new Set();
+        const sectionsToRender = [];
 
-        // 4. Depolama Sektörü & Donanım HAL
-        const storageType = storage.storageType || "UFS High-Speed Flash";
-        const preEol = storage.preEolStatus || "NORMAL (Optimal)";
-        const lifeA = storage.deviceLifeTimeEstA || "0-10% (Optimal)";
-        const isAB = storage.isABPartition !== false ? "A/B Seamless Slot" : "Tek Slot";
-        const halVendor = hal.vendorName || "Orijinal Üretici CIT HAL";
-        const halCode = hal.oemDiagnosticCode || "*#*#6484#*#*";
+        // 1. Bilinen anahtarları sırayla topla
+        for (const meta of KNOWN_SECTIONS) {
+            for (const alias of meta.aliases) {
+                if (p[alias] && typeof p[alias] === "object" && Object.keys(p[alias]).length > 0) {
+                    sectionsToRender.push({
+                        title: meta.title,
+                        badge: meta.badge,
+                        data: p[alias]
+                    });
+                    processedRootKeys.add(alias);
+                    break;
+                }
+            }
+        }
 
-        container.innerHTML = `
-            <!-- Kart 1: İşlemci & Grafik HAL -->
-            <div class="telemetry-card">
-                <div class="telemetry-card-title">
-                    <span>1. İşlemci, Grafik &amp; Bellek HAL</span>
-                    <span style="font-size: 8.5px; color: var(--text-muted); font-family: monospace;">SILICON-HAL</span>
-                </div>
-                <div class="telemetry-row">
-                    <span class="telemetry-k">SoC Yonga Seti:</span>
-                    <span class="telemetry-v">${socModel} (${cpuArch})</span>
-                </div>
-                <div class="telemetry-row">
-                    <span class="telemetry-k">Çekirdek Mimarisi:</span>
-                    <span class="telemetry-v">${cpuClusters}</span>
-                </div>
-                <div class="telemetry-row">
-                    <span class="telemetry-k">Aktif Frekans / Gov:</span>
-                    <span class="telemetry-v">${freqList} • ${cpuGov}</span>
-                </div>
-                <div class="telemetry-row">
-                    <span class="telemetry-k">Grafik Hızlandırıcı:</span>
-                    <span class="telemetry-v">${gpu}</span>
-                </div>
-                <div class="telemetry-row">
-                    <span class="telemetry-k">Grafik API / Bellek:</span>
-                    <span class="telemetry-v">${vulkan} • ${ramTech}</span>
-                </div>
-            </div>
+        // 2. Kalan TÜM root nesneleri (iOS, yeni donanımlar vs.) dinamik olarak ekle
+        for (const [key, val] of Object.entries(p)) {
+            if (processedRootKeys.has(key) || IGNORED_ROOT_KEYS.has(key)) continue;
 
-            <!-- Kart 2: Güvenlik, AVB & Kernel -->
-            <div class="telemetry-card">
-                <div class="telemetry-card-title">
-                    <span>2. Güvenlik Bütünlüğü &amp; Çekirdek</span>
-                    <span style="font-size: 8.5px; color: var(--text-muted); font-family: monospace;">TRUST-KERNEL</span>
-                </div>
-                <div class="telemetry-row">
-                    <span class="telemetry-k">Android AVB Durumu:</span>
-                    <span class="telemetry-v pass">✓ ${avbState} (Kilitli Güvenli)</span>
-                </div>
-                <div class="telemetry-row">
-                    <span class="telemetry-k">Root / İhlal Durumu:</span>
-                    <span class="telemetry-v ${isRooted ? 'warn' : 'pass'}">${isRooted ? '✗ ROOT BULUNDU' : '✓ Orijinal Stok (Root Yok)'}</span>
-                </div>
-                <div class="telemetry-row">
-                    <span class="telemetry-k">SELinux / DRM Seviyesi:</span>
-                    <span class="telemetry-v">${selinux} • DRM ${widevineL}</span>
-                </div>
-                <div class="telemetry-row">
-                    <span class="telemetry-k">Linux Kernel Sürümü:</span>
-                    <span class="telemetry-v">${kernel}</span>
-                </div>
-                <div class="telemetry-row">
-                    <span class="telemetry-k">Radyo Baseband &amp; Yama:</span>
-                    <span class="telemetry-v">${radio} • ${secPatch}</span>
-                </div>
-            </div>
+            if (val && typeof val === "object" && !Array.isArray(val) && Object.keys(val).length > 0) {
+                const title = humanizeKey(key);
+                const badge = key.toUpperCase().replace(/[^A-Z0-9]/g, "-");
+                sectionsToRender.push({
+                    title: title,
+                    badge: badge,
+                    data: val
+                });
+                processedRootKeys.add(key);
+            }
+        }
 
-            <!-- Kart 3: Batarya Kalibrasyon & BMS -->
-            <div class="telemetry-card">
-                <div class="telemetry-card-title">
-                    <span>3. Güç Yönetimi &amp; BMS Kalibrasyonu</span>
-                    <span style="font-size: 8.5px; color: var(--text-muted); font-family: monospace;">POWER-BMS</span>
-                </div>
-                <div class="telemetry-row">
-                    <span class="telemetry-k">Hücre Gerilimi &amp; Termal:</span>
-                    <span class="telemetry-v info">${bmsVolt} • ${bmsTemp}</span>
-                </div>
-                <div class="telemetry-row">
-                    <span class="telemetry-k">Tasarım / Ölçülen Kapasite:</span>
-                    <span class="telemetry-v">${designMah} mAh / ${fullMah} mAh</span>
-                </div>
-                <div class="telemetry-row">
-                    <span class="telemetry-k">BMS Gerçek Sağlık Payı:</span>
-                    <span class="telemetry-v pass">${realHealth} (${battery.healthStatus || 'İyi'})</span>
-                </div>
-                <div class="telemetry-row">
-                    <span class="telemetry-k">Telemetri Veri Kaynağı:</span>
-                    <span class="telemetry-v">${bmsSource}</span>
-                </div>
-            </div>
+        if (sectionsToRender.length === 0) {
+            container.innerHTML = `<div style="padding: 12px; color: var(--text-muted); font-size: 11px;">Rapor için detaylı telemetri verisi bulunamadı.</div>`;
+            return;
+        }
 
-            <!-- Kart 4: Depolama HAL & OEM Teşhis -->
-            <div class="telemetry-card">
-                <div class="telemetry-card-title">
-                    <span>4. Depolama Sağlığı &amp; Donanım HAL</span>
-                    <span style="font-size: 8.5px; color: var(--text-muted); font-family: monospace;">STORAGE-HAL</span>
+        // Kartları HTML olarak oluştur
+        let cardsHtml = "";
+        sectionsToRender.forEach((sec, idx) => {
+            const entries = Object.entries(sec.data);
+            if (entries.length === 0) return;
+
+            let rowsHtml = "";
+            for (const [k, v] of entries) {
+                const label = humanizeKey(k);
+                const formattedVal = formatTelemetryValue(k, v);
+                rowsHtml += `
+                    <tr>
+                        <td class="telemetry-td-key">${label}:</td>
+                        <td class="telemetry-td-val">${formattedVal}</td>
+                    </tr>
+                `;
+            }
+
+            cardsHtml += `
+                <div class="telemetry-card">
+                    <div class="telemetry-card-title">
+                        <span>${idx + 1}. ${sec.title}</span>
+                        <span class="telemetry-card-badge">${sec.badge}</span>
+                    </div>
+                    <table class="telemetry-table">
+                        <tbody>
+                            ${rowsHtml}
+                        </tbody>
+                    </table>
                 </div>
-                <div class="telemetry-row">
-                    <span class="telemetry-k">Flash Blok Arayüzü:</span>
-                    <span class="telemetry-v">${storageType}</span>
-                </div>
-                <div class="telemetry-row">
-                    <span class="telemetry-k">Pre-EOL / Ömür Tahmini:</span>
-                    <span class="telemetry-v pass">${preEol} • ${lifeA}</span>
-                </div>
-                <div class="telemetry-row">
-                    <span class="telemetry-k">Bölüm &amp; Güncelleme Yapısı:</span>
-                    <span class="telemetry-v">${isAB}</span>
-                </div>
-                <div class="telemetry-row">
-                    <span class="telemetry-k">OEM Tanı Servis Protokolü:</span>
-                    <span class="telemetry-v">${halVendor} (${halCode})</span>
-                </div>
-            </div>
-        `;
+            `;
+        });
+
+        container.innerHTML = cardsHtml;
     }
 
     /* ==========================================================================
@@ -1819,14 +2118,11 @@
                     session_id: record.session_id,
                     sha256: record.sha256_hash,
                     timestamp: record.created_at,
-                    score: record.overall_score,
-                    grade: record.expert_grade
+                    overall_score: record.overall_score,
+                    expert_grade: record.expert_grade,
+                    device_fingerprint: record.device_fingerprint
                 },
-                hardware_passport: record.full_report?.identity || {},
-                silicon_telemetry: record.full_report?.silicon || {},
-                battery_power_raw: record.full_report?.battery || {},
-                storage_hal: record.full_report?.storage || {},
-                diagnostic_items_raw: record.full_report?.items || []
+                full_report: record.full_report || {}
             };
             terminal.textContent = JSON.stringify(telemetryDump, null, 2);
         } catch (e) {
