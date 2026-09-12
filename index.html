@@ -1292,61 +1292,66 @@
 
         const categories = [
             {
-                id: "conn",
-                name: "1. Bağlantı & Şebeke",
-                icon: "📶",
-                match: ["WIFI", "BLUETOOTH", "NFC", "CELLULAR", "GPS", "NETWORK"]
+                id: "display_audio",
+                name: "1. Ekran, Dokunmatik & Ses Birimleri",
+                icon: "🖥️",
+                matchCats: ["DISPLAY", "AUDIO"],
+                matchTypes: ["DISPLAY", "TOUCH", "SCREEN", "PIXEL", "AUDIO", "SPEAKER", "MICROPHONE", "EARPIECE"]
             },
             {
-                id: "camera",
-                name: "2. Kamera & Optik",
-                icon: "📸",
-                match: ["CAMERA", "FLASH", "LENS", "OIS", "AUTOFOCUS", "TORCH"]
+                id: "sensors_security",
+                name: "2. Sensörler, Biyometri & Şebeke",
+                icon: "🧭",
+                matchCats: ["SENSORS", "BIOMETRICS_SECURITY", "CONNECTIVITY"],
+                matchTypes: ["SENSOR", "ACCELEROMETER", "GYROSCOPE", "MAGNETOMETER", "LIGHT", "PROXIMITY", "BAROMETER", "BIOMETRIC", "FINGERPRINT", "BLUETOOTH", "GPS", "NFC", "WIFI", "CELLULAR", "TELEPHONY"]
             },
             {
-                id: "power",
-                name: "3. Güç, Termal & Şarj",
-                icon: "🔋",
-                match: ["BATTERY", "CHARGING", "CPU_STRESS", "THERMAL", "POWER"]
-            },
-            {
-                id: "sensors",
-                name: "4. Sensörler & Giriş/Çıkış",
-                icon: "🧠",
-                match: [] // Geri kalanlar
+                id: "hardware_power",
+                name: "3. Yonga Seti, Donanım & Güç Yönetimi",
+                icon: "⚡",
+                matchCats: ["POWER_BATTERY", "SPECIALIZED"],
+                matchTypes: [] // Geri kalanlar
             }
         ];
 
+        let totalPassed = 0;
+
         categories.forEach(cat => {
             const catItems = items.filter(item => {
-                const t = (item.type || "").toUpperCase();
-                if (cat.id === "sensors") {
-                    return !categories.slice(0, 3).some(c => c.match.some(m => t.includes(m)));
+                const c = (item.category || "").toUpperCase();
+                const t = (item.componentType || item.type || "").toUpperCase();
+                if (cat.id === "hardware_power") {
+                    return !categories.slice(0, 2).some(prev => 
+                        prev.matchCats.includes(c) || prev.matchTypes.some(m => t.includes(m))
+                    );
                 }
-                return cat.match.some(m => t.includes(m));
+                return cat.matchCats.includes(c) || cat.matchTypes.some(m => t.includes(m));
             });
 
             if (catItems.length === 0) return;
 
             const passedInCat = catItems.filter(i => i.status === "PASSED").length;
+            totalPassed += passedInCat;
 
             const block = document.createElement("div");
             block.className = "compact-category-block";
 
             let chipsHtml = "";
             catItems.forEach(item => {
+                const rawType = item.componentType || item.type || "";
                 const isPass = item.status === "PASSED";
                 const isFail = item.status === "FAILED";
                 const badgeClass = isPass ? "badge-pass" : isFail ? "badge-fail" : "badge-skip";
                 const icon = isPass ? "✓" : isFail ? "✗" : "○";
                 const label = isPass ? "Başarılı" : isFail ? "Hata" : "Atlandı";
-                const itemIcon = getTestIcon(item.type);
+                const itemIcon = getTestIcon(rawType);
+                const title = formatTestTitle(rawType);
 
                 chipsHtml += `
                     <div class="test-chip">
                         <div class="chip-left">
                             <span class="chip-icon">${itemIcon}</span>
-                            <span class="chip-title">${formatTestTitle(item.type)}</span>
+                            <span class="chip-title">${title}</span>
                         </div>
                         <span class="chip-badge ${badgeClass}">${icon} ${label}</span>
                     </div>
@@ -1375,56 +1380,80 @@
         if (t.includes("WIFI")) return "📶";
         if (t.includes("BLUETOOTH")) return "🔷";
         if (t.includes("NFC")) return "💳";
-        if (t.includes("GPS")) return "📍";
-        if (t.includes("CELLULAR") || t.includes("MODEM")) return "📡";
+        if (t.includes("GPS") || t.includes("LOCATION")) return "📍";
+        if (t.includes("CELLULAR") || t.includes("TELEPHONY") || t.includes("MODEM")) return "📡";
         if (t.includes("CAMERA") || t.includes("LENS")) return "📷";
         if (t.includes("FLASH") || t.includes("TORCH")) return "⚡";
-        if (t.includes("BATTERY") || t.includes("CHARGING")) return "🔋";
+        if (t.includes("BATTERY") || t.includes("CHARGING") || t.includes("PORT")) return "🔋";
         if (t.includes("SPEAKER") || t.includes("EARPIECE")) return "🔊";
         if (t.includes("MICROPHONE")) return "🎙️";
-        if (t.includes("TOUCH")) return "👆";
-        if (t.includes("DISPLAY") || t.includes("PIXEL")) return "🖥️";
+        if (t.includes("TOUCH") || t.includes("SWIPE")) return "👆";
+        if (t.includes("DISPLAY") || t.includes("PIXEL") || t.includes("SCREEN") || t.includes("BRIGHTNESS")) return "🖥️";
         if (t.includes("FINGERPRINT") || t.includes("BIOMETRIC")) return "🔒";
-        if (t.includes("VIBRATION")) return "📳";
+        if (t.includes("VIBRAT")) return "📳";
         if (t.includes("BUTTON")) return "🔘";
-        if (t.includes("CPU") || t.includes("RAM") || t.includes("STORAGE")) return "⚡";
+        if (t.includes("CPU") || t.includes("RAM") || t.includes("STORAGE") || t.includes("THERMAL")) return "⚡";
+        if (t.includes("LIGHT") || t.includes("PROXIMITY")) return "👁️";
+        if (t.includes("BAROMETER") || t.includes("AIRTIGHT")) return "🧭";
+        if (t.includes("ACCELEROMETER") || t.includes("GYROSCOPE") || t.includes("MAGNETOMETER")) return "📐";
+        if (t.includes("INFRARED")) return "🔴";
         return "🧩";
     }
 
     function formatTestTitle(type) {
         if (!type) return "Donanım Testi";
         const map = {
+            "DISPLAY_DEAD_PIXELS": "Ölü Piksel & Renk",
+            "MULTI_TOUCH": "Çoklu Dokunmatik",
+            "DISPLAY_GRID_SWIPE": "Dokunmatik Grid",
+            "DISPLAY_BRIGHTNESS_DIMMING": "Parlaklık & Karartma",
             "TOUCH_SCREEN": "Dokunmatik Ekran",
-            "DISPLAY_DEAD_PIXELS": "Piksel & Renk",
-            "VIBRATION_MOTOR": "Titreşim Motoru",
-            "BIOMETRIC_FINGERPRINT": "Parmak İzi Okuyucu",
-            "PHYSICAL_BUTTONS": "Fiziksel Tuşlar",
-            "SPEAKER_LOUDSPEAKER": "Ana Hoparlör",
-            "EARPIECE_RECEIVER": "Ahize Hoparlörü",
+            "MICROPHONE": "Birincil Mikrofon",
             "MICROPHONE_PRIMARY": "Birincil Mikrofon",
             "MICROPHONE_SECONDARY": "Gürültü Mikrofonu",
+            "SPEAKER_STEREO": "Stereo Hoparlör",
+            "SPEAKER_LOUDSPEAKER": "Ana Hoparlör",
+            "EARPIECE_RECEIVER": "Ahize Hoparlörü",
+            "ACCELEROMETER": "İvmeölçer Sensörü",
+            "GYROSCOPE": "Jiroskop Sensörü",
+            "MAGNETOMETER": "Manyetometre (Pusula)",
+            "LIGHT": "Ortam Işığı Sensörü",
+            "LIGHT_SENSOR": "Ortam Işığı Sensörü",
+            "PROXIMITY": "Yakınlık Sensörü",
+            "PROXIMITY_SENSOR": "Yakınlık Sensörü",
+            "BAROMETER": "Barometre Basınç",
+            "VIBRATOR_LRA": "Haptik Titreşim",
+            "VIBRATION_MOTOR": "Titreşim Motoru",
+            "BAROMETER_AIRTIGHT_SEAL": "Hava Sızdırmazlık (IP)",
+            "BIOMETRIC": "Biyometrik Parmak İzi",
+            "BIOMETRIC_FINGERPRINT": "Parmak İzi Okuyucu",
+            "BLUETOOTH": "Bluetooth 5.x",
+            "BLUETOOTH_CHIP": "Bluetooth 5.x",
+            "GPS_LOCATION": "GPS / Konum",
+            "GPS_ANTENNA": "GPS / Konum",
+            "NFC": "NFC Denetleyici",
+            "NFC_SENSOR": "NFC Denetleyici",
+            "WIFI_CONNECTIVITY": "Wi-Fi Bağlantısı",
+            "WIFI_ADAPTER": "Wi-Fi Bağlantısı",
+            "TELEPHONY_SIMULATED_CALL": "Hücresel Modem & SIM",
+            "CELLULAR_MODEM": "Hücresel Modem & SIM",
+            "FLASHLIGHT": "Kamera Flaşı (Fener)",
+            "CAMERA_FLASH": "Kamera Flaşı",
+            "INFRARED_REMOTE": "Kızılötesi (IR Blaster)",
+            "PHYSICAL_BUTTON_VOLUME_UP": "Ses Açma Tuşu",
+            "PHYSICAL_BUTTON_VOLUME_DOWN": "Ses Kısma Tuşu",
+            "PHYSICAL_BUTTON_POWER": "Güç / Kilit Tuşu",
+            "PHYSICAL_BUTTONS": "Fiziksel Tuşlar",
             "CAMERA_BACK_WIDE": "Arka Ana Kamera",
             "CAMERA_FRONT": "Ön Kamera",
             "CAMERA_AUTOFOCUS": "Otofokus Motoru",
             "CAMERA_OIS": "Optik Sabitleyici (OIS)",
-            "CAMERA_FLASH": "Kamera Flaşı",
             "BATTERY_HEALTH": "Batarya Sağlığı",
-            "CHARGING_PORT": "Şarj Portu & Yol",
-            "RAM_HEALTH": "RAM Bellek",
+            "PORT_CHARGING": "Şarj Portu & Veri Yolu",
+            "CHARGING_PORT": "Şarj Portu & Veri Yolu",
+            "RAM_HEALTH": "Dinamik RAM Bellek",
             "STORAGE_READ_WRITE": "Depolama Okuma/Yazma",
-            "CPU_STRESS_THERMAL": "İşlemci & Termal",
-            "WIFI_ADAPTER": "Wi-Fi Bağlantısı",
-            "BLUETOOTH_CHIP": "Bluetooth 5.x",
-            "NFC_SENSOR": "NFC Denetleyicisi",
-            "GPS_ANTENNA": "GPS / Konum",
-            "CELLULAR_MODEM": "Hücresel Modem & SIM",
-            "INFRARED_REMOTE": "Kızılötesi (IR)",
-            "LIGHT_SENSOR": "Ortam Işığı",
-            "PROXIMITY_SENSOR": "Yakınlık Sensörü",
-            "ACCELEROMETER": "İvmeölçer",
-            "GYROSCOPE": "Jiroskop",
-            "MAGNETOMETER": "Manyetometre (Pusula)",
-            "BAROMETER": "Barometre Basınç"
+            "CPU_STRESS_THERMAL": "İşlemci Termal Stres"
         };
         return map[type] || type.replace(/_/g, " ");
     }
