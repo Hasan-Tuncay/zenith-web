@@ -12,35 +12,35 @@
 
     <style>
         :root {
-            /* Sade & Resmi Monokrom Kurumsal Palet */
-            --bg-body: #080A0F;
-            --bg-card: #0E1118;
-            --bg-card-sub: #131722;
-            --bg-card-highlight: #191F2D;
-            --border-card: #1E2536;
-            --border-subtle: #273046;
+            /* Resmi & Sade Monokrom Yönetici Paleti */
+            --bg-body: #07090E;
+            --bg-card: #0D1017;
+            --bg-card-sub: #121620;
+            --bg-card-highlight: #181E2B;
+            --border-card: #1D2333;
+            --border-subtle: #252D42;
             
             --text-main: #FFFFFF;
-            --text-secondary: #DCE3EE;
-            --text-muted: #828FA3;
+            --text-secondary: #CBD5E1;
+            --text-muted: #7E8C9F;
             
             --accent-brand: #38BDF8;
             
             --status-pass: #10B981;
-            --status-pass-bg: rgba(16, 185, 129, 0.1);
+            --status-pass-bg: rgba(16, 185, 129, 0.08);
             --status-pass-border: rgba(16, 185, 129, 0.25);
             
             --status-warn: #F59E0B;
-            --status-warn-bg: rgba(245, 158, 11, 0.1);
+            --status-warn-bg: rgba(245, 158, 11, 0.08);
             --status-warn-border: rgba(245, 158, 11, 0.25);
             
             --status-fail: #EF4444;
-            --status-fail-bg: rgba(239, 68, 68, 0.1);
+            --status-fail-bg: rgba(239, 68, 68, 0.08);
             --status-fail-border: rgba(239, 68, 68, 0.25);
 
             --status-skip: #64748B;
-            --status-skip-bg: rgba(100, 116, 139, 0.08);
-            --status-skip-border: rgba(100, 116, 139, 0.2);
+            --status-skip-bg: rgba(100, 116, 139, 0.06);
+            --status-skip-border: rgba(100, 116, 139, 0.18);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -63,7 +63,7 @@
             position: sticky;
             top: 10px;
             z-index: 1000;
-            background: rgba(14, 17, 24, 0.94);
+            background: rgba(13, 16, 23, 0.94);
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
             border: 1px solid var(--border-subtle);
@@ -127,7 +127,7 @@
         }
         .btn-print {
             background: #FFFFFF;
-            color: #0E1118;
+            color: #0D1017;
         }
         .btn-print:hover {
             background: #E2E8F0;
@@ -151,7 +151,7 @@
             box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.7);
         }
 
-        /* 1. Ultra-Compact Header */
+        /* 1. Official Header */
         .cert-header {
             display: flex;
             justify-content: space-between;
@@ -261,8 +261,8 @@
             background: #FFFFFF;
             padding: 2px;
             border-radius: 4px;
-            width: 38px;
-            height: 38px;
+            width: 36px;
+            height: 36px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -276,7 +276,7 @@
             letter-spacing: 0.3px;
         }
 
-        /* 2. Top Sleek Meta Bar (4 Sütun) */
+        /* 2. Sleek Meta Bar (4 Sütun) */
         .custody-strip {
             background: var(--bg-card-sub);
             border: 1px solid var(--border-card);
@@ -305,34 +305,91 @@
             text-overflow: ellipsis;
         }
 
-        /* ==========================================================================
-           3. YAN YANA KOMPAKT SAĞLIK ŞERİDİ (Executive Overview Strip)
-           (Büyük daire yerine 3 sütunlu kompakt ve verimli yatay blok)
-           ========================================================================== */
-        .executive-strip {
+        /* 3. Kompakt Cihaz Kimliği Şeridi (Pasaport) */
+        .passport-strip {
+            background: var(--bg-card-sub);
+            border: 1px solid var(--border-card);
+            border-radius: 8px;
+            padding: 8px 14px;
             display: grid;
-            grid-template-columns: 190px 1fr 1.2fr;
+            grid-template-columns: repeat(4, 1fr) 1.5fr;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .passport-item-lbl {
+            font-size: 9px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+        .passport-item-val {
+            font-size: 11.5px;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-top: 1px;
+            font-family: 'JetBrains Mono', monospace;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .passport-item-sub {
+            font-size: 9.5px;
+            color: var(--text-muted);
+        }
+
+        /* ==========================================================================
+           4. GENEL SAĞLIK & BATARYA/PİL YAN YANA BİRLEŞİK PANEL (Health & Power Grid)
+           Kullanıcı Talebi: Genel sağlık durumu ile pil sağlık yüzdeleri yan yana!
+           ========================================================================== */
+        .health-power-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 12px;
+            margin-bottom: 12px;
+        }
+        .unified-panel {
             background: var(--bg-card-sub);
             border: 1px solid var(--border-card);
             border-radius: 10px;
             padding: 12px 16px;
-            margin-bottom: 12px;
-            align-items: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 10px;
         }
-
-        /* Kolon 1: Kompakt Sağlık Skoru */
-        .exec-score-box {
+        .panel-title-bar {
+            font-size: 11px;
+            font-weight: 800;
+            color: #FFFFFF;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             display: flex;
             align-items: center;
-            gap: 12px;
-            border-right: 1px solid var(--border-card);
-            padding-right: 12px;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding-bottom: 6px;
+        }
+        .panel-badge {
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-card);
+        }
+
+        /* Sol Panel: Genel Sağlık Durumu & 4 Metrik */
+        .health-score-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
         }
         .mini-gauge-box {
             position: relative;
-            width: 58px;
-            height: 58px;
+            width: 60px;
+            height: 60px;
             flex-shrink: 0;
         }
         .mini-gauge-box svg {
@@ -362,19 +419,19 @@
             justify-content: center;
         }
         .gauge-number {
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 900;
             line-height: 1;
             color: #FFFFFF;
             letter-spacing: -0.5px;
         }
-        .exec-score-details {
+        .health-score-meta {
             display: flex;
             flex-direction: column;
-            gap: 3px;
+            gap: 4px;
         }
         .grade-badge-card {
-            font-size: 10px;
+            font-size: 10.5px;
             font-weight: 800;
             padding: 2px 8px;
             border-radius: 12px;
@@ -383,38 +440,35 @@
             display: inline-block;
             white-space: nowrap;
         }
-        .exec-score-label {
-            font-size: 9.5px;
+        .health-summary-text {
+            font-size: 10px;
             color: var(--text-muted);
-            font-weight: 700;
-            text-transform: uppercase;
+            line-height: 1.35;
         }
 
-        /* Kolon 2: 4 Donanım Sütunu (Kompakt Mini Barlar) */
-        .exec-pillars-box {
+        /* 4 Donanım Metriği */
+        .metrics-list {
             display: flex;
             flex-direction: column;
-            gap: 6px;
-            border-right: 1px solid var(--border-card);
-            padding-right: 12px;
+            gap: 5px;
         }
-        .mini-pillar-row {
+        .metric-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 8px;
         }
-        .mini-pillar-name {
+        .metric-label {
             font-size: 10px;
             font-weight: 700;
             color: var(--text-secondary);
             white-space: nowrap;
         }
-        .mini-pillar-val-wrap {
+        .metric-val-wrap {
             display: flex;
             align-items: center;
             gap: 6px;
-            width: 110px;
+            width: 120px;
             flex-shrink: 0;
         }
         .progress-track {
@@ -429,7 +483,7 @@
             border-radius: 2px;
             transition: width 0.6s ease;
         }
-        .mini-pillar-score {
+        .metric-score {
             font-size: 10px;
             font-family: 'JetBrains Mono', monospace;
             font-weight: 700;
@@ -438,112 +492,65 @@
             text-align: right;
         }
 
-        /* Kolon 3: Entegre Değerlendirme Özeti */
-        .exec-opinion-box {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-        .exec-opinion-title {
-            font-size: 10px;
-            font-weight: 800;
-            color: #FFFFFF;
-            text-transform: uppercase;
-            letter-spacing: 0.4px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        .exec-opinion-text {
-            font-size: 11px;
-            color: var(--text-muted);
-            line-height: 1.45;
-            text-align: justify;
-        }
-
-        /* ==========================================================================
-           4. YAN YANA İKİ SÜTUNLU BİLGİ ALANI (Split Grid: Cihaz Kimliği | Batarya)
-           ========================================================================== */
-        .split-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 12px;
-        }
-        .split-panel {
-            background: var(--bg-card-sub);
-            border: 1px solid var(--border-card);
-            border-radius: 10px;
-            padding: 12px 14px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        .split-panel-header {
-            font-size: 11px;
-            font-weight: 800;
-            color: #FFFFFF;
-            text-transform: uppercase;
-            letter-spacing: 0.4px;
+        /* Sağ Panel: Batarya Durumu & Güç Telemetrisi */
+        .battery-highlight-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            padding-bottom: 6px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 8px 12px;
         }
-        .panel-badge {
-            font-size: 9px;
-            font-weight: 700;
-            padding: 2px 6px;
-            border-radius: 4px;
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text-secondary);
-            border: 1px solid var(--border-card);
+        .battery-pct-large {
+            font-size: 26px;
+            font-weight: 900;
+            color: var(--status-pass);
+            font-family: 'JetBrains Mono', monospace;
+            line-height: 1;
         }
-
-        /* 2 Sütunlu Kompakt Veri Satırları */
-        .panel-data-grid {
+        .battery-pct-sub {
+            font-size: 9.5px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+        .battery-metrics-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 8px;
         }
-        .data-item {
+        .bat-metric-item {
             display: flex;
             flex-direction: column;
-            gap: 2px;
+            gap: 1px;
         }
-        .data-item-full {
-            grid-column: span 2;
-        }
-        .data-label {
+        .bat-lbl {
             font-size: 9px;
             font-weight: 700;
             color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 0.3px;
         }
-        .data-val {
-            font-size: 12px;
+        .bat-val {
+            font-size: 11.5px;
             font-weight: 700;
             color: var(--text-main);
             font-family: 'JetBrains Mono', monospace;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
         }
-        .data-sub {
-            font-size: 9.5px;
+        .bat-sub {
+            font-size: 9px;
             color: var(--text-muted);
         }
 
         /* ==========================================================================
-           5. YÜKSEK YOĞUNLUKLU DONANIM TEST MATRİSİ (Dense Matrix)
+           5. DÜZENLİ TEST GRUPLARI (İKONSUZ, FORMEL VE DÜZENLİ TEKNİK MATRİS)
+           Kullanıcı Talebi: Saçma ikonları kaldır, bir düzen içinde grupla!
            ========================================================================== */
         .test-matrix-section {
             background: var(--bg-card-sub);
             border: 1px solid var(--border-card);
             border-radius: 10px;
-            padding: 12px 14px;
+            padding: 12px 16px;
             margin-bottom: 12px;
         }
         .test-matrix-header {
@@ -554,108 +561,168 @@
             font-weight: 800;
             color: #FFFFFF;
             text-transform: uppercase;
-            letter-spacing: 0.4px;
+            letter-spacing: 0.5px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.06);
             padding-bottom: 6px;
             margin-bottom: 10px;
         }
         
-        /* Dinamik Kategoriler ve Çipler */
-        .compact-category-block {
-            margin-bottom: 8px;
+        .test-group-block {
+            margin-bottom: 10px;
         }
-        .compact-category-block:last-child {
+        .test-group-block:last-child {
             margin-bottom: 0;
         }
-        .compact-category-title {
+        .test-group-title {
             font-size: 10px;
             font-weight: 800;
-            color: var(--text-muted);
+            color: var(--text-secondary);
             text-transform: uppercase;
-            letter-spacing: 0.4px;
+            letter-spacing: 0.5px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             margin-bottom: 6px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            padding-bottom: 4px;
         }
-        .compact-category-title .stats {
+        .test-group-title .group-stats {
             font-size: 9.5px;
             font-family: 'JetBrains Mono', monospace;
-            color: var(--text-secondary);
+            color: var(--text-muted);
             font-weight: 600;
         }
 
-        .compact-chips-grid {
+        /* İkonsuz, Temiz Teknik Grid */
+        .technical-chips-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 6px;
         }
         @media (min-width: 960px) {
-            .compact-chips-grid {
+            .technical-chips-grid {
                 grid-template-columns: repeat(4, 1fr);
             }
         }
 
-        .test-chip {
+        .technical-chip {
             background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 5px;
             padding: 5px 8px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 6px;
+            gap: 8px;
             min-height: 28px;
         }
-        .chip-left {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            min-width: 0;
-            overflow: hidden;
-        }
-        .chip-icon {
-            font-size: 12px;
-            flex-shrink: 0;
-        }
-        .chip-title {
+        .tech-chip-title {
             font-size: 10.5px;
-            font-weight: 700;
+            font-weight: 600;
             color: var(--text-secondary);
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
-        .chip-badge {
+        .tech-chip-status {
             display: inline-flex;
             align-items: center;
-            gap: 3px;
             padding: 2px 6px;
             border-radius: 3px;
             font-size: 9px;
             font-weight: 800;
-            letter-spacing: 0.2px;
+            letter-spacing: 0.3px;
             text-transform: uppercase;
             font-family: 'JetBrains Mono', monospace;
             flex-shrink: 0;
         }
-        .badge-pass {
+        .status-pass {
             background: var(--status-pass-bg);
             color: var(--status-pass);
             border: 1px solid var(--status-pass-border);
         }
-        .badge-fail {
+        .status-fail {
             background: var(--status-fail-bg);
             color: var(--status-fail);
             border: 1px solid var(--status-fail-border);
         }
-        .badge-skip {
+        .status-skip {
             background: var(--status-skip-bg);
             color: var(--status-skip);
             border: 1px solid var(--status-skip-border);
         }
 
-        /* 6. Kompakt Kriptografik Doğrulama Şeridi */
+        /* ==========================================================================
+           6. HAM TELEMETRİ & OS VERİ GÜNLÜĞÜ (RAW TELEMETRY LOG TERMINAL)
+           Kullanıcı Talebi: Daha ham verileri de loglayacağız bu raporda!
+           ========================================================================== */
+        .raw-telemetry-section {
+            background: var(--bg-card-sub);
+            border: 1px solid var(--border-card);
+            border-radius: 10px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+        .raw-telemetry-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 16px;
+            background: rgba(0, 0, 0, 0.25);
+            border-bottom: 1px solid var(--border-card);
+            cursor: pointer;
+            user-select: none;
+        }
+        .raw-header-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            font-weight: 800;
+            color: #FFFFFF;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .raw-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-raw-action {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: var(--text-secondary);
+            border-radius: 4px;
+            padding: 3px 8px;
+            font-size: 9.5px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .btn-raw-action:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: #FFFFFF;
+        }
+        .raw-telemetry-body {
+            padding: 12px 16px;
+            display: block; /* Varsayılan olarak açık / incelenebilir */
+        }
+        .raw-log-terminal {
+            background: #05060A;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 6px;
+            padding: 10px 14px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: #94A3B8;
+            line-height: 1.5;
+            max-height: 240px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        /* 7. Kriptografik Doğrulama Şeridi */
         .verification-card {
             background: var(--bg-card-sub);
             border: 1px solid var(--border-card);
@@ -672,10 +739,6 @@
             gap: 8px;
             min-width: 0;
             overflow: hidden;
-        }
-        .verification-icon {
-            font-size: 14px;
-            flex-shrink: 0;
         }
         .sha-hash-text {
             font-family: 'JetBrains Mono', monospace;
@@ -735,7 +798,7 @@
             left: 50%;
             transform: translateX(-50%) translateY(100px);
             background: #FFFFFF;
-            color: #0E1118;
+            color: #0D1017;
             padding: 6px 16px;
             border-radius: 16px;
             font-size: 11px;
@@ -750,7 +813,7 @@
         }
 
         /* ==========================================================================
-           A4 PRINT / PDF ENGINE STYLESHEET (AZAMİ 2 SAYFA HEDEFİ)
+           A4 PRINT ENGINE (AZAMİ 2 SAYFA HEDEFİ)
            ========================================================================== */
         @page {
             size: A4 portrait;
@@ -774,33 +837,24 @@
                 padding: 8px !important;
             }
             .cert-header { border-bottom: 1px solid #000000 !important; padding-bottom: 6px !important; margin-bottom: 8px !important; }
-            .cert-emblem { background: #F8FAFC !important; border-color: #CBD5E1 !important; color: #000000 !important; width: 36px !important; height: 36px !important; font-size: 18px !important; }
+            .cert-emblem { background: #F8FAFC !important; border-color: #CBD5E1 !important; color: #000000 !important; width: 34px !important; height: 34px !important; font-size: 16px !important; }
             .cert-top-category { color: #475569 !important; }
             .cert-doc-title { color: #000000 !important; font-size: 16px !important; }
             .harpia-brand-badge { background: #F1F5F9 !important; border-color: #CBD5E1 !important; color: #000000 !important; }
             .harpia-brand-badge strong { color: #000000 !important; }
             .cert-serial-pill { background: #F8FAFC !important; border-color: #CBD5E1 !important; color: #000000 !important; font-size: 9.5px !important; }
-            .custody-strip { background: #F8FAFC !important; border-color: #CBD5E1 !important; padding: 6px 10px !important; margin-bottom: 8px !important; }
-            .custody-item-val { color: #000000 !important; }
+            .custody-strip, .passport-strip { background: #F8FAFC !important; border-color: #CBD5E1 !important; padding: 6px 10px !important; margin-bottom: 8px !important; }
+            .custody-item-val, .passport-item-val { color: #000000 !important; }
             
-            .executive-strip {
-                background: #F8FAFC !important;
-                border-color: #CBD5E1 !important;
-                padding: 8px 12px !important;
-                margin-bottom: 8px !important;
-                page-break-inside: avoid;
-            }
-            .exec-score-box, .exec-pillars-box { border-right-color: #CBD5E1 !important; }
+            .health-power-grid { margin-bottom: 8px !important; page-break-inside: avoid; }
+            .unified-panel { background: #FFFFFF !important; border-color: #CBD5E1 !important; padding: 8px 12px !important; }
+            .panel-title-bar { color: #000000 !important; border-bottom-color: #E2E8F0 !important; }
             .gauge-number { color: #000000 !important; font-size: 18px !important; }
             .gauge-bg-circle { stroke: #E2E8F0 !important; }
-            .mini-pillar-name, .exec-opinion-title { color: #000000 !important; }
-            .mini-pillar-score { color: #000000 !important; }
-            .exec-opinion-text { color: #334155 !important; }
-
-            .split-grid { margin-bottom: 8px !important; page-break-inside: avoid; }
-            .split-panel { background: #FFFFFF !important; border-color: #CBD5E1 !important; padding: 8px 10px !important; }
-            .split-panel-header { color: #000000 !important; border-bottom-color: #E2E8F0 !important; }
-            .data-val { color: #000000 !important; }
+            .metric-label, .bat-lbl { color: #000000 !important; }
+            .metric-score, .bat-val { color: #000000 !important; }
+            .battery-highlight-row { background: #F8FAFC !important; border-color: #CBD5E1 !important; }
+            .battery-pct-large { color: #047857 !important; }
 
             .test-matrix-section {
                 background: #FFFFFF !important;
@@ -809,17 +863,22 @@
                 margin-bottom: 8px !important;
                 page-break-inside: avoid;
             }
-            .test-matrix-header { color: #000000 !important; border-bottom-color: #E2E8F0 !important; }
-            .compact-chips-grid { grid-template-columns: repeat(4, 1fr) !important; gap: 4px !important; }
-            .test-chip { background: #F8FAFC !important; border-color: #E2E8F0 !important; padding: 4px 6px !important; }
-            .chip-title { color: #000000 !important; font-size: 9px !important; }
-            .badge-pass { background: #ECFDF5 !important; color: #047857 !important; border-color: #A7F3D0 !important; }
-            .badge-fail { background: #FEF2F2 !important; color: #B91C1C !important; border-color: #FECACA !important; }
-            .badge-skip { background: #F1F5F9 !important; color: #475569 !important; border-color: #CBD5E1 !important; }
+            .test-matrix-header, .test-group-title { color: #000000 !important; border-bottom-color: #E2E8F0 !important; }
+            .technical-chips-grid { grid-template-columns: repeat(4, 1fr) !important; gap: 4px !important; }
+            .technical-chip { background: #F8FAFC !important; border-color: #E2E8F0 !important; padding: 4px 6px !important; }
+            .tech-chip-title { color: #000000 !important; font-size: 9px !important; }
+            .status-pass { background: #ECFDF5 !important; color: #047857 !important; border-color: #A7F3D0 !important; }
+            .status-fail { background: #FEF2F2 !important; color: #B91C1C !important; border-color: #FECACA !important; }
+            .status-skip { background: #F1F5F9 !important; color: #475569 !important; border-color: #CBD5E1 !important; }
+
+            .raw-telemetry-section { background: #FFFFFF !important; border-color: #CBD5E1 !important; margin-bottom: 8px !important; page-break-inside: avoid; }
+            .raw-telemetry-header { background: #F8FAFC !important; color: #000000 !important; border-bottom-color: #CBD5E1 !important; }
+            .raw-header-left { color: #000000 !important; }
+            .raw-log-terminal { background: #F8FAFC !important; border-color: #CBD5E1 !important; color: #000000 !important; max-height: 140px !important; font-size: 8.5pt !important; }
+            .btn-raw-action, .btn-hash-copy { display: none !important; }
 
             .verification-card { background: #F8FAFC !important; border-color: #CBD5E1 !important; padding: 6px 10px !important; page-break-inside: avoid; }
             .sha-hash-text { color: #000000 !important; }
-            .btn-hash-copy { display: none !important; }
             .footer-bar { margin-top: 8px !important; color: #64748B !important; }
             .footer-bar strong { color: #000000 !important; }
         }
@@ -831,22 +890,20 @@
             .cert-header { flex-direction: column; align-items: stretch; gap: 10px; }
             .cert-meta-box { justify-content: space-between; }
             .custody-strip { grid-template-columns: 1fr 1fr; gap: 6px; }
-            .executive-strip { grid-template-columns: 1fr; gap: 8px; }
-            .exec-score-box { border-right: none; border-bottom: 1px solid var(--border-card); padding-right: 0; padding-bottom: 8px; }
-            .exec-pillars-box { border-right: none; border-bottom: 1px solid var(--border-card); padding-right: 0; padding-bottom: 8px; }
-            .split-grid { grid-template-columns: 1fr; gap: 8px; }
-            .compact-chips-grid { grid-template-columns: 1fr 1fr; gap: 6px; }
+            .passport-strip { grid-template-columns: 1fr 1fr; gap: 6px; }
+            .health-power-grid { grid-template-columns: 1fr; gap: 10px; }
+            .technical-chips-grid { grid-template-columns: 1fr 1fr; gap: 6px; }
             .action-bar { flex-direction: column; align-items: stretch; gap: 8px; }
             .action-btn-group { justify-content: stretch; }
             .btn-action { flex: 1; justify-content: center; }
         }
         @media (max-width: 480px) {
             .custody-strip { grid-template-columns: 1fr 1fr; gap: 6px; }
-            .compact-chips-grid { grid-template-columns: 1fr 1fr; gap: 5px; }
-            .test-chip { padding: 4px 6px; min-height: 24px; }
-            .chip-icon { font-size: 11px; }
-            .chip-title { font-size: 9.5px; }
-            .chip-badge { font-size: 8px; padding: 1.5px 4px; }
+            .passport-strip { grid-template-columns: 1fr; gap: 6px; }
+            .technical-chips-grid { grid-template-columns: 1fr 1fr; gap: 4px; }
+            .technical-chip { padding: 4px 6px; min-height: 24px; }
+            .tech-chip-title { font-size: 9.5px; }
+            .tech-chip-status { font-size: 8px; padding: 1.5px 4px; }
         }
     </style>
 </head>
@@ -949,162 +1006,179 @@
                 </div>
             </div>
 
-            <!-- 3. YAN YANA KOMPAKT SAĞLIK ŞERİDİ (Executive Overview Strip) -->
-            <div class="executive-strip">
-                <!-- Kolon 1: Kompakt Sağlık Skoru & Grade -->
-                <div class="exec-score-box">
-                    <div class="mini-gauge-box">
-                        <svg viewBox="0 0 60 60">
-                            <circle class="gauge-bg-circle" cx="30" cy="30" r="25"></circle>
-                            <circle class="gauge-bar-circle" id="gauge-bar" cx="30" cy="30" r="25"></circle>
-                        </svg>
-                        <div class="gauge-inner-text">
-                            <span class="gauge-number" id="gauge-score">0</span>
-                        </div>
-                    </div>
-                    <div class="exec-score-details">
-                        <span class="exec-score-label">Genel Sağlık Puanı</span>
-                        <div class="grade-badge-card" id="grade-badge">GRADE -</div>
-                    </div>
+            <!-- 3. Cihaz Kimliği & Yonga Pasaportu Şeridi (Kompakt Tek Satır) -->
+            <div class="passport-strip">
+                <div>
+                    <div class="passport-item-lbl">Üretici & Model</div>
+                    <div class="passport-item-val" id="id-device-model">-</div>
+                    <div class="passport-item-sub" id="id-market-name">Orijinal Üretim</div>
                 </div>
-
-                <!-- Kolon 2: 4 Temel Metrik Çubukları -->
-                <div class="exec-pillars-box">
-                    <div class="mini-pillar-row">
-                        <span class="mini-pillar-name">1. Donanım Bütünlüğü</span>
-                        <div class="mini-pillar-val-wrap">
-                            <div class="progress-track">
-                                <div class="progress-fill" id="pillar-hw-bar" style="width: 95%; background: var(--status-pass);"></div>
-                            </div>
-                            <span class="mini-pillar-score" id="pillar-hw-val">%95</span>
-                        </div>
-                    </div>
-                    <div class="mini-pillar-row">
-                        <span class="mini-pillar-name">2. Batarya Sağlığı</span>
-                        <div class="mini-pillar-val-wrap">
-                            <div class="progress-track">
-                                <div class="progress-fill" id="pillar-bat-bar" style="width: 90%; background: #38BDF8;"></div>
-                            </div>
-                            <span class="mini-pillar-score" id="pillar-bat-val">%90</span>
-                        </div>
-                    </div>
-                    <div class="mini-pillar-row">
-                        <span class="mini-pillar-name">3. Sensör & G/Ç</span>
-                        <div class="mini-pillar-val-wrap">
-                            <div class="progress-track">
-                                <div class="progress-fill" id="pillar-sensor-bar" style="width: 100%; background: var(--status-pass);"></div>
-                            </div>
-                            <span class="mini-pillar-score" id="pillar-sensor-val">%100</span>
-                        </div>
-                    </div>
-                    <div class="mini-pillar-row">
-                        <span class="mini-pillar-name">4. Sistem Kararlılığı</span>
-                        <div class="mini-pillar-val-wrap">
-                            <div class="progress-track">
-                                <div class="progress-fill" id="pillar-sec-bar" style="width: 100%; background: #94A3B8;"></div>
-                            </div>
-                            <span class="mini-pillar-score" id="pillar-sec-val">%100</span>
-                        </div>
-                    </div>
+                <div>
+                    <div class="passport-item-lbl">İşlemci (SoC)</div>
+                    <div class="passport-item-val" id="id-soc">-</div>
+                    <div class="passport-item-sub" id="id-cores">8 Çekirdek (ARM64)</div>
                 </div>
-
-                <!-- Kolon 3: Entegre Değerlendirme Özeti -->
-                <div class="exec-opinion-box">
-                    <div class="exec-opinion-title">
-                        <span>📋</span> Donanım Teşhis & Değerlendirme Özeti
-                    </div>
-                    <div class="exec-opinion-text">
-                        İşbu rapor, cihazın tüm donanım bileşenlerinin, entegre sensörlerinin ve sistem telemetrisinin Zenith Diagnostics test modülleriyle incelenmesi neticesinde tanzim edilmiştir. Anakart, ekran, batarya ve yonga modülleri fabrika normlarına uygun çalışmaktadır.
-                    </div>
+                <div>
+                    <div class="passport-item-lbl">İşletim Sistemi</div>
+                    <div class="passport-item-val" id="id-os">-</div>
+                    <div class="passport-item-sub" id="id-patch">Güvenlik: Güncel</div>
+                </div>
+                <div>
+                    <div class="passport-item-lbl">Dahili Depolama</div>
+                    <div class="passport-item-val" id="id-storage">-</div>
+                    <div class="passport-item-sub" id="id-storage-type">UFS 3.1 High-Speed</div>
+                </div>
+                <div>
+                    <div class="passport-item-lbl">Cihaz Parmak İzi (Fingerprint)</div>
+                    <div class="passport-item-val" id="id-fingerprint" style="font-size: 10px; color: var(--text-secondary);">-</div>
                 </div>
             </div>
 
-            <!-- 4. YAN YANA İKİ SÜTUNLU BİLGİ ALANI (Cihaz Kimliği | Batarya Telemetrisi) -->
-            <div class="split-grid">
-                <!-- Sol Kolon: Cihaz Kimliği & Yonga Seti -->
-                <div class="split-panel">
-                    <div class="split-panel-header">
-                        <div><span>📱</span> 1. Cihaz Kimliği & Yonga Seti</div>
-                        <span class="panel-badge">DOĞRULANDI</span>
+            <!-- ==========================================================================
+               4. GENEL SAĞLIK & BATARYA/PİL YAN YANA BİRLEŞİK PANEL (Health & Power Grid)
+               Kullanıcı Talebi: Genel sağlık durumu ile pil sağlık yüzdeleri yan yana!
+               ========================================================================== -->
+            <div class="health-power-grid">
+                <!-- Sol Sütun: Genel Donanım Sağlığı & 4 Metrik -->
+                <div class="unified-panel">
+                    <div class="panel-title-bar">
+                        <span>1. Genel Donanım Sağlığı</span>
+                        <span class="panel-badge">GENEL ENDEKS</span>
                     </div>
-                    <div class="panel-data-grid">
-                        <div class="data-item">
-                            <div class="data-label">Üretici & Model</div>
-                            <div class="data-val" id="id-device-model">-</div>
-                            <div class="data-sub" id="id-market-name">Orijinal Üretim</div>
+                    
+                    <div class="health-score-row">
+                        <div class="mini-gauge-box">
+                            <svg viewBox="0 0 60 60">
+                                <circle class="gauge-bg-circle" cx="30" cy="30" r="25"></circle>
+                                <circle class="gauge-bar-circle" id="gauge-bar" cx="30" cy="30" r="25"></circle>
+                            </svg>
+                            <div class="gauge-inner-text">
+                                <span class="gauge-number" id="gauge-score">0</span>
+                            </div>
                         </div>
-                        <div class="data-item">
-                            <div class="data-label">İşlemci (SoC)</div>
-                            <div class="data-val" id="id-soc">-</div>
-                            <div class="data-sub" id="id-cores">8 Çekirdek (ARM64)</div>
+                        <div class="health-score-meta">
+                            <div class="grade-badge-card" id="grade-badge">GRADE -</div>
+                            <div class="health-summary-text">
+                                Otomatik testler ve entegre sensör telemetrisine dayalı genel kondisyon puanı.
+                            </div>
                         </div>
-                        <div class="data-item">
-                            <div class="data-label">İşletim Sistemi & Yama</div>
-                            <div class="data-val" id="id-os">-</div>
-                            <div class="data-sub" id="id-patch">Güvenlik: Güncel</div>
+                    </div>
+
+                    <div class="metrics-list">
+                        <div class="metric-row">
+                            <span class="metric-label">Donanım Bütünlüğü</span>
+                            <div class="metric-val-wrap">
+                                <div class="progress-track">
+                                    <div class="progress-fill" id="pillar-hw-bar" style="width: 95%; background: var(--status-pass);"></div>
+                                </div>
+                                <span class="metric-score" id="pillar-hw-val">%95</span>
+                            </div>
                         </div>
-                        <div class="data-item">
-                            <div class="data-label">Dahili Depolama / HAL</div>
-                            <div class="data-val" id="id-storage">-</div>
-                            <div class="data-sub" id="id-storage-type">UFS High-Speed Flash</div>
+                        <div class="metric-row">
+                            <span class="metric-label">Batarya Kararlılığı</span>
+                            <div class="metric-val-wrap">
+                                <div class="progress-track">
+                                    <div class="progress-fill" id="pillar-bat-bar" style="width: 90%; background: #38BDF8;"></div>
+                                </div>
+                                <span class="metric-score" id="pillar-bat-val">%90</span>
+                            </div>
                         </div>
-                        <div class="data-item data-item-full">
-                            <div class="data-label">Cihaz Parmak İzi (Fingerprint)</div>
-                            <div class="data-val" id="id-fingerprint" style="font-size: 10px; color: var(--text-secondary);">-</div>
+                        <div class="metric-row">
+                            <span class="metric-label">Sensörler & G/Ç</span>
+                            <div class="metric-val-wrap">
+                                <div class="progress-track">
+                                    <div class="progress-fill" id="pillar-sensor-bar" style="width: 100%; background: var(--status-pass);"></div>
+                                </div>
+                                <span class="metric-score" id="pillar-sensor-val">%100</span>
+                            </div>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-label">Sistem & Güvenlik</span>
+                            <div class="metric-val-wrap">
+                                <div class="progress-track">
+                                    <div class="progress-fill" id="pillar-sec-bar" style="width: 100%; background: #94A3B8;"></div>
+                                </div>
+                                <span class="metric-score" id="pillar-sec-val">%100</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Sağ Kolon: Batarya Durumu & Güç Telemetrisi -->
-                <div class="split-panel">
-                    <div class="split-panel-header">
-                        <div><span>⚡</span> 2. Batarya Durumu & Güç Telemetrisi</div>
+                <!-- Sağ Sütun: Batarya Durumu & Güç Telemetrisi -->
+                <div class="unified-panel">
+                    <div class="panel-title-bar">
+                        <span>2. Batarya & Güç Telemetrisi</span>
                         <span class="panel-badge" id="bat-status-badge">İYİ (SAĞLAM)</span>
                     </div>
-                    <div class="panel-data-grid">
-                        <div class="data-item">
-                            <div class="data-label">Gerçek Sağlık</div>
-                            <div class="data-val" id="bat-health" style="font-size: 15px; color: var(--status-pass);">-%</div>
-                            <div class="data-sub">Coulomb & SysFS Telemetrisi</div>
+
+                    <div class="battery-highlight-row">
+                        <div>
+                            <div class="bat-lbl">Gerçek Sağlık Yüzdesi</div>
+                            <div class="battery-pct-large" id="bat-health">-%</div>
+                            <div class="battery-pct-sub">Coulomb Sayacı & SysFS Telemetrisi</div>
                         </div>
-                        <div class="data-item">
-                            <div class="data-label">Şarj Döngüsü</div>
-                            <div class="data-val" id="bat-cycle">- Döngü</div>
-                            <div class="data-sub">Fabrika Eşiği &lt; 800</div>
+                        <div style="text-align: right;">
+                            <div class="bat-lbl">Şarj Döngüsü</div>
+                            <div class="bat-val" id="bat-cycle" style="font-size: 15px;">- Döngü</div>
+                            <div class="bat-sub">Fabrika Eşiği &lt; 800</div>
                         </div>
-                        <div class="data-item">
-                            <div class="data-label">Sıcaklık & Voltaj</div>
-                            <div class="data-val" id="bat-temp-volt">-</div>
-                            <div class="data-sub">Güvenli Çalışma Aralığı</div>
+                    </div>
+
+                    <div class="battery-metrics-grid">
+                        <div class="bat-metric-item">
+                            <div class="bat-lbl">Sıcaklık & Gerilim</div>
+                            <div class="bat-val" id="bat-temp-volt">-</div>
+                            <div class="bat-sub">Güvenli Çalışma Sınırında</div>
                         </div>
-                        <div class="data-item">
-                            <div class="data-label">Nominal Kapasite & Kimya</div>
-                            <div class="data-val"><span id="bat-capacity">- mAh</span> • <span id="bat-tech">Li-Poly</span></div>
-                            <div class="data-sub">Orijinal Hücre Yapısı</div>
+                        <div class="bat-metric-item">
+                            <div class="bat-lbl">Nominal Kapasite</div>
+                            <div class="bat-val"><span id="bat-capacity">- mAh</span> • <span id="bat-tech">Li-Poly</span></div>
+                            <div class="bat-sub">Orijinal Tasarım Hücresi</div>
                         </div>
-                        <div class="data-item data-item-full">
-                            <div class="data-label">Şarj Portu Durumu</div>
-                            <div class="data-val" id="bat-port">Normal (Bağlı Değil) • Fiziksel Veri Yolu Açık</div>
+                        <div class="bat-metric-item" style="grid-column: span 2;">
+                            <div class="bat-lbl">Şarj Portu & Veri Yolu</div>
+                            <div class="bat-val" id="bat-port">Normal (Bağlı Değil) • Veri Yolu Açık</div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- 5. YÜKSEK YOĞUNLUKLU DONANIM TEST MATRİSİ (31 Modül) -->
+            <!-- ==========================================================================
+               5. DÜZENLİ TEST GRUPLARI (İKONSUZ, DÜZENLİ TEKNİK MATRİS)
+               Kullanıcı Talebi: Saçma ikonları kaldır, bir düzen içinde grupla!
+               ========================================================================== -->
             <div class="test-matrix-section">
                 <div class="test-matrix-header">
-                    <div><span>🛠️</span> 3. Donanım Test Sonuçları</div>
+                    <span>3. Donanım Test Sonuçları (Teknik Alt Sistemler)</span>
                     <span class="panel-badge" id="matrix-total-badge">31 Modül Test Edildi</span>
                 </div>
                 <div id="inspection-categories-container">
-                    <!-- Dinamik olarak kompakt çipler halinde doldurulacak -->
+                    <!-- Dinamik olarak ikonsuz teknik çipler halinde doldurulacak -->
                 </div>
             </div>
 
-            <!-- 6. Kompakt Kriptografik Doğrulama Şeridi -->
+            <!-- ==========================================================================
+               6. HAM TELEMETRİ & OS VERİ GÜNLÜĞÜ (RAW TELEMETRY LOG TERMINAL)
+               Kullanıcı Talebi: Daha ham verileri de loglayacağız bu raporda!
+               ========================================================================== -->
+            <div class="raw-telemetry-section" id="raw-telemetry-section">
+                <div class="raw-telemetry-header" onclick="toggleRawLog()">
+                    <div class="raw-header-left">
+                        <span>4. Ham Telemetri & OS Veri Günlüğü (Raw Telemetry Log)</span>
+                    </div>
+                    <div class="raw-header-actions">
+                        <button class="btn-raw-action" onclick="event.stopPropagation(); copyRawTelemetry()">JSON Kopyala</button>
+                        <button class="btn-raw-action" id="btn-toggle-raw">Daralt ▲</button>
+                    </div>
+                </div>
+                <div class="raw-telemetry-body" id="raw-telemetry-body">
+                    <pre class="raw-log-terminal" id="raw-log-terminal">// Ham telemetri yükleniyor...</pre>
+                </div>
+            </div>
+
+            <!-- 7. Kriptografik Doğrulama Şeridi -->
             <div class="verification-card">
                 <div class="verification-left">
-                    <span class="verification-icon">🔒</span>
                     <span class="sha-hash-text" id="sha-hash-full">SHA-256: -</span>
                 </div>
                 <button class="btn-hash-copy" onclick="copyHash()">Kopyala</button>
@@ -1130,6 +1204,8 @@
         "EhNG7Po4SVAz7vFmKkX18dN62aFb2yCTaHLbtwIjmMY";
 
     let currentHash = "";
+    let rawReportData = null;
+    let isRawExpanded = true;
 
     async function loadReport() {
         const params = new URLSearchParams(window.location.search);
@@ -1181,6 +1257,7 @@
         document.getElementById("loading-state").style.display = "none";
         document.getElementById("content-document").style.display = "block";
 
+        rawReportData = record;
         const p = record.full_report || {};
         const id = p.identity || {};
         const silicon = p.silicon || {};
@@ -1199,15 +1276,14 @@
         const shortHash = currentHash ? currentHash.substring(0, 8).toUpperCase() : "VERIFIED";
         document.getElementById("cert-serial").textContent = `RAPOR NO: ZN-2026-${shortHash}`;
 
-        // QR Kod (34x34)
         try {
             const qrContainer = document.getElementById("cert-qr-code");
             qrContainer.innerHTML = "";
             new QRCode(qrContainer, {
                 text: window.location.href,
-                width: 34,
-                height: 34,
-                colorDark: "#0E1118",
+                width: 36,
+                height: 36,
+                colorDark: "#0D1017",
                 colorLight: "#FFFFFF",
                 correctLevel: QRCode.CorrectLevel.M
             });
@@ -1220,7 +1296,7 @@
         const dateStr = new Date(record.created_at || Date.now()).toLocaleString("tr-TR", { timeZone: "Europe/Istanbul" });
         document.getElementById("custody-date").textContent = dateStr;
 
-        // Puan & Mini Gösterge (Çevre = 2 * PI * 25 ~= 157.08)
+        // Puan & Mini Gösterge
         const score = record.overall_score !== undefined ? record.overall_score : 85;
         const grade = record.expert_grade || (score >= 85 ? "Grade A (Kusursuz)" : score >= 70 ? "Grade B (Minör Aşınma)" : "Grade C (Kusurlu)");
         document.getElementById("gauge-score").textContent = score;
@@ -1284,91 +1360,99 @@
         document.getElementById("bat-tech").textContent = battery.technology || "Li-Poly";
         document.getElementById("bat-status-badge").textContent = battery.healthStatus || (batHealth >= 80 ? "İYİ (SAĞLAM)" : "SERVİS");
 
-        // Yüksek Yoğunluklu Donanım Test Matrisi Render
-        renderCompactCategories(items);
+        // Düzenli ve İkonsuz Donanım Test Grupları Render
+        renderStructuredCategories(items);
+
+        // Ham Telemetri Logunu Doldur
+        renderRawTelemetryLog(record);
 
         // Kriptografik Özet
         document.getElementById("sha-hash-full").textContent = `SHA-256: ${currentHash}`;
     }
 
-    function renderCompactCategories(items) {
+    /* ==========================================================================
+       DÜZENLİ TEST GRUPLARI (İKONSUZ, RESMİ TEKNİK TABLO)
+       ========================================================================== */
+    function renderStructuredCategories(items) {
         const container = document.getElementById("inspection-categories-container");
         container.innerHTML = "";
 
-        const categories = [
+        const groups = [
             {
-                id: "display_audio",
-                name: "1. Ekran, Dokunmatik & Ses Birimleri",
-                icon: "🖥️",
-                matchCats: ["DISPLAY", "AUDIO"],
-                matchTypes: ["DISPLAY", "TOUCH", "SCREEN", "PIXEL", "AUDIO", "SPEAKER", "MICROPHONE", "EARPIECE"]
+                id: "display_touch",
+                name: "1. Ekran & Dokunmatik Sistemler",
+                matchCats: ["DISPLAY"],
+                matchTypes: ["DISPLAY", "TOUCH", "SCREEN", "PIXEL", "BRIGHTNESS", "SWIPE"]
             },
             {
-                id: "sensors_security",
-                name: "2. Sensörler, Biyometri & Şebeke",
-                icon: "🧭",
-                matchCats: ["SENSORS", "BIOMETRICS_SECURITY", "CONNECTIVITY"],
-                matchTypes: ["SENSOR", "ACCELEROMETER", "GYROSCOPE", "MAGNETOMETER", "LIGHT", "PROXIMITY", "BAROMETER", "BIOMETRIC", "FINGERPRINT", "BLUETOOTH", "GPS", "NFC", "WIFI", "CELLULAR", "TELEPHONY"]
+                id: "audio_acoustics",
+                name: "2. Ses & Akustik Modülleri",
+                matchCats: ["AUDIO"],
+                matchTypes: ["AUDIO", "SPEAKER", "MICROPHONE", "EARPIECE"]
             },
             {
-                id: "hardware_power",
-                name: "3. Yonga Seti, Donanım & Güç Yönetimi",
-                icon: "⚡",
+                id: "sensors_env",
+                name: "3. Sensörler & Çevresel Birimler",
+                matchCats: ["SENSORS"],
+                matchTypes: ["ACCELEROMETER", "GYROSCOPE", "MAGNETOMETER", "LIGHT", "PROXIMITY", "BAROMETER", "VIBRAT", "AIRTIGHT"]
+            },
+            {
+                id: "security_connectivity",
+                name: "4. Biyometri & Kablosuz Ağlar",
+                matchCats: ["BIOMETRICS_SECURITY", "CONNECTIVITY"],
+                matchTypes: ["BIOMETRIC", "FINGERPRINT", "BLUETOOTH", "GPS", "NFC", "WIFI", "CELLULAR", "TELEPHONY"]
+            },
+            {
+                id: "silicon_hardware",
+                name: "5. Yonga Seti & Donanım Arayüzleri",
                 matchCats: ["POWER_BATTERY", "SPECIALIZED"],
-                matchTypes: [] // Geri kalanlar
+                matchTypes: [] // Kalan donanım birimleri
             }
         ];
 
-        let totalPassed = 0;
-
-        categories.forEach(cat => {
-            const catItems = items.filter(item => {
+        groups.forEach(group => {
+            const groupItems = items.filter(item => {
                 const c = (item.category || "").toUpperCase();
                 const t = (item.componentType || item.type || "").toUpperCase();
-                if (cat.id === "hardware_power") {
-                    return !categories.slice(0, 2).some(prev => 
+                if (group.id === "silicon_hardware") {
+                    return !groups.slice(0, 4).some(prev => 
                         prev.matchCats.includes(c) || prev.matchTypes.some(m => t.includes(m))
                     );
                 }
-                return cat.matchCats.includes(c) || cat.matchTypes.some(m => t.includes(m));
+                return group.matchCats.includes(c) || group.matchTypes.some(m => t.includes(m));
             });
 
-            if (catItems.length === 0) return;
+            if (groupItems.length === 0) return;
 
-            const passedInCat = catItems.filter(i => i.status === "PASSED").length;
-            totalPassed += passedInCat;
+            const passedInGroup = groupItems.filter(i => i.status === "PASSED").length;
 
             const block = document.createElement("div");
-            block.className = "compact-category-block";
+            block.className = "test-group-block";
 
             let chipsHtml = "";
-            catItems.forEach(item => {
+            groupItems.forEach(item => {
                 const rawType = item.componentType || item.type || "";
                 const isPass = item.status === "PASSED";
                 const isFail = item.status === "FAILED";
-                const badgeClass = isPass ? "badge-pass" : isFail ? "badge-fail" : "badge-skip";
+                const badgeClass = isPass ? "status-pass" : isFail ? "status-fail" : "status-skip";
                 const icon = isPass ? "✓" : isFail ? "✗" : "○";
                 const label = isPass ? "Başarılı" : isFail ? "Hata" : "Atlandı";
-                const itemIcon = getTestIcon(rawType);
                 const title = formatTestTitle(rawType);
 
                 chipsHtml += `
-                    <div class="test-chip">
-                        <div class="chip-left">
-                            <span class="chip-icon">${itemIcon}</span>
-                            <span class="chip-title">${title}</span>
-                        </div>
-                        <span class="chip-badge ${badgeClass}">${icon} ${label}</span>
+                    <div class="technical-chip">
+                        <span class="tech-chip-title">${title}</span>
+                        <span class="tech-chip-status ${badgeClass}">${icon} ${label}</span>
                     </div>
                 `;
             });
 
             block.innerHTML = `
-                <div class="compact-category-title">
-                    <div><span>${cat.icon}</span> ${cat.name}</div>
-                    <div class="stats">${passedInCat} / ${catItems.length} Başarılı</div>
+                <div class="test-group-title">
+                    <span>${group.name}</span>
+                    <span class="group-stats">${passedInGroup} / ${groupItems.length} Doğrulandı</span>
                 </div>
-                <div class="compact-chips-grid">
+                <div class="technical-chips-grid">
                     ${chipsHtml}
                 </div>
             `;
@@ -1379,38 +1463,12 @@
         document.getElementById("matrix-total-badge").textContent = `${items.length} Modül Test Edildi`;
     }
 
-    function getTestIcon(type) {
-        if (!type) return "⚙️";
-        const t = type.toUpperCase();
-        if (t.includes("WIFI")) return "📶";
-        if (t.includes("BLUETOOTH")) return "🔷";
-        if (t.includes("NFC")) return "💳";
-        if (t.includes("GPS") || t.includes("LOCATION")) return "📍";
-        if (t.includes("CELLULAR") || t.includes("TELEPHONY") || t.includes("MODEM")) return "📡";
-        if (t.includes("CAMERA") || t.includes("LENS")) return "📷";
-        if (t.includes("FLASH") || t.includes("TORCH")) return "⚡";
-        if (t.includes("BATTERY") || t.includes("CHARGING") || t.includes("PORT")) return "🔋";
-        if (t.includes("SPEAKER") || t.includes("EARPIECE")) return "🔊";
-        if (t.includes("MICROPHONE")) return "🎙️";
-        if (t.includes("TOUCH") || t.includes("SWIPE")) return "👆";
-        if (t.includes("DISPLAY") || t.includes("PIXEL") || t.includes("SCREEN") || t.includes("BRIGHTNESS")) return "🖥️";
-        if (t.includes("FINGERPRINT") || t.includes("BIOMETRIC")) return "🔒";
-        if (t.includes("VIBRAT")) return "📳";
-        if (t.includes("BUTTON")) return "🔘";
-        if (t.includes("CPU") || t.includes("RAM") || t.includes("STORAGE") || t.includes("THERMAL")) return "⚡";
-        if (t.includes("LIGHT") || t.includes("PROXIMITY")) return "👁️";
-        if (t.includes("BAROMETER") || t.includes("AIRTIGHT")) return "🧭";
-        if (t.includes("ACCELEROMETER") || t.includes("GYROSCOPE") || t.includes("MAGNETOMETER")) return "📐";
-        if (t.includes("INFRARED")) return "🔴";
-        return "🧩";
-    }
-
     function formatTestTitle(type) {
         if (!type) return "Donanım Testi";
         const map = {
-            "DISPLAY_DEAD_PIXELS": "Ölü Piksel & Renk",
-            "MULTI_TOUCH": "Çoklu Dokunmatik",
-            "DISPLAY_GRID_SWIPE": "Dokunmatik Grid",
+            "DISPLAY_DEAD_PIXELS": "Ölü Piksel & Renk Testi",
+            "MULTI_TOUCH": "Çoklu Dokunmatik Kapasite",
+            "DISPLAY_GRID_SWIPE": "Dokunmatik Grid Tarama",
             "DISPLAY_BRIGHTNESS_DIMMING": "Parlaklık & Karartma",
             "TOUCH_SCREEN": "Dokunmatik Ekran",
             "MICROPHONE": "Birincil Mikrofon",
@@ -1427,14 +1485,14 @@
             "PROXIMITY": "Yakınlık Sensörü",
             "PROXIMITY_SENSOR": "Yakınlık Sensörü",
             "BAROMETER": "Barometre Basınç",
-            "VIBRATOR_LRA": "Haptik Titreşim",
+            "VIBRATOR_LRA": "Haptik Titreşim Motoru",
             "VIBRATION_MOTOR": "Titreşim Motoru",
             "BAROMETER_AIRTIGHT_SEAL": "Hava Sızdırmazlık (IP)",
             "BIOMETRIC": "Biyometrik Parmak İzi",
             "BIOMETRIC_FINGERPRINT": "Parmak İzi Okuyucu",
             "BLUETOOTH": "Bluetooth 5.x",
             "BLUETOOTH_CHIP": "Bluetooth 5.x",
-            "GPS_LOCATION": "GPS / Konum",
+            "GPS_LOCATION": "GPS / Konum Doğrulama",
             "GPS_ANTENNA": "GPS / Konum",
             "NFC": "NFC Denetleyici",
             "NFC_SENSOR": "NFC Denetleyici",
@@ -1451,7 +1509,7 @@
             "PHYSICAL_BUTTONS": "Fiziksel Tuşlar",
             "CAMERA_BACK_WIDE": "Arka Ana Kamera",
             "CAMERA_FRONT": "Ön Kamera",
-            "CAMERA_AUTOFOCUS": "Otofokus Motoru",
+            "CAMERA_AUTOFOCUS": "Kamera Otofokus Motoru",
             "CAMERA_OIS": "Optik Sabitleyici (OIS)",
             "BATTERY_HEALTH": "Batarya Sağlığı",
             "PORT_CHARGING": "Şarj Portu & Veri Yolu",
@@ -1461,6 +1519,52 @@
             "CPU_STRESS_THERMAL": "İşlemci Termal Stres"
         };
         return map[type] || type.replace(/_/g, " ");
+    }
+
+    /* ==========================================================================
+       HAM TELEMETRİ LOG MOTORU
+       ========================================================================== */
+    function renderRawTelemetryLog(record) {
+        const terminal = document.getElementById("raw-log-terminal");
+        try {
+            const telemetryDump = {
+                metadata: {
+                    report_id: `ZN-2026-${(record.sha256_hash || "").substring(0, 8).toUpperCase()}`,
+                    session_id: record.session_id,
+                    sha256: record.sha256_hash,
+                    timestamp: record.created_at,
+                    score: record.overall_score,
+                    grade: record.expert_grade
+                },
+                hardware_passport: record.full_report?.identity || {},
+                silicon_telemetry: record.full_report?.silicon || {},
+                battery_power_raw: record.full_report?.battery || {},
+                storage_hal: record.full_report?.storage || {},
+                diagnostic_items_raw: record.full_report?.items || []
+            };
+            terminal.textContent = JSON.stringify(telemetryDump, null, 2);
+        } catch (e) {
+            terminal.textContent = "// Ham veri biçimlendirilemedi: " + e.message;
+        }
+    }
+
+    function toggleRawLog() {
+        const body = document.getElementById("raw-telemetry-body");
+        const btn = document.getElementById("btn-toggle-raw");
+        isRawExpanded = !isRawExpanded;
+        body.style.display = isRawExpanded ? "block" : "none";
+        btn.textContent = isRawExpanded ? "Daralt ▲" : "Genişlet ▼";
+    }
+
+    function copyRawTelemetry() {
+        const terminal = document.getElementById("raw-log-terminal");
+        if (navigator.clipboard && terminal) {
+            navigator.clipboard.writeText(terminal.textContent).then(() => {
+                showToast("Ham Telemetri JSON Kopyalandı!");
+            }).catch(() => {
+                showToast("Kopyalama başarısız oldu.");
+            });
+        }
     }
 
     function copyReportLink() {
