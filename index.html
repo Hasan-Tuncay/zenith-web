@@ -6,42 +6,41 @@
     <title>Zenith Diagnostics — Cihaz Donanım ve Sağlık Raporu | Harpia Academy</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet">
     <!-- QR Code Generator -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
     <style>
         :root {
             /* Sade & Resmi Monokrom Kurumsal Palet */
-            --bg-body: #090B10;
-            --bg-card: #0F121A;
-            --bg-card-sub: #141824;
-            --bg-card-highlight: #1B2130;
-            --border-card: #202738;
-            --border-subtle: #2C354A;
+            --bg-body: #080A0F;
+            --bg-card: #0E1118;
+            --bg-card-sub: #131722;
+            --bg-card-highlight: #191F2D;
+            --border-card: #1E2536;
+            --border-subtle: #273046;
             
             --text-main: #FFFFFF;
-            --text-secondary: #E2E8F0;
-            --text-muted: #8A97AC;
+            --text-secondary: #DCE3EE;
+            --text-muted: #828FA3;
             
             --accent-brand: #38BDF8;
-            --accent-glow: rgba(56, 189, 248, 0.15);
             
             --status-pass: #10B981;
             --status-pass-bg: rgba(16, 185, 129, 0.1);
-            --status-pass-border: rgba(16, 185, 129, 0.3);
+            --status-pass-border: rgba(16, 185, 129, 0.25);
             
             --status-warn: #F59E0B;
             --status-warn-bg: rgba(245, 158, 11, 0.1);
-            --status-warn-border: rgba(245, 158, 11, 0.3);
+            --status-warn-border: rgba(245, 158, 11, 0.25);
             
             --status-fail: #EF4444;
             --status-fail-bg: rgba(239, 68, 68, 0.1);
-            --status-fail-border: rgba(239, 68, 68, 0.3);
+            --status-fail-border: rgba(239, 68, 68, 0.25);
 
             --status-skip: #64748B;
-            --status-skip-bg: rgba(100, 116, 139, 0.1);
-            --status-skip-border: rgba(100, 116, 139, 0.25);
+            --status-skip-bg: rgba(100, 116, 139, 0.08);
+            --status-skip-border: rgba(100, 116, 139, 0.2);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -49,8 +48,8 @@
             font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg-body);
             color: var(--text-main);
-            line-height: 1.5;
-            padding: 20px 16px 60px;
+            line-height: 1.4;
+            padding: 12px 14px 40px;
             -webkit-font-smoothing: antialiased;
         }
 
@@ -59,53 +58,53 @@
             margin: 0 auto;
         }
 
-        /* Sticky Minimalist Action Bar */
+        /* Sticky Action Bar */
         .action-bar {
             position: sticky;
-            top: 14px;
+            top: 10px;
             z-index: 1000;
-            background: rgba(15, 18, 26, 0.94);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            background: rgba(14, 17, 24, 0.94);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
             border: 1px solid var(--border-subtle);
-            border-radius: 12px;
-            padding: 10px 18px;
+            border-radius: 10px;
+            padding: 8px 14px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+            margin-bottom: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
         }
         .action-bar-left {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
         .action-logo-badge {
-            width: 36px;
-            height: 36px;
-            background: #1B2130;
+            width: 32px;
+            height: 32px;
+            background: var(--bg-card-sub);
             border: 1px solid var(--border-subtle);
-            border-radius: 8px;
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
+            font-size: 16px;
             flex-shrink: 0;
         }
         .action-bar-title {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 800;
             color: var(--text-main);
-            letter-spacing: 0.3px;
+            letter-spacing: 0.2px;
         }
         .action-bar-sub {
-            font-size: 11px;
+            font-size: 10.5px;
             color: var(--text-muted);
             font-weight: 500;
         }
         .action-bar-sub strong {
-            color: var(--accent-brand);
+            color: #FFFFFF;
             font-weight: 700;
         }
         .action-btn-group {
@@ -115,24 +114,23 @@
         }
         .btn-action {
             border: none;
-            padding: 8px 16px;
+            padding: 6px 14px;
             border-radius: 6px;
             font-weight: 700;
-            font-size: 12px;
+            font-size: 11.5px;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            transition: all 0.2s ease;
+            gap: 5px;
+            transition: all 0.15s ease;
             font-family: inherit;
         }
         .btn-print {
             background: #FFFFFF;
-            color: #0F121A;
+            color: #0E1118;
         }
         .btn-print:hover {
             background: #E2E8F0;
-            transform: translateY(-1px);
         }
         .btn-copy {
             background: var(--bg-card-sub);
@@ -144,88 +142,87 @@
             color: var(--text-main);
         }
 
-        /* Clean Executive Frame */
+        /* Executive Master Frame */
         .security-frame {
             border: 1px solid var(--border-card);
-            border-radius: 16px;
+            border-radius: 12px;
             background: var(--bg-card);
-            padding: 28px 32px;
-            box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.8);
-            position: relative;
+            padding: 16px 20px;
+            box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.7);
         }
 
-        /* 1. Official Header */
+        /* 1. Ultra-Compact Header */
         .cert-header {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
+            align-items: center;
             border-bottom: 1px solid var(--border-card);
-            padding-bottom: 20px;
-            margin-bottom: 20px;
-            gap: 20px;
+            padding-bottom: 12px;
+            margin-bottom: 12px;
+            gap: 14px;
         }
         .cert-emblem-wrap {
             display: flex;
-            align-items: flex-start;
-            gap: 16px;
+            align-items: center;
+            gap: 12px;
         }
         .cert-emblem {
-            width: 58px;
-            height: 58px;
-            border-radius: 12px;
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
             background: var(--bg-card-sub);
             border: 1px solid var(--border-subtle);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
+            font-size: 22px;
             flex-shrink: 0;
         }
         .cert-top-category {
-            font-size: 11px;
+            font-size: 9.5px;
             font-weight: 800;
             color: var(--text-muted);
-            letter-spacing: 1.2px;
+            letter-spacing: 1px;
             text-transform: uppercase;
         }
         .cert-doc-title {
-            font-size: 24px;
+            font-size: 19px;
             font-weight: 900;
             color: #FFFFFF;
-            letter-spacing: -0.5px;
-            margin: 2px 0 2px;
+            letter-spacing: -0.3px;
             line-height: 1.15;
         }
         .cert-doc-sub {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 700;
             color: var(--text-secondary);
-            letter-spacing: 0.3px;
-            text-transform: uppercase;
+            letter-spacing: 0.2px;
+            display: inline-block;
+            margin-right: 8px;
         }
         
         /* Harpia Academy Brand Badge */
         .harpia-brand-badge {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
             background: var(--bg-card-sub);
             border: 1px solid var(--border-subtle);
-            border-radius: 6px;
-            padding: 4px 10px;
-            font-size: 10px;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 9.5px;
             font-weight: 800;
             color: var(--text-secondary);
-            letter-spacing: 0.8px;
+            letter-spacing: 0.5px;
             text-transform: uppercase;
-            margin-top: 8px;
+            vertical-align: middle;
         }
         .harpia-badge-dot {
-            width: 6px;
-            height: 6px;
+            width: 5px;
+            height: 5px;
             border-radius: 50%;
             background: var(--status-pass);
-            box-shadow: 0 0 6px var(--status-pass);
+            box-shadow: 0 0 5px var(--status-pass);
             flex-shrink: 0;
         }
         .harpia-brand-badge strong {
@@ -235,8 +232,7 @@
 
         .cert-meta-box {
             display: flex;
-            flex-direction: column;
-            align-items: flex-end;
+            align-items: center;
             gap: 10px;
             flex-shrink: 0;
         }
@@ -244,358 +240,386 @@
             background: var(--bg-card-sub);
             border: 1px solid var(--border-card);
             border-radius: 6px;
-            padding: 5px 12px;
+            padding: 4px 10px;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 11px;
+            font-size: 10.5px;
             font-weight: 700;
             color: var(--text-secondary);
-            letter-spacing: 0.5px;
+            letter-spacing: 0.4px;
+            text-align: right;
         }
         .cert-qr-wrap {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             background: var(--bg-card-sub);
             border: 1px solid var(--border-card);
-            border-radius: 10px;
-            padding: 6px 10px;
+            border-radius: 8px;
+            padding: 4px 8px;
         }
         #cert-qr-code {
             background: #FFFFFF;
-            padding: 3px;
+            padding: 2px;
             border-radius: 4px;
-            width: 52px;
-            height: 52px;
+            width: 38px;
+            height: 38px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
         .cert-qr-text {
-            font-size: 9.5px;
+            font-size: 8.5px;
             color: var(--text-muted);
-            line-height: 1.3;
+            line-height: 1.25;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.4px;
+            letter-spacing: 0.3px;
         }
 
-        /* 2. Summary Strip (Özet Bilgi Şeridi) */
+        /* 2. Top Sleek Meta Bar (4 Sütun) */
         .custody-strip {
             background: var(--bg-card-sub);
             border: 1px solid var(--border-card);
-            border-radius: 10px;
-            padding: 12px 18px;
+            border-radius: 8px;
+            padding: 8px 14px;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 14px;
-            margin-bottom: 20px;
+            gap: 10px;
+            margin-bottom: 12px;
         }
         .custody-item-lbl {
-            font-size: 10px;
+            font-size: 9px;
             font-weight: 700;
             color: var(--text-muted);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.4px;
         }
         .custody-item-val {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 700;
             color: var(--text-main);
-            margin-top: 2px;
+            margin-top: 1px;
             font-family: 'JetBrains Mono', monospace;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
         }
 
-        /* 3. Hero Section (Gauge + 4 Pillars) */
-        .hero-section {
+        /* ==========================================================================
+           3. YAN YANA KOMPAKT SAĞLIK ŞERİDİ (Executive Overview Strip)
+           (Büyük daire yerine 3 sütunlu kompakt ve verimli yatay blok)
+           ========================================================================== */
+        .executive-strip {
             display: grid;
-            grid-template-columns: 300px 1fr;
-            gap: 16px;
-            margin-bottom: 20px;
-        }
-
-        /* Circular Radial Gauge Card */
-        .gauge-card {
+            grid-template-columns: 190px 1fr 1.2fr;
+            gap: 12px;
             background: var(--bg-card-sub);
             border: 1px solid var(--border-card);
-            border-radius: 14px;
-            padding: 20px 16px;
-            display: flex;
-            flex-direction: column;
+            border-radius: 10px;
+            padding: 12px 16px;
+            margin-bottom: 12px;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
         }
-        .svg-gauge-box {
-            position: relative;
-            width: 140px;
-            height: 140px;
+
+        /* Kolon 1: Kompakt Sağlık Skoru */
+        .exec-score-box {
             display: flex;
             align-items: center;
-            justify-content: center;
+            gap: 12px;
+            border-right: 1px solid var(--border-card);
+            padding-right: 12px;
         }
-        .svg-gauge-box svg {
+        .mini-gauge-box {
+            position: relative;
+            width: 58px;
+            height: 58px;
+            flex-shrink: 0;
+        }
+        .mini-gauge-box svg {
             width: 100%;
             height: 100%;
             transform: rotate(-90deg);
         }
         .gauge-bg-circle {
             stroke: rgba(255, 255, 255, 0.08);
-            stroke-width: 9;
+            stroke-width: 6;
             fill: none;
         }
         .gauge-bar-circle {
             stroke: var(--status-pass);
-            stroke-width: 9;
+            stroke-width: 6;
             stroke-linecap: round;
             fill: none;
-            stroke-dasharray: 377;
-            stroke-dashoffset: 80;
-            transition: stroke-dashoffset 0.8s ease-in-out, stroke 0.3s;
+            stroke-dasharray: 157; /* 2 * PI * 25 */
+            stroke-dashoffset: 35;
+            transition: stroke-dashoffset 0.8s ease-in-out;
         }
         .gauge-inner-text {
             position: absolute;
+            inset: 0;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
         }
         .gauge-number {
-            font-size: 42px;
+            font-size: 22px;
             font-weight: 900;
             line-height: 1;
             color: #FFFFFF;
-            letter-spacing: -1px;
+            letter-spacing: -0.5px;
         }
-        .gauge-scale {
-            font-size: 10.5px;
-            font-weight: 700;
-            color: var(--text-muted);
-            margin-top: 2px;
+        .exec-score-details {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
         }
         .grade-badge-card {
-            margin-top: 12px;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 800;
-            padding: 4px 14px;
-            border-radius: 16px;
-            letter-spacing: 0.5px;
+            padding: 2px 8px;
+            border-radius: 12px;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            display: inline-block;
+            white-space: nowrap;
+        }
+        .exec-score-label {
+            font-size: 9.5px;
+            color: var(--text-muted);
+            font-weight: 700;
             text-transform: uppercase;
         }
 
-        /* 4 Pillars Card */
-        .pillars-card {
-            background: var(--bg-card-sub);
-            border: 1px solid var(--border-card);
-            border-radius: 14px;
-            padding: 18px 22px;
+        /* Kolon 2: 4 Donanım Sütunu (Kompakt Mini Barlar) */
+        .exec-pillars-box {
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            gap: 12px;
+            gap: 6px;
+            border-right: 1px solid var(--border-card);
+            padding-right: 12px;
         }
-        .pillars-header {
+        .mini-pillar-row {
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid var(--border-card);
-            padding-bottom: 8px;
+            justify-content: space-between;
+            gap: 8px;
         }
-        .pillars-title {
-            font-size: 12px;
-            font-weight: 800;
-            color: #FFFFFF;
-            letter-spacing: 0.4px;
-            text-transform: uppercase;
+        .mini-pillar-name {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+        .mini-pillar-val-wrap {
             display: flex;
             align-items: center;
             gap: 6px;
+            width: 110px;
+            flex-shrink: 0;
         }
-        .pillar-row {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-        .pillar-info {
-            display: flex;
-            justify-content: space-between;
-            font-size: 11.5px;
-            font-weight: 700;
-        }
-        .pillar-name { color: var(--text-secondary); }
-        .pillar-score { font-family: 'JetBrains Mono', monospace; color: #FFFFFF; }
         .progress-track {
-            width: 100%;
-            height: 6px;
+            flex: 1;
+            height: 4px;
             background: rgba(255, 255, 255, 0.08);
-            border-radius: 3px;
+            border-radius: 2px;
             overflow: hidden;
         }
         .progress-fill {
             height: 100%;
-            border-radius: 3px;
-            transition: width 0.8s ease;
+            border-radius: 2px;
+            transition: width 0.6s ease;
+        }
+        .mini-pillar-score {
+            font-size: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            color: #FFFFFF;
+            width: 32px;
+            text-align: right;
         }
 
-        /* Executive Summary Box */
-        .opinion-box {
-            background: var(--bg-card-sub);
-            border: 1px solid var(--border-card);
-            border-radius: 12px;
-            padding: 14px 18px;
-            margin-bottom: 20px;
+        /* Kolon 3: Entegre Değerlendirme Özeti */
+        .exec-opinion-box {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
         }
-        .opinion-title {
-            font-size: 11px;
+        .exec-opinion-title {
+            font-size: 10px;
             font-weight: 800;
-            color: var(--text-main);
+            color: #FFFFFF;
             text-transform: uppercase;
-            letter-spacing: 0.6px;
+            letter-spacing: 0.4px;
             display: flex;
             align-items: center;
-            gap: 6px;
-            margin-bottom: 6px;
+            gap: 5px;
         }
-        .opinion-text {
-            font-size: 12.5px;
+        .exec-opinion-text {
+            font-size: 11px;
             color: var(--text-muted);
-            line-height: 1.55;
+            line-height: 1.45;
             text-align: justify;
         }
 
-        /* Section Cards */
-        .section-wrap {
-            margin-bottom: 20px;
-        }
-        .section-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            font-size: 12px;
-            font-weight: 800;
-            color: var(--text-main);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 10px;
-            padding-bottom: 6px;
-            border-bottom: 1px solid var(--border-card);
-        }
-        .section-header span.icon {
-            margin-right: 6px;
-        }
-        .section-count-badge {
-            font-size: 10.5px;
-            font-weight: 700;
-            background: var(--bg-card-sub);
-            border: 1px solid var(--border-card);
-            color: var(--text-secondary);
-            padding: 2px 8px;
-            border-radius: 4px;
-        }
-
-        .grid-3 {
+        /* ==========================================================================
+           4. YAN YANA İKİ SÜTUNLU BİLGİ ALANI (Split Grid: Cihaz Kimliği | Batarya)
+           ========================================================================== */
+        .split-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: 1fr 1fr;
             gap: 12px;
+            margin-bottom: 12px;
         }
-        .info-cell {
+        .split-panel {
             background: var(--bg-card-sub);
             border: 1px solid var(--border-card);
             border-radius: 10px;
             padding: 12px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
-        .info-cell-top {
-            font-size: 10px;
-            font-weight: 700;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 4px;
-        }
-        .info-cell-val {
-            font-size: 13px;
-            font-weight: 800;
-            color: var(--text-main);
-            font-family: 'JetBrains Mono', monospace;
-            word-break: break-word;
-        }
-        .info-cell-sub {
+        .split-panel-header {
             font-size: 11px;
-            color: var(--text-muted);
-            margin-top: 3px;
-        }
-
-        /* ==========================================================================
-           KOMPAKT & VERİMLİ DONANIM TEST MATRİSİ (Compact Grid Architecture)
-           ========================================================================== */
-        .compact-category-block {
-            background: var(--bg-card-sub);
-            border: 1px solid var(--border-card);
-            border-radius: 12px;
-            margin-bottom: 12px;
-            padding: 12px 16px;
-        }
-        .compact-category-title {
-            font-size: 11.5px;
             font-weight: 800;
             color: #FFFFFF;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.4px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 10px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
             padding-bottom: 6px;
         }
-        .compact-category-title .stats {
-            font-size: 10.5px;
-            font-family: 'JetBrains Mono', monospace;
+        .panel-badge {
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-card);
+        }
+
+        /* 2 Sütunlu Kompakt Veri Satırları */
+        .panel-data-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+        .data-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .data-item-full {
+            grid-column: span 2;
+        }
+        .data-label {
+            font-size: 9px;
+            font-weight: 700;
             color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .data-val {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-main);
+            font-family: 'JetBrains Mono', monospace;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .data-sub {
+            font-size: 9.5px;
+            color: var(--text-muted);
+        }
+
+        /* ==========================================================================
+           5. YÜKSEK YOĞUNLUKLU DONANIM TEST MATRİSİ (Dense Matrix)
+           ========================================================================== */
+        .test-matrix-section {
+            background: var(--bg-card-sub);
+            border: 1px solid var(--border-card);
+            border-radius: 10px;
+            padding: 12px 14px;
+            margin-bottom: 12px;
+        }
+        .test-matrix-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 11px;
+            font-weight: 800;
+            color: #FFFFFF;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding-bottom: 6px;
+            margin-bottom: 10px;
+        }
+        
+        /* Dinamik Kategoriler ve Çipler */
+        .compact-category-block {
+            margin-bottom: 8px;
+        }
+        .compact-category-block:last-child {
+            margin-bottom: 0;
+        }
+        .compact-category-title {
+            font-size: 10px;
+            font-weight: 800;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 6px;
+        }
+        .compact-category-title .stats {
+            font-size: 9.5px;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-secondary);
             font-weight: 600;
         }
 
         .compact-chips-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
         }
-        @media (min-width: 900px) {
+        @media (min-width: 960px) {
             .compact-chips-grid {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(4, 1fr);
             }
         }
 
         .test-chip {
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            padding: 8px 12px;
+            border-radius: 6px;
+            padding: 5px 8px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 8px;
-            transition: background 0.15s ease;
-        }
-        .test-chip:hover {
-            background: rgba(255, 255, 255, 0.04);
+            gap: 6px;
+            min-height: 28px;
         }
         .chip-left {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             min-width: 0;
             overflow: hidden;
         }
         .chip-icon {
-            font-size: 14px;
+            font-size: 12px;
             flex-shrink: 0;
         }
         .chip-title {
-            font-size: 11.5px;
+            font-size: 10.5px;
             font-weight: 700;
             color: var(--text-secondary);
             white-space: nowrap;
@@ -605,12 +629,12 @@
         .chip-badge {
             display: inline-flex;
             align-items: center;
-            gap: 4px;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 10px;
+            gap: 3px;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 9px;
             font-weight: 800;
-            letter-spacing: 0.3px;
+            letter-spacing: 0.2px;
             text-transform: uppercase;
             font-family: 'JetBrains Mono', monospace;
             flex-shrink: 0;
@@ -631,46 +655,42 @@
             border: 1px solid var(--status-skip-border);
         }
 
-        /* 8. Cryptographic Hash Box & Clean Verification */
+        /* 6. Kompakt Kriptografik Doğrulama Şeridi */
         .verification-card {
             background: var(--bg-card-sub);
             border: 1px solid var(--border-card);
-            border-radius: 12px;
-            padding: 16px 20px;
-            margin-top: 20px;
-        }
-        .verification-header {
-            font-size: 11.5px;
-            font-weight: 800;
-            color: #FFFFFF;
-            text-transform: uppercase;
-            letter-spacing: 0.6px;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .sha-hash-box {
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid var(--border-card);
-            border-radius: 6px;
-            padding: 8px 12px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 11px;
-            color: var(--text-secondary);
-            word-break: break-all;
-            margin-bottom: 10px;
+            border-radius: 8px;
+            padding: 8px 14px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 10px;
+            gap: 12px;
+        }
+        .verification-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 0;
+            overflow: hidden;
+        }
+        .verification-icon {
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .sha-hash-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         .btn-hash-copy {
             background: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.15);
             color: #FFFFFF;
             border-radius: 4px;
-            padding: 4px 10px;
+            padding: 3px 10px;
             font-size: 10px;
             font-weight: 700;
             cursor: pointer;
@@ -680,19 +700,12 @@
         .btn-hash-copy:hover {
             background: rgba(255, 255, 255, 0.15);
         }
-        .verification-note {
-            font-size: 11px;
-            color: var(--text-muted);
-            line-height: 1.5;
-        }
 
         /* Footer */
         .footer-bar {
             text-align: center;
-            margin-top: 24px;
-            padding-top: 14px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            font-size: 11px;
+            margin-top: 14px;
+            font-size: 10px;
             color: var(--text-muted);
         }
         .footer-bar strong {
@@ -702,32 +715,32 @@
         /* Loading & Error States */
         #loading-state, #error-state {
             text-align: center;
-            padding: 100px 20px;
+            padding: 80px 20px;
         }
         .spinner-radar {
-            width: 50px;
-            height: 50px;
+            width: 44px;
+            height: 44px;
             border: 3px solid var(--border-card);
             border-top-color: #FFFFFF;
             border-radius: 50%;
             animation: spinRadar 0.8s linear infinite;
-            margin: 0 auto 20px;
+            margin: 0 auto 16px;
         }
         @keyframes spinRadar { to { transform: rotate(360deg); } }
 
         /* Toast Feedback */
         #toast-msg {
             position: fixed;
-            bottom: 30px;
+            bottom: 24px;
             left: 50%;
             transform: translateX(-50%) translateY(100px);
             background: #FFFFFF;
-            color: #0F121A;
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 12px;
+            color: #0E1118;
+            padding: 6px 16px;
+            border-radius: 16px;
+            font-size: 11px;
             font-weight: 800;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.8);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.8);
             transition: transform 0.25s ease;
             z-index: 9999;
             pointer-events: none;
@@ -737,67 +750,98 @@
         }
 
         /* ==========================================================================
-           A4 Print / PDF Engine Stylesheet (Temiz Resmi Beyaz/Siyah Baskı)
+           A4 PRINT / PDF ENGINE STYLESHEET (AZAMİ 2 SAYFA HEDEFİ)
            ========================================================================== */
+        @page {
+            size: A4 portrait;
+            margin: 8mm;
+        }
         @media print {
             body {
                 background: #FFFFFF !important;
                 color: #000000 !important;
                 padding: 0 !important;
-                font-size: 10px !important;
+                font-size: 9pt !important;
+                line-height: 1.25 !important;
             }
             .action-bar, #toast-msg { display: none !important; }
             .report-container { max-width: 100% !important; margin: 0 !important; }
             .security-frame {
-                border: 1px solid #000000 !important;
+                border: 1px solid #94A3B8 !important;
                 border-radius: 0 !important;
                 background: #FFFFFF !important;
                 box-shadow: none !important;
-                padding: 14px !important;
+                padding: 8px !important;
             }
-            .cert-header { border-bottom: 1px solid #000000 !important; padding-bottom: 10px !important; margin-bottom: 12px !important; }
-            .cert-emblem { background: #F1F5F9 !important; border-color: #000000 !important; color: #000000 !important; }
+            .cert-header { border-bottom: 1px solid #000000 !important; padding-bottom: 6px !important; margin-bottom: 8px !important; }
+            .cert-emblem { background: #F8FAFC !important; border-color: #CBD5E1 !important; color: #000000 !important; width: 36px !important; height: 36px !important; font-size: 18px !important; }
             .cert-top-category { color: #475569 !important; }
-            .cert-doc-title { color: #000000 !important; font-size: 20px !important; }
-            .harpia-brand-badge { background: #F8FAFC !important; border-color: #CBD5E1 !important; color: #000000 !important; }
+            .cert-doc-title { color: #000000 !important; font-size: 16px !important; }
+            .harpia-brand-badge { background: #F1F5F9 !important; border-color: #CBD5E1 !important; color: #000000 !important; }
             .harpia-brand-badge strong { color: #000000 !important; }
-            .cert-serial-pill { background: #F8FAFC !important; border-color: #CBD5E1 !important; color: #000000 !important; }
-            .custody-strip { background: #F8FAFC !important; border-color: #CBD5E1 !important; }
+            .cert-serial-pill { background: #F8FAFC !important; border-color: #CBD5E1 !important; color: #000000 !important; font-size: 9.5px !important; }
+            .custody-strip { background: #F8FAFC !important; border-color: #CBD5E1 !important; padding: 6px 10px !important; margin-bottom: 8px !important; }
             .custody-item-val { color: #000000 !important; }
-            .gauge-card, .pillars-card, .opinion-box, .info-cell, .compact-category-block, .verification-card {
-                background: #FFFFFF !important;
-                border: 1px solid #CBD5E1 !important;
-                box-shadow: none !important;
+            
+            .executive-strip {
+                background: #F8FAFC !important;
+                border-color: #CBD5E1 !important;
+                padding: 8px 12px !important;
+                margin-bottom: 8px !important;
                 page-break-inside: avoid;
             }
-            .gauge-inner-text .gauge-number { color: #000000 !important; }
+            .exec-score-box, .exec-pillars-box { border-right-color: #CBD5E1 !important; }
+            .gauge-number { color: #000000 !important; font-size: 18px !important; }
             .gauge-bg-circle { stroke: #E2E8F0 !important; }
-            .pillar-name, .opinion-text, .info-cell-val, .compact-category-title, .chip-title { color: #000000 !important; }
-            .test-chip { background: #F8FAFC !important; border-color: #E2E8F0 !important; }
+            .mini-pillar-name, .exec-opinion-title { color: #000000 !important; }
+            .mini-pillar-score { color: #000000 !important; }
+            .exec-opinion-text { color: #334155 !important; }
+
+            .split-grid { margin-bottom: 8px !important; page-break-inside: avoid; }
+            .split-panel { background: #FFFFFF !important; border-color: #CBD5E1 !important; padding: 8px 10px !important; }
+            .split-panel-header { color: #000000 !important; border-bottom-color: #E2E8F0 !important; }
+            .data-val { color: #000000 !important; }
+
+            .test-matrix-section {
+                background: #FFFFFF !important;
+                border-color: #CBD5E1 !important;
+                padding: 8px 10px !important;
+                margin-bottom: 8px !important;
+                page-break-inside: avoid;
+            }
+            .test-matrix-header { color: #000000 !important; border-bottom-color: #E2E8F0 !important; }
+            .compact-chips-grid { grid-template-columns: repeat(4, 1fr) !important; gap: 4px !important; }
+            .test-chip { background: #F8FAFC !important; border-color: #E2E8F0 !important; padding: 4px 6px !important; }
+            .chip-title { color: #000000 !important; font-size: 9px !important; }
             .badge-pass { background: #ECFDF5 !important; color: #047857 !important; border-color: #A7F3D0 !important; }
             .badge-fail { background: #FEF2F2 !important; color: #B91C1C !important; border-color: #FECACA !important; }
             .badge-skip { background: #F1F5F9 !important; color: #475569 !important; border-color: #CBD5E1 !important; }
-            .sha-hash-box { background: #F1F5F9 !important; border-color: #CBD5E1 !important; color: #000000 !important; }
+
+            .verification-card { background: #F8FAFC !important; border-color: #CBD5E1 !important; padding: 6px 10px !important; page-break-inside: avoid; }
+            .sha-hash-text { color: #000000 !important; }
             .btn-hash-copy { display: none !important; }
+            .footer-bar { margin-top: 8px !important; color: #64748B !important; }
+            .footer-bar strong { color: #000000 !important; }
         }
 
         /* Mobile Ergonomics */
         @media (max-width: 768px) {
-            body { padding: 10px 8px 40px; }
-            .security-frame { padding: 18px 14px; border-radius: 12px; }
-            .cert-header { flex-direction: column; align-items: stretch; gap: 14px; }
-            .cert-meta-box { align-items: flex-start; }
-            .custody-strip { grid-template-columns: 1fr 1fr; gap: 10px; }
-            .hero-section { grid-template-columns: 1fr; }
-            .grid-3 { grid-template-columns: 1fr 1fr; }
-            .compact-chips-grid { grid-template-columns: 1fr; }
-            .action-bar { flex-direction: column; align-items: stretch; gap: 10px; }
+            body { padding: 8px 6px 30px; }
+            .security-frame { padding: 12px 10px; border-radius: 8px; }
+            .cert-header { flex-direction: column; align-items: stretch; gap: 10px; }
+            .cert-meta-box { justify-content: space-between; }
+            .custody-strip { grid-template-columns: 1fr 1fr; gap: 8px; }
+            .executive-strip { grid-template-columns: 1fr; gap: 10px; }
+            .exec-score-box, .exec-pillars-box { border-right: none; border-bottom: 1px solid var(--border-card); padding-right: 0; padding-bottom: 10px; }
+            .split-grid { grid-template-columns: 1fr; gap: 10px; }
+            .compact-chips-grid { grid-template-columns: 1fr 1fr; }
+            .action-bar { flex-direction: column; align-items: stretch; gap: 8px; }
             .action-btn-group { justify-content: stretch; }
             .btn-action { flex: 1; justify-content: center; }
         }
         @media (max-width: 480px) {
-            .grid-3 { grid-template-columns: 1fr; }
             .custody-strip { grid-template-columns: 1fr; }
+            .compact-chips-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -808,18 +852,18 @@
     <!-- Loading State -->
     <div id="loading-state">
         <div class="spinner-radar"></div>
-        <h2 style="font-size: 18px; font-weight: 800; color: #FFFFFF;">Zenith Diagnostics Yükleniyor</h2>
-        <p style="font-size: 12px; color: var(--text-muted); margin-top: 6px;">
+        <h2 style="font-size: 16px; font-weight: 800; color: #FFFFFF;">Zenith Diagnostics Yükleniyor</h2>
+        <p style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">
             Cihaz donanım ve sensör telemetrisi veritabanından alınıyor...
         </p>
     </div>
 
     <!-- Error State -->
     <div id="error-state" style="display: none;">
-        <div style="font-size: 48px; margin-bottom: 14px;">⚠️</div>
-        <h2 id="error-title" style="font-size: 20px; color: var(--status-fail); font-weight: 800;">Rapor Bulunamadı</h2>
-        <p id="error-desc" style="font-size: 13px; color: var(--text-muted); margin-top: 8px; max-width: 480px; margin-left: auto; margin-right: auto; line-height: 1.5;"></p>
-        <button class="btn-action btn-print" onclick="window.location.reload()" style="margin-top: 20px;">
+        <div style="font-size: 40px; margin-bottom: 12px;">⚠️</div>
+        <h2 id="error-title" style="font-size: 18px; color: var(--status-fail); font-weight: 800;">Rapor Bulunamadı</h2>
+        <p id="error-desc" style="font-size: 12px; color: var(--text-muted); margin-top: 6px; max-width: 460px; margin-left: auto; margin-right: auto; line-height: 1.4;"></p>
+        <button class="btn-action btn-print" onclick="window.location.reload()" style="margin-top: 16px;">
             <span>🔄</span> Yeniden Dene
         </button>
     </div>
@@ -851,17 +895,15 @@
         <!-- Clean Executive Frame -->
         <div class="security-frame">
 
-            <!-- 1. Official Header -->
+            <!-- 1. Ultra-Compact Header -->
             <div class="cert-header">
                 <div class="cert-emblem-wrap">
                     <div class="cert-emblem">🛡️</div>
                     <div>
                         <div class="cert-top-category">CİHAZ DONANIM DEĞERLENDİRMESİ</div>
                         <h1 class="cert-doc-title">ZENITH DIAGNOSTICS</h1>
-                        <div class="cert-doc-sub">CİHAZ DONANIM VE SAĞLIK RAPORU</div>
-                        
-                        <!-- Harpia Academy Brand Badge -->
                         <div>
+                            <span class="cert-doc-sub">CİHAZ DONANIM VE SAĞLIK RAPORU</span>
                             <div class="harpia-brand-badge">
                                 <span class="harpia-badge-dot"></span>
                                 <span>DEVELOPED AND SECURED BY <strong>HARPIA ACADEMY</strong></span>
@@ -902,196 +944,168 @@
                 </div>
             </div>
 
-            <!-- 3. Hero Section (Gauge + 4 Pillars) -->
-            <div class="hero-section">
-                <!-- Circular Radial Gauge -->
-                <div class="gauge-card">
-                    <div class="svg-gauge-box">
-                        <svg viewBox="0 0 140 140">
-                            <circle class="gauge-bg-circle" cx="70" cy="70" r="60"></circle>
-                            <circle class="gauge-bar-circle" id="gauge-bar" cx="70" cy="70" r="60"></circle>
+            <!-- 3. YAN YANA KOMPAKT SAĞLIK ŞERİDİ (Executive Overview Strip) -->
+            <div class="executive-strip">
+                <!-- Kolon 1: Kompakt Sağlık Skoru & Grade -->
+                <div class="exec-score-box">
+                    <div class="mini-gauge-box">
+                        <svg viewBox="0 0 60 60">
+                            <circle class="gauge-bg-circle" cx="30" cy="30" r="25"></circle>
+                            <circle class="gauge-bar-circle" id="gauge-bar" cx="30" cy="30" r="25"></circle>
                         </svg>
                         <div class="gauge-inner-text">
-                            <div class="gauge-number" id="gauge-score">0</div>
-                            <div class="gauge-scale">/ 100 PUAN</div>
+                            <span class="gauge-number" id="gauge-score">0</span>
                         </div>
                     </div>
-                    <div class="grade-badge-card" id="grade-badge">GRADE -</div>
-                    <div style="font-size: 11px; color: var(--text-muted); font-weight: 700; margin-top: 6px; text-transform: uppercase;">
-                        Genel Donanım Puanı
+                    <div class="exec-score-details">
+                        <span class="exec-score-label">Genel Sağlık Puanı</span>
+                        <div class="grade-badge-card" id="grade-badge">GRADE -</div>
                     </div>
                 </div>
 
-                <!-- 4 Trust Pillars -->
-                <div class="pillars-card">
-                    <div class="pillars-header">
-                        <div class="pillars-title">
-                            <span>📊</span> 4 Temel Donanım & Sistem Puanı
-                        </div>
-                        <div style="font-size: 11px; color: var(--text-muted); font-weight: 600;">Sistem Ağırlığı</div>
-                    </div>
-
-                    <div class="pillar-row">
-                        <div class="pillar-info">
-                            <span class="pillar-name">1. Donanım & Çekirdek Bütünlüğü</span>
-                            <span class="pillar-score" id="pillar-hw-val">%95</span>
-                        </div>
-                        <div class="progress-track">
-                            <div class="progress-fill" id="pillar-hw-bar" style="width: 95%; background: var(--status-pass);"></div>
+                <!-- Kolon 2: 4 Temel Metrik Çubukları -->
+                <div class="exec-pillars-box">
+                    <div class="mini-pillar-row">
+                        <span class="mini-pillar-name">1. Donanım Bütünlüğü</span>
+                        <div class="mini-pillar-val-wrap">
+                            <div class="progress-track">
+                                <div class="progress-fill" id="pillar-hw-bar" style="width: 95%; background: var(--status-pass);"></div>
+                            </div>
+                            <span class="mini-pillar-score" id="pillar-hw-val">%95</span>
                         </div>
                     </div>
-
-                    <div class="pillar-row">
-                        <div class="pillar-info">
-                            <span class="pillar-name">2. Batarya Sağlığı & Güç Kararlılığı</span>
-                            <span class="pillar-score" id="pillar-bat-val">%90</span>
-                        </div>
-                        <div class="progress-track">
-                            <div class="progress-fill" id="pillar-bat-bar" style="width: 90%; background: #38BDF8;"></div>
-                        </div>
-                    </div>
-
-                    <div class="pillar-row">
-                        <div class="pillar-info">
-                            <span class="pillar-name">3. Sensör & Giriş/Çıkış Modülleri</span>
-                            <span class="pillar-score" id="pillar-sensor-val">%100</span>
-                        </div>
-                        <div class="progress-track">
-                            <div class="progress-fill" id="pillar-sensor-bar" style="width: 100%; background: var(--status-pass);"></div>
+                    <div class="mini-pillar-row">
+                        <span class="mini-pillar-name">2. Batarya Sağlığı</span>
+                        <div class="mini-pillar-val-wrap">
+                            <div class="progress-track">
+                                <div class="progress-fill" id="pillar-bat-bar" style="width: 90%; background: #38BDF8;"></div>
+                            </div>
+                            <span class="mini-pillar-score" id="pillar-bat-val">%90</span>
                         </div>
                     </div>
-
-                    <div class="pillar-row">
-                        <div class="pillar-info">
-                            <span class="pillar-name">4. Güvenlik & Sistem Kararlılığı</span>
-                            <span class="pillar-score" id="pillar-sec-val">%100</span>
+                    <div class="mini-pillar-row">
+                        <span class="mini-pillar-name">3. Sensör & G/Ç</span>
+                        <div class="mini-pillar-val-wrap">
+                            <div class="progress-track">
+                                <div class="progress-fill" id="pillar-sensor-bar" style="width: 100%; background: var(--status-pass);"></div>
+                            </div>
+                            <span class="mini-pillar-score" id="pillar-sensor-val">%100</span>
                         </div>
-                        <div class="progress-track">
-                            <div class="progress-fill" id="pillar-sec-bar" style="width: 100%; background: #94A3B8;"></div>
+                    </div>
+                    <div class="mini-pillar-row">
+                        <span class="mini-pillar-name">4. Sistem Kararlılığı</span>
+                        <div class="mini-pillar-val-wrap">
+                            <div class="progress-track">
+                                <div class="progress-fill" id="pillar-sec-bar" style="width: 100%; background: #94A3B8;"></div>
+                            </div>
+                            <span class="mini-pillar-score" id="pillar-sec-val">%100</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kolon 3: Entegre Değerlendirme Özeti -->
+                <div class="exec-opinion-box">
+                    <div class="exec-opinion-title">
+                        <span>📋</span> Donanım Teşhis & Değerlendirme Özeti
+                    </div>
+                    <div class="exec-opinion-text">
+                        İşbu rapor, cihazın tüm donanım bileşenlerinin, entegre sensörlerinin ve sistem telemetrisinin Zenith Diagnostics test modülleriyle incelenmesi neticesinde tanzim edilmiştir. Anakart, ekran, batarya ve yonga modülleri fabrika normlarına uygun çalışmaktadır.
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. YAN YANA İKİ SÜTUNLU BİLGİ ALANI (Cihaz Kimliği | Batarya Telemetrisi) -->
+            <div class="split-grid">
+                <!-- Sol Kolon: Cihaz Kimliği & Yonga Seti -->
+                <div class="split-panel">
+                    <div class="split-panel-header">
+                        <div><span>📱</span> 1. Cihaz Kimliği & Yonga Seti</div>
+                        <span class="panel-badge">DOĞRULANDI</span>
+                    </div>
+                    <div class="panel-data-grid">
+                        <div class="data-item">
+                            <div class="data-label">Üretici & Model</div>
+                            <div class="data-val" id="id-device-model">-</div>
+                            <div class="data-sub" id="id-market-name">Orijinal Üretim</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">İşlemci (SoC)</div>
+                            <div class="data-val" id="id-soc">-</div>
+                            <div class="data-sub" id="id-cores">8 Çekirdek (ARM64)</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">İşletim Sistemi & Yama</div>
+                            <div class="data-val" id="id-os">-</div>
+                            <div class="data-sub" id="id-patch">Güvenlik: Güncel</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Dahili Depolama / HAL</div>
+                            <div class="data-val" id="id-storage">-</div>
+                            <div class="data-sub" id="id-storage-type">UFS High-Speed Flash</div>
+                        </div>
+                        <div class="data-item data-item-full">
+                            <div class="data-label">Cihaz Parmak İzi (Fingerprint)</div>
+                            <div class="data-val" id="id-fingerprint" style="font-size: 10px; color: var(--text-secondary);">-</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sağ Kolon: Batarya Durumu & Güç Telemetrisi -->
+                <div class="split-panel">
+                    <div class="split-panel-header">
+                        <div><span>⚡</span> 2. Batarya Durumu & Güç Telemetrisi</div>
+                        <span class="panel-badge" id="bat-status-badge">İYİ (SAĞLAM)</span>
+                    </div>
+                    <div class="panel-data-grid">
+                        <div class="data-item">
+                            <div class="data-label">Gerçek Sağlık</div>
+                            <div class="data-val" id="bat-health" style="font-size: 15px; color: var(--status-pass);">-%</div>
+                            <div class="data-sub">Coulomb & SysFS Telemetrisi</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Şarj Döngüsü</div>
+                            <div class="data-val" id="bat-cycle">- Döngü</div>
+                            <div class="data-sub">Fabrika Eşiği &lt; 800</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Sıcaklık & Voltaj</div>
+                            <div class="data-val" id="bat-temp-volt">-</div>
+                            <div class="data-sub">Güvenli Çalışma Aralığı</div>
+                        </div>
+                        <div class="data-item">
+                            <div class="data-label">Nominal Kapasite & Kimya</div>
+                            <div class="data-val"><span id="bat-capacity">- mAh</span> • <span id="bat-tech">Li-Poly</span></div>
+                            <div class="data-sub">Orijinal Hücre Yapısı</div>
+                        </div>
+                        <div class="data-item data-item-full">
+                            <div class="data-label">Şarj Portu Durumu</div>
+                            <div class="data-val" id="bat-port">Normal (Bağlı Değil) • Fiziksel Veri Yolu Açık</div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- 4. Executive Summary Box -->
-            <div class="opinion-box">
-                <div class="opinion-title">
-                    <span>📋</span> Donanım Teşhis & Değerlendirme Özeti
+            <!-- 5. YÜKSEK YOĞUNLUKLU DONANIM TEST MATRİSİ (31 Modül) -->
+            <div class="test-matrix-section">
+                <div class="test-matrix-header">
+                    <div><span>🛠️</span> 3. Donanım Test Sonuçları</div>
+                    <span class="panel-badge" id="matrix-total-badge">31 Modül Test Edildi</span>
                 </div>
-                <div class="opinion-text">
-                    İşbu rapor, cihazın tüm donanım bileşenlerinin, entegre sensörlerinin ve sistem telemetrisinin Zenith Diagnostics test modülleriyle tahlil edilmesi neticesinde tanzim edilmiştir. Yapılan donanım testlerinde anakart, ekran, batarya ve işlemci modüllerinin çalışma verileri incelenmiş olup cihazın güncel sağlık durumu aşağıda özetlenmiştir.
-                </div>
-            </div>
-
-            <!-- 5. Device Passport & Silicon Level Info -->
-            <div class="section-wrap">
-                <div class="section-header">
-                    <div><span class="icon">📱</span> 1. Cihaz Kimliği & Yonga Seti Bilgileri</div>
-                    <div class="section-count-badge">DOĞRULANDI</div>
-                </div>
-
-                <div class="grid-3" style="margin-bottom: 12px;">
-                    <div class="info-cell">
-                        <div class="info-cell-top">Üretici & Model</div>
-                        <div class="info-cell-val" id="id-device-model">-</div>
-                        <div class="info-cell-sub" id="id-market-name">Orijinal Üretim</div>
-                    </div>
-                    <div class="info-cell">
-                        <div class="info-cell-top">İşlemci (SoC)</div>
-                        <div class="info-cell-val" id="id-soc">-</div>
-                        <div class="info-cell-sub" id="id-cores">8 Çekirdek (ARM64)</div>
-                    </div>
-                    <div class="info-cell">
-                        <div class="info-cell-top">İşletim Sistemi & Yama</div>
-                        <div class="info-cell-val" id="id-os">-</div>
-                        <div class="info-cell-sub" id="id-patch">Güvenlik: Güncel</div>
-                    </div>
-                </div>
-
-                <div class="grid-3">
-                    <div class="info-cell" style="grid-column: span 1;">
-                        <div class="info-cell-top">Dahili Depolama / HAL</div>
-                        <div class="info-cell-val" id="id-storage">-</div>
-                        <div class="info-cell-sub" id="id-storage-type">UFS High-Speed Flash</div>
-                    </div>
-                    <div class="info-cell" style="grid-column: span 2;">
-                        <div class="info-cell-top">Cihaz Parmak İzi (Build Fingerprint)</div>
-                        <div class="info-cell-val" id="id-fingerprint" style="font-size: 11px; color: var(--text-secondary);">-</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 6. Battery Deep Telemetry -->
-            <div class="section-wrap">
-                <div class="section-header">
-                    <div><span class="icon">⚡</span> 2. Batarya Durumu & Güç Telemetrisi</div>
-                    <div class="section-count-badge" id="bat-status-badge">İYİ (SAĞLAM)</div>
-                </div>
-
-                <div class="grid-3" style="margin-bottom: 12px;">
-                    <div class="info-cell">
-                        <div class="info-cell-top">Gerçek Sağlık Yüzdesi</div>
-                        <div class="info-cell-val" id="bat-health" style="font-size: 20px; color: var(--status-pass);">-%</div>
-                        <div class="info-cell-sub">Coulomb Sayacı & SysFS Telemetrisi</div>
-                    </div>
-                    <div class="info-cell">
-                        <div class="info-cell-top">Şarj Döngüsü (Cycle Count)</div>
-                        <div class="info-cell-val" id="bat-cycle">- Döngü</div>
-                        <div class="info-cell-sub">Fabrika Eşik Değeri &lt; 800</div>
-                    </div>
-                    <div class="info-cell">
-                        <div class="info-cell-top">Sıcaklık & Voltaj</div>
-                        <div class="info-cell-val" id="bat-temp-volt">-</div>
-                        <div class="info-cell-sub">Çalışma Güvenlik Sınırı İçi</div>
-                    </div>
-                </div>
-
-                <div class="grid-3">
-                    <div class="info-cell">
-                        <div class="info-cell-top">Nominal Kapasite</div>
-                        <div class="info-cell-val" id="bat-capacity">- mAh</div>
-                        <div class="info-cell-sub">Tasarım Değeri</div>
-                    </div>
-                    <div class="info-cell">
-                        <div class="info-cell-top">Hücre Kimyası</div>
-                        <div class="info-cell-val" id="bat-tech">Li-Polymer</div>
-                        <div class="info-cell-sub">Orijinal Kimya</div>
-                    </div>
-                    <div class="info-cell">
-                        <div class="info-cell-top">Şarj Portu</div>
-                        <div class="info-cell-val" id="bat-port">Normal (Bağlı Değil)</div>
-                        <div class="info-cell-sub">Fiziksel Veri Yolu Açık</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 7. Compact Hardware Test Grid (Kompakt 3 Sütunlu Izgara) -->
-            <div class="section-wrap">
-                <div class="section-header">
-                    <div><span class="icon">🛠️</span> 3. Donanım Test Sonuçları</div>
-                    <div class="section-count-badge" id="matrix-total-badge">31 Modül Test Edildi</div>
-                </div>
-
                 <div id="inspection-categories-container">
                     <!-- Dinamik olarak kompakt çipler halinde doldurulacak -->
                 </div>
             </div>
 
-            <!-- 8. Cryptographic Hash Box & Clean Verification -->
+            <!-- 6. Kompakt Kriptografik Doğrulama Şeridi -->
             <div class="verification-card">
-                <div class="verification-header">
-                    <span>🔒</span> 4. Veri Bütünlüğü ve Kriptografik Doğrulama
+                <div class="verification-left">
+                    <span class="verification-icon">🔒</span>
+                    <span class="sha-hash-text" id="sha-hash-full">SHA-256: -</span>
                 </div>
-                <div class="sha-hash-box">
-                    <span id="sha-hash-full">SHA-256: -</span>
-                    <button class="btn-hash-copy" onclick="copyHash()">Kopyala</button>
-                </div>
-                <div class="verification-note">
-                    Bu rapor, cihazın yerel donanım telemetrisi üzerinden oluşturulmuş olup yukarıdaki benzersiz SHA-256 kriptografik özeti ile doğrulanmaktadır. Herhangi bir parametre değişikliğinde veri bütünlüğü geçersiz kalır.
-                </div>
+                <button class="btn-hash-copy" onclick="copyHash()">Kopyala</button>
             </div>
 
-            <!-- 9. Clean Footer -->
+            <!-- Footer -->
             <div class="footer-bar">
                 Zenith Diagnostics Engine v8.4 &bull; Developed and secured by <strong>Harpia Academy</strong>
             </div>
@@ -1180,15 +1194,15 @@
         const shortHash = currentHash ? currentHash.substring(0, 8).toUpperCase() : "VERIFIED";
         document.getElementById("cert-serial").textContent = `RAPOR NO: ZN-2026-${shortHash}`;
 
-        // QR Kod
+        // QR Kod (34x34)
         try {
             const qrContainer = document.getElementById("cert-qr-code");
             qrContainer.innerHTML = "";
             new QRCode(qrContainer, {
                 text: window.location.href,
-                width: 46,
-                height: 46,
-                colorDark: "#0F121A",
+                width: 34,
+                height: 34,
+                colorDark: "#0E1118",
                 colorLight: "#FFFFFF",
                 correctLevel: QRCode.CorrectLevel.M
             });
@@ -1201,31 +1215,32 @@
         const dateStr = new Date(record.created_at || Date.now()).toLocaleString("tr-TR", { timeZone: "Europe/Istanbul" });
         document.getElementById("custody-date").textContent = dateStr;
 
-        // Puan & SVG Gösterge
+        // Puan & Mini Gösterge (Çevre = 2 * PI * 25 ~= 157.08)
         const score = record.overall_score !== undefined ? record.overall_score : 85;
-        const grade = record.expert_grade || (score >= 85 ? "Grade A (Kusursuz)" : score >= 70 ? "Grade B (Hafif Aşınma)" : "Grade C (Kusurlu)");
+        const grade = record.expert_grade || (score >= 85 ? "Grade A (Kusursuz)" : score >= 70 ? "Grade B (Minör Aşınma)" : "Grade C (Kusurlu)");
         document.getElementById("gauge-score").textContent = score;
 
-        // SVG Radial Bar Hesaplama (Çevre = 2 * PI * 60 ~= 377)
-        const circumference = 377;
+        const circumference = 157;
         const offset = circumference - (score / 100) * circumference;
         const gaugeBar = document.getElementById("gauge-bar");
-        gaugeBar.style.strokeDashoffset = offset;
+        if (gaugeBar) {
+            gaugeBar.style.strokeDashoffset = offset;
+        }
 
         const gradeBadge = document.getElementById("grade-badge");
         gradeBadge.textContent = grade;
         if (score >= 80) {
-            gaugeBar.style.stroke = "var(--status-pass)";
+            if (gaugeBar) gaugeBar.style.stroke = "var(--status-pass)";
             gradeBadge.style.background = "var(--status-pass-bg)";
             gradeBadge.style.color = "var(--status-pass)";
             gradeBadge.style.border = "1px solid var(--status-pass-border)";
         } else if (score >= 60) {
-            gaugeBar.style.stroke = "var(--status-warn)";
+            if (gaugeBar) gaugeBar.style.stroke = "var(--status-warn)";
             gradeBadge.style.background = "var(--status-warn-bg)";
             gradeBadge.style.color = "var(--status-warn)";
             gradeBadge.style.border = "1px solid var(--status-warn-border)";
         } else {
-            gaugeBar.style.stroke = "var(--status-fail)";
+            if (gaugeBar) gaugeBar.style.stroke = "var(--status-fail)";
             gradeBadge.style.background = "var(--status-fail-bg)";
             gradeBadge.style.color = "var(--status-fail)";
             gradeBadge.style.border = "1px solid var(--status-fail-border)";
@@ -1252,7 +1267,7 @@
 
         const totalGb = storage.totalBytes ? (storage.totalBytes / (1024*1024*1024)).toFixed(0) : "256";
         const availGb = storage.availableBytes ? (storage.availableBytes / (1024*1024*1024)).toFixed(1) : "238";
-        document.getElementById("id-storage").textContent = `${totalGb} GB Dahili (${availGb} GB Boş)`;
+        document.getElementById("id-storage").textContent = `${totalGb} GB (${availGb} GB Boş)`;
         document.getElementById("id-storage-type").textContent = `${storage.storageType || "UFS 3.1"} High-Speed`;
         document.getElementById("id-fingerprint").textContent = id.fingerprint || record.device_fingerprint || "N/A";
 
@@ -1261,10 +1276,10 @@
         document.getElementById("bat-cycle").textContent = `${battery.cycleCount || 0} Döngü`;
         document.getElementById("bat-temp-volt").textContent = `${battery.temperatureC || 25}°C • ${battery.voltageMv || 4300} mV`;
         document.getElementById("bat-capacity").textContent = `${battery.capacityMah || 5000} mAh`;
-        document.getElementById("bat-tech").textContent = battery.technology || "Li-Polymer";
-        document.getElementById("bat-status-badge").textContent = battery.healthStatus || (batHealth >= 80 ? "İyi (Sağlam)" : "Servis Önerilir");
+        document.getElementById("bat-tech").textContent = battery.technology || "Li-Poly";
+        document.getElementById("bat-status-badge").textContent = battery.healthStatus || (batHealth >= 80 ? "İYİ (SAĞLAM)" : "SERVİS");
 
-        // Kompakt Donanım Test Matrisi Render
+        // Yüksek Yoğunluklu Donanım Test Matrisi Render
         renderCompactCategories(items);
 
         // Kriptografik Özet
@@ -1278,25 +1293,25 @@
         const categories = [
             {
                 id: "conn",
-                name: "1. Bağlantı & Şebeke Birimleri",
+                name: "1. Bağlantı & Şebeke",
                 icon: "📶",
                 match: ["WIFI", "BLUETOOTH", "NFC", "CELLULAR", "GPS", "NETWORK"]
             },
             {
                 id: "camera",
-                name: "2. Kamera & Optik Modüller",
+                name: "2. Kamera & Optik",
                 icon: "📸",
                 match: ["CAMERA", "FLASH", "LENS", "OIS", "AUTOFOCUS", "TORCH"]
             },
             {
                 id: "power",
-                name: "3. Güç, Termal & Şarj Yönetimi",
+                name: "3. Güç, Termal & Şarj",
                 icon: "🔋",
                 match: ["BATTERY", "CHARGING", "CPU_STRESS", "THERMAL", "POWER"]
             },
             {
                 id: "sensors",
-                name: "4. Sensörler, Giriş/Çıkış & Ses",
+                name: "4. Sensörler & Giriş/Çıkış",
                 icon: "🧠",
                 match: [] // Geri kalanlar
             }
@@ -1324,7 +1339,7 @@
                 const isFail = item.status === "FAILED";
                 const badgeClass = isPass ? "badge-pass" : isFail ? "badge-fail" : "badge-skip";
                 const icon = isPass ? "✓" : isFail ? "✗" : "○";
-                const label = isPass ? "Başarılı" : isFail ? "Başarısız" : "Atlanan";
+                const label = isPass ? "Başarılı" : isFail ? "Hata" : "Atlandı";
                 const itemIcon = getTestIcon(item.type);
 
                 chipsHtml += `
@@ -1380,34 +1395,34 @@
         if (!type) return "Donanım Testi";
         const map = {
             "TOUCH_SCREEN": "Dokunmatik Ekran",
-            "DISPLAY_DEAD_PIXELS": "Piksel Bütünlüğü & Renk",
+            "DISPLAY_DEAD_PIXELS": "Piksel & Renk",
             "VIBRATION_MOTOR": "Titreşim Motoru",
             "BIOMETRIC_FINGERPRINT": "Parmak İzi Okuyucu",
             "PHYSICAL_BUTTONS": "Fiziksel Tuşlar",
             "SPEAKER_LOUDSPEAKER": "Ana Hoparlör",
             "EARPIECE_RECEIVER": "Ahize Hoparlörü",
             "MICROPHONE_PRIMARY": "Birincil Mikrofon",
-            "MICROPHONE_SECONDARY": "Gürültü Önleyici Mikrofon",
+            "MICROPHONE_SECONDARY": "Gürültü Mikrofonu",
             "CAMERA_BACK_WIDE": "Arka Ana Kamera",
             "CAMERA_FRONT": "Ön Kamera",
             "CAMERA_AUTOFOCUS": "Otofokus Motoru",
             "CAMERA_OIS": "Optik Sabitleyici (OIS)",
             "CAMERA_FLASH": "Kamera Flaşı",
             "BATTERY_HEALTH": "Batarya Sağlığı",
-            "CHARGING_PORT": "Şarj Portu & Veri Yolu",
+            "CHARGING_PORT": "Şarj Portu & Yol",
             "RAM_HEALTH": "RAM Bellek",
             "STORAGE_READ_WRITE": "Depolama Okuma/Yazma",
-            "CPU_STRESS_THERMAL": "İşlemci & Termal Stres",
+            "CPU_STRESS_THERMAL": "İşlemci & Termal",
             "WIFI_ADAPTER": "Wi-Fi Bağlantısı",
             "BLUETOOTH_CHIP": "Bluetooth 5.x",
             "NFC_SENSOR": "NFC Denetleyicisi",
             "GPS_ANTENNA": "GPS / Konum",
             "CELLULAR_MODEM": "Hücresel Modem & SIM",
-            "INFRARED_REMOTE": "Kızılötesi (IR Blaster)",
-            "LIGHT_SENSOR": "Ortam Işığı Sensörü",
+            "INFRARED_REMOTE": "Kızılötesi (IR)",
+            "LIGHT_SENSOR": "Ortam Işığı",
             "PROXIMITY_SENSOR": "Yakınlık Sensörü",
-            "ACCELEROMETER": "İvmeölçer Sensörü",
-            "GYROSCOPE": "Jiroskop Sensörü",
+            "ACCELEROMETER": "İvmeölçer",
+            "GYROSCOPE": "Jiroskop",
             "MAGNETOMETER": "Manyetometre (Pusula)",
             "BAROMETER": "Barometre Basınç"
         };
