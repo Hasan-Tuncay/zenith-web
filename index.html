@@ -3,48 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>Zenith Diagnostics — Official Hardware Inspection Certificate | Secured by Harpai Academy</title>
+    <title>Zenith Diagnostics — Cihaz Donanım ve Sağlık Raporu | Harpia Academy</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&family=Cinzel:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
     <!-- QR Code Generator -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
     <style>
         :root {
-            --bg-body: #050811;
-            --bg-card: #0A101E;
-            --bg-card-sub: #0F172B;
-            --bg-card-highlight: #17233E;
-            --border-card: #1B2945;
-            --border-glow: rgba(56, 189, 248, 0.4);
+            /* Sade & Resmi Monokrom Kurumsal Palet */
+            --bg-body: #090B10;
+            --bg-card: #0F121A;
+            --bg-card-sub: #141824;
+            --bg-card-highlight: #1B2130;
+            --border-card: #202738;
+            --border-subtle: #2C354A;
             
-            --text-main: #F8FAFC;
-            --text-secondary: #CBD5E1;
-            --text-muted: #7E8DA4;
+            --text-main: #FFFFFF;
+            --text-secondary: #E2E8F0;
+            --text-muted: #8A97AC;
             
-            --navy-primary: #0F1D38;
-            --cyan-accent: #0EA5E9;
-            --cyan-glow: rgba(14, 165, 233, 0.3);
+            --accent-brand: #38BDF8;
+            --accent-glow: rgba(56, 189, 248, 0.15);
             
-            --emerald-pass: #10B981;
-            --emerald-bg: rgba(16, 185, 129, 0.12);
-            --emerald-border: rgba(16, 185, 129, 0.35);
+            --status-pass: #10B981;
+            --status-pass-bg: rgba(16, 185, 129, 0.1);
+            --status-pass-border: rgba(16, 185, 129, 0.3);
             
-            --amber-warn: #F59E0B;
-            --amber-bg: rgba(245, 158, 11, 0.12);
-            --amber-border: rgba(245, 158, 11, 0.35);
+            --status-warn: #F59E0B;
+            --status-warn-bg: rgba(245, 158, 11, 0.1);
+            --status-warn-border: rgba(245, 158, 11, 0.3);
             
-            --crimson-fail: #EF4444;
-            --crimson-bg: rgba(239, 68, 68, 0.12);
-            --crimson-border: rgba(239, 68, 68, 0.35);
+            --status-fail: #EF4444;
+            --status-fail-bg: rgba(239, 68, 68, 0.1);
+            --status-fail-border: rgba(239, 68, 68, 0.3);
 
-            --gold-accent: #EAB308;
-            --gold-bg: rgba(234, 179, 8, 0.15);
-            --gold-border: rgba(234, 179, 8, 0.4);
-
-            --harpai-blue: #38BDF8;
-            --harpai-purple: #818CF8;
+            --status-skip: #64748B;
+            --status-skip-bg: rgba(100, 116, 139, 0.1);
+            --status-skip-border: rgba(100, 116, 139, 0.25);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -52,8 +49,8 @@
             font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg-body);
             color: var(--text-main);
-            line-height: 1.55;
-            padding: 20px 16px 80px;
+            line-height: 1.5;
+            padding: 20px 16px 60px;
             -webkit-font-smoothing: antialiased;
         }
 
@@ -62,88 +59,80 @@
             margin: 0 auto;
         }
 
-        /* Sticky Action Bar */
+        /* Sticky Minimalist Action Bar */
         .action-bar {
             position: sticky;
             top: 14px;
             z-index: 1000;
-            background: rgba(10, 16, 30, 0.94);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-            border: 1px solid rgba(56, 189, 248, 0.28);
-            border-radius: 14px;
-            padding: 12px 20px;
+            background: rgba(15, 18, 26, 0.94);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 10px 18px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 22px;
-            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.75), 0 0 20px rgba(14, 165, 233, 0.08);
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
         }
         .action-bar-left {
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 12px;
         }
         .action-logo-badge {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #0284C7, #0369A1);
-            border-radius: 10px;
+            width: 36px;
+            height: 36px;
+            background: #1B2130;
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
-            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 18px;
             flex-shrink: 0;
         }
         .action-bar-title {
             font-size: 14px;
             font-weight: 800;
             color: var(--text-main);
-            letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            letter-spacing: 0.3px;
         }
         .action-bar-sub {
             font-size: 11px;
             color: var(--text-muted);
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 6px;
+            font-weight: 500;
         }
         .action-bar-sub strong {
-            color: var(--harpai-blue);
+            color: var(--accent-brand);
             font-weight: 700;
         }
         .action-btn-group {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
         .btn-action {
             border: none;
-            padding: 9px 18px;
-            border-radius: 8px;
+            padding: 8px 16px;
+            border-radius: 6px;
             font-weight: 700;
             font-size: 12px;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             transition: all 0.2s ease;
             font-family: inherit;
         }
         .btn-print {
-            background: linear-gradient(135deg, #0284C7, #0369A1);
-            color: #FFFFFF;
-            box-shadow: 0 4px 15px rgba(2, 132, 199, 0.4);
+            background: #FFFFFF;
+            color: #0F121A;
         }
         .btn-print:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(2, 132, 199, 0.6);
+            background: #E2E8F0;
+            transform: translateY(-1px);
         }
         .btn-copy {
             background: var(--bg-card-sub);
@@ -155,30 +144,14 @@
             color: var(--text-main);
         }
 
-        /* Security Frame Outer Watermark Pattern */
+        /* Clean Executive Frame */
         .security-frame {
-            border: 1.5px solid var(--border-card);
-            border-radius: 20px;
+            border: 1px solid var(--border-card);
+            border-radius: 16px;
             background: var(--bg-card);
-            padding: 32px 36px;
-            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.85), 0 0 40px rgba(14, 165, 233, 0.05);
+            padding: 28px 32px;
+            box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.8);
             position: relative;
-            overflow: hidden;
-        }
-
-        .security-frame::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0; height: 4px;
-            background: linear-gradient(90deg, #0EA5E9, #6366F1, #10B981, #EAB308, #0EA5E9);
-            background-size: 300% 100%;
-            animation: borderGradient 10s ease infinite;
-        }
-
-        @keyframes borderGradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
         }
 
         /* 1. Official Header */
@@ -186,160 +159,143 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            border-bottom: 1.5px solid var(--border-card);
-            padding-bottom: 24px;
-            margin-bottom: 24px;
+            border-bottom: 1px solid var(--border-card);
+            padding-bottom: 20px;
+            margin-bottom: 20px;
             gap: 20px;
         }
         .cert-emblem-wrap {
             display: flex;
             align-items: flex-start;
-            gap: 18px;
+            gap: 16px;
         }
         .cert-emblem {
-            width: 66px;
-            height: 66px;
-            border-radius: 14px;
-            background: linear-gradient(135deg, #0B1933, #032049);
-            border: 2px solid var(--cyan-accent);
+            width: 58px;
+            height: 58px;
+            border-radius: 12px;
+            background: var(--bg-card-sub);
+            border: 1px solid var(--border-subtle);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 32px;
-            box-shadow: 0 6px 20px rgba(14, 165, 233, 0.3);
+            font-size: 28px;
             flex-shrink: 0;
         }
         .cert-top-category {
             font-size: 11px;
             font-weight: 800;
-            color: var(--cyan-accent);
-            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            letter-spacing: 1.2px;
             text-transform: uppercase;
         }
         .cert-doc-title {
-            font-size: 26px;
+            font-size: 24px;
             font-weight: 900;
             color: #FFFFFF;
             letter-spacing: -0.5px;
             margin: 2px 0 2px;
             line-height: 1.15;
-            background: linear-gradient(180deg, #FFFFFF 0%, #CBD5E1 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
         }
         .cert-doc-sub {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 700;
             color: var(--text-secondary);
             letter-spacing: 0.3px;
             text-transform: uppercase;
         }
         
-        /* Harpai Academy Brand Badge */
-        .harpai-brand-badge {
+        /* Harpia Academy Brand Badge */
+        .harpia-brand-badge {
             display: inline-flex;
             align-items: center;
-            gap: 7px;
-            background: linear-gradient(135deg, rgba(14, 165, 233, 0.08) 0%, rgba(99, 102, 241, 0.08) 100%);
-            border: 1px solid rgba(56, 189, 248, 0.32);
+            gap: 6px;
+            background: var(--bg-card-sub);
+            border: 1px solid var(--border-subtle);
             border-radius: 6px;
-            padding: 4px 11px;
+            padding: 4px 10px;
             font-size: 10px;
             font-weight: 800;
-            color: #38BDF8;
+            color: var(--text-secondary);
             letter-spacing: 0.8px;
             text-transform: uppercase;
             margin-top: 8px;
-            box-shadow: 0 2px 10px rgba(14, 165, 233, 0.12);
         }
-        .harpai-badge-dot {
+        .harpia-badge-dot {
             width: 6px;
             height: 6px;
             border-radius: 50%;
-            background: #10B981;
-            box-shadow: 0 0 8px #10B981;
+            background: var(--status-pass);
+            box-shadow: 0 0 6px var(--status-pass);
             flex-shrink: 0;
         }
-        .harpai-brand-badge strong {
+        .harpia-brand-badge strong {
             color: #FFFFFF;
-            font-weight: 900;
-            letter-spacing: 1px;
-        }
-
-        .cert-standards-line {
-            font-size: 11px;
-            color: var(--text-muted);
-            margin-top: 6px;
-            font-weight: 500;
-        }
-        .cert-standards-line b {
-            color: var(--text-secondary);
+            font-weight: 800;
         }
 
         .cert-meta-box {
             display: flex;
             flex-direction: column;
             align-items: flex-end;
-            gap: 12px;
+            gap: 10px;
             flex-shrink: 0;
         }
         .cert-serial-pill {
             background: var(--bg-card-sub);
             border: 1px solid var(--border-card);
-            border-radius: 8px;
-            padding: 6px 14px;
+            border-radius: 6px;
+            padding: 5px 12px;
             font-family: 'JetBrains Mono', monospace;
             font-size: 11px;
             font-weight: 700;
-            color: var(--cyan-accent);
-            letter-spacing: 0.8px;
+            color: var(--text-secondary);
+            letter-spacing: 0.5px;
         }
         .cert-qr-wrap {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             background: var(--bg-card-sub);
             border: 1px solid var(--border-card);
-            border-radius: 12px;
-            padding: 8px 12px;
+            border-radius: 10px;
+            padding: 6px 10px;
         }
         #cert-qr-code {
             background: #FFFFFF;
-            padding: 4px;
-            border-radius: 6px;
-            width: 58px;
-            height: 58px;
+            padding: 3px;
+            border-radius: 4px;
+            width: 52px;
+            height: 52px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
         .cert-qr-text {
-            font-size: 10px;
+            font-size: 9.5px;
             color: var(--text-muted);
-            line-height: 1.35;
-            font-weight: 600;
+            line-height: 1.3;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.4px;
         }
 
-        /* 2. Chain of Custody */
+        /* 2. Summary Strip (Özet Bilgi Şeridi) */
         .custody-strip {
             background: var(--bg-card-sub);
             border: 1px solid var(--border-card);
-            border-left: 4px solid var(--cyan-accent);
-            border-radius: 12px;
-            padding: 14px 20px;
+            border-radius: 10px;
+            padding: 12px 18px;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
-            margin-bottom: 24px;
+            gap: 14px;
+            margin-bottom: 20px;
         }
         .custody-item-lbl {
             font-size: 10px;
             font-weight: 700;
             color: var(--text-muted);
             text-transform: uppercase;
-            letter-spacing: 0.6px;
+            letter-spacing: 0.5px;
         }
         .custody-item-val {
             font-size: 12px;
@@ -355,29 +311,28 @@
         /* 3. Hero Section (Gauge + 4 Pillars) */
         .hero-section {
             display: grid;
-            grid-template-columns: 320px 1fr;
-            gap: 20px;
-            margin-bottom: 24px;
+            grid-template-columns: 300px 1fr;
+            gap: 16px;
+            margin-bottom: 20px;
         }
 
         /* Circular Radial Gauge Card */
         .gauge-card {
             background: var(--bg-card-sub);
             border: 1px solid var(--border-card);
-            border-radius: 16px;
-            padding: 24px 20px;
+            border-radius: 14px;
+            padding: 20px 16px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            box-shadow: inset 0 0 25px rgba(14, 165, 233, 0.04);
             position: relative;
         }
         .svg-gauge-box {
             position: relative;
-            width: 150px;
-            height: 150px;
+            width: 140px;
+            height: 140px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -389,17 +344,17 @@
         }
         .gauge-bg-circle {
             stroke: rgba(255, 255, 255, 0.08);
-            stroke-width: 10;
+            stroke-width: 9;
             fill: none;
         }
         .gauge-bar-circle {
-            stroke: var(--emerald-pass);
-            stroke-width: 10;
+            stroke: var(--status-pass);
+            stroke-width: 9;
             stroke-linecap: round;
             fill: none;
             stroke-dasharray: 377;
             stroke-dashoffset: 80;
-            transition: stroke-dashoffset 1s ease-in-out, stroke 0.3s;
+            transition: stroke-dashoffset 0.8s ease-in-out, stroke 0.3s;
         }
         .gauge-inner-text {
             position: absolute;
@@ -409,25 +364,25 @@
             justify-content: center;
         }
         .gauge-number {
-            font-size: 44px;
+            font-size: 42px;
             font-weight: 900;
             line-height: 1;
             color: #FFFFFF;
             letter-spacing: -1px;
         }
         .gauge-scale {
-            font-size: 11px;
+            font-size: 10.5px;
             font-weight: 700;
             color: var(--text-muted);
-            margin-top: 3px;
+            margin-top: 2px;
         }
         .grade-badge-card {
-            margin-top: 14px;
+            margin-top: 12px;
             font-size: 11px;
             font-weight: 800;
-            padding: 5px 16px;
-            border-radius: 20px;
-            letter-spacing: 0.6px;
+            padding: 4px 14px;
+            border-radius: 16px;
+            letter-spacing: 0.5px;
             text-transform: uppercase;
         }
 
@@ -435,128 +390,122 @@
         .pillars-card {
             background: var(--bg-card-sub);
             border: 1px solid var(--border-card);
-            border-radius: 16px;
-            padding: 22px 26px;
+            border-radius: 14px;
+            padding: 18px 22px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            gap: 14px;
+            gap: 12px;
         }
         .pillars-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid var(--border-card);
-            padding-bottom: 12px;
+            padding-bottom: 8px;
         }
         .pillars-title {
             font-size: 12px;
             font-weight: 800;
-            color: var(--cyan-accent);
-            letter-spacing: 0.6px;
+            color: #FFFFFF;
+            letter-spacing: 0.4px;
             text-transform: uppercase;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
         .pillar-row {
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 4px;
         }
         .pillar-info {
             display: flex;
             justify-content: space-between;
-            font-size: 12px;
+            font-size: 11.5px;
             font-weight: 700;
         }
         .pillar-name { color: var(--text-secondary); }
-        .pillar-score { font-family: 'JetBrains Mono', monospace; }
+        .pillar-score { font-family: 'JetBrains Mono', monospace; color: #FFFFFF; }
         .progress-track {
             width: 100%;
-            height: 8px;
+            height: 6px;
             background: rgba(255, 255, 255, 0.08);
-            border-radius: 4px;
+            border-radius: 3px;
             overflow: hidden;
         }
         .progress-fill {
             height: 100%;
-            border-radius: 4px;
+            border-radius: 3px;
             transition: width 0.8s ease;
         }
 
-        /* Executive Conclusion Box */
+        /* Executive Summary Box */
         .opinion-box {
-            background: linear-gradient(180deg, rgba(14, 165, 233, 0.06) 0%, rgba(10, 16, 30, 0.6) 100%);
-            border: 1px solid rgba(14, 165, 233, 0.25);
-            border-radius: 14px;
-            padding: 18px 22px;
-            margin-bottom: 24px;
+            background: var(--bg-card-sub);
+            border: 1px solid var(--border-card);
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin-bottom: 20px;
         }
         .opinion-title {
             font-size: 11px;
             font-weight: 800;
-            color: var(--cyan-accent);
+            color: var(--text-main);
             text-transform: uppercase;
-            letter-spacing: 0.8px;
+            letter-spacing: 0.6px;
             display: flex;
             align-items: center;
             gap: 6px;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
         .opinion-text {
-            font-size: 13px;
-            color: var(--text-secondary);
-            line-height: 1.65;
+            font-size: 12.5px;
+            color: var(--text-muted);
+            line-height: 1.55;
             text-align: justify;
         }
 
         /* Section Cards */
         .section-wrap {
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
         .section-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 800;
             color: var(--text-main);
             text-transform: uppercase;
-            letter-spacing: 0.6px;
-            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
             padding-bottom: 6px;
-            border-bottom: 1.5px solid var(--border-card);
+            border-bottom: 1px solid var(--border-card);
         }
         .section-header span.icon {
             margin-right: 6px;
-            color: var(--cyan-accent);
         }
         .section-count-badge {
-            font-size: 11px;
+            font-size: 10.5px;
             font-weight: 700;
             background: var(--bg-card-sub);
             border: 1px solid var(--border-card);
-            color: var(--cyan-accent);
-            padding: 2px 10px;
-            border-radius: 20px;
+            color: var(--text-secondary);
+            padding: 2px 8px;
+            border-radius: 4px;
         }
 
         .grid-3 {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 14px;
-        }
-        .grid-4 {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 14px;
+            gap: 12px;
         }
         .info-cell {
             background: var(--bg-card-sub);
             border: 1px solid var(--border-card);
-            border-radius: 12px;
-            padding: 14px 16px;
+            border-radius: 10px;
+            padding: 12px 14px;
         }
         .info-cell-top {
             font-size: 10px;
@@ -576,150 +525,151 @@
         .info-cell-sub {
             font-size: 11px;
             color: var(--text-muted);
-            margin-top: 4px;
+            margin-top: 3px;
         }
 
-        /* Categorized Inspection Matrix */
-        .category-card {
+        /* ==========================================================================
+           KOMPAKT & VERİMLİ DONANIM TEST MATRİSİ (Compact Grid Architecture)
+           ========================================================================== */
+        .compact-category-block {
             background: var(--bg-card-sub);
             border: 1px solid var(--border-card);
-            border-radius: 14px;
-            margin-bottom: 16px;
-            overflow: hidden;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            padding: 12px 16px;
         }
-        .category-header {
-            padding: 12px 18px;
-            background: rgba(255, 255, 255, 0.02);
-            border-bottom: 1px solid var(--border-card);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .category-name {
-            font-size: 12px;
+        .compact-category-title {
+            font-size: 11.5px;
             font-weight: 800;
             color: #FFFFFF;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             display: flex;
             align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 6px;
+        }
+        .compact-category-title .stats {
+            font-size: 10.5px;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .compact-chips-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
             gap: 8px;
         }
-        .category-stats {
-            font-size: 11px;
-            font-weight: 700;
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--text-muted);
+        @media (min-width: 900px) {
+            .compact-chips-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
 
-        .table-custom {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 12px;
-        }
-        .table-custom th {
-            text-align: left;
-            padding: 10px 18px;
-            font-size: 10px;
-            font-weight: 800;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.6px;
-            border-bottom: 1px solid var(--border-card);
-            background: rgba(0, 0, 0, 0.15);
-        }
-        .table-custom td {
-            padding: 11px 18px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-            vertical-align: middle;
-        }
-        .table-custom tr:last-child td {
-            border-bottom: none;
-        }
-        .test-name-bold {
-            font-weight: 700;
-            color: var(--text-main);
-        }
-        .test-desc-text {
-            font-size: 11px;
-            color: var(--text-muted);
-            margin-top: 2px;
-        }
-        .badge-status {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 0.4px;
-            text-transform: uppercase;
-            font-family: 'JetBrains Mono', monospace;
-        }
-        .badge-pass {
-            background: var(--emerald-bg);
-            color: var(--emerald-pass);
-            border: 1px solid var(--emerald-border);
-        }
-        .badge-fail {
-            background: var(--crimson-bg);
-            color: var(--crimson-fail);
-            border: 1px solid var(--crimson-border);
-        }
-        .badge-skip {
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text-muted);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        /* 8. Cryptographic Seal & Legal Stamp */
-        .seal-container {
-            background: var(--bg-card-sub);
-            border: 1px solid var(--border-card);
-            border-radius: 16px;
-            padding: 24px;
+        .test-chip {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 8px 12px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 24px;
-            margin-top: 28px;
-            position: relative;
+            gap: 8px;
+            transition: background 0.15s ease;
         }
-        .seal-content {
-            flex: 1;
+        .test-chip:hover {
+            background: rgba(255, 255, 255, 0.04);
         }
-        .seal-heading {
-            font-size: 12px;
+        .chip-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 0;
+            overflow: hidden;
+        }
+        .chip-icon {
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .chip-title {
+            font-size: 11.5px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .chip-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 10px;
             font-weight: 800;
-            color: var(--cyan-accent);
+            letter-spacing: 0.3px;
             text-transform: uppercase;
-            letter-spacing: 0.8px;
+            font-family: 'JetBrains Mono', monospace;
+            flex-shrink: 0;
+        }
+        .badge-pass {
+            background: var(--status-pass-bg);
+            color: var(--status-pass);
+            border: 1px solid var(--status-pass-border);
+        }
+        .badge-fail {
+            background: var(--status-fail-bg);
+            color: var(--status-fail);
+            border: 1px solid var(--status-fail-border);
+        }
+        .badge-skip {
+            background: var(--status-skip-bg);
+            color: var(--status-skip);
+            border: 1px solid var(--status-skip-border);
+        }
+
+        /* 8. Cryptographic Hash Box & Clean Verification */
+        .verification-card {
+            background: var(--bg-card-sub);
+            border: 1px solid var(--border-card);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-top: 20px;
+        }
+        .verification-header {
+            font-size: 11.5px;
+            font-weight: 800;
+            color: #FFFFFF;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
             margin-bottom: 8px;
             display: flex;
             align-items: center;
             gap: 6px;
         }
         .sha-hash-box {
-            background: rgba(0, 0, 0, 0.35);
+            background: rgba(0, 0, 0, 0.4);
             border: 1px solid var(--border-card);
-            border-radius: 8px;
-            padding: 10px 14px;
+            border-radius: 6px;
+            padding: 8px 12px;
             font-family: 'JetBrains Mono', monospace;
             font-size: 11px;
-            color: var(--cyan-accent);
+            color: var(--text-secondary);
             word-break: break-all;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 12px;
+            gap: 10px;
         }
         .btn-hash-copy {
-            background: rgba(56, 189, 248, 0.15);
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            color: #38BDF8;
-            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #FFFFFF;
+            border-radius: 4px;
             padding: 4px 10px;
             font-size: 10px;
             font-weight: 700;
@@ -728,65 +678,25 @@
             flex-shrink: 0;
         }
         .btn-hash-copy:hover {
-            background: rgba(56, 189, 248, 0.3);
+            background: rgba(255, 255, 255, 0.15);
         }
-        .legal-disclaimer {
-            font-size: 10.5px;
+        .verification-note {
+            font-size: 11px;
             color: var(--text-muted);
-            line-height: 1.55;
-            text-align: justify;
+            line-height: 1.5;
         }
 
-        /* Rotated Official Rubber Stamp Badge */
-        .forensic-stamp {
-            width: 128px;
-            height: 128px;
-            border-radius: 50%;
-            border: 3px solid #0EA5E9;
-            outline: 2px dashed #0EA5E9;
-            outline-offset: -6px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 10px;
-            background: rgba(14, 165, 233, 0.06);
-            flex-shrink: 0;
-            transform: rotate(-7deg);
-            box-shadow: 0 4px 20px rgba(14, 165, 233, 0.18);
-            user-select: none;
-        }
-        .stamp-top {
-            font-size: 7.5px;
-            font-weight: 900;
-            color: #0EA5E9;
-            letter-spacing: 0.8px;
-            text-transform: uppercase;
-        }
-        .stamp-center {
-            font-size: 22px;
-            margin: 2px 0;
-        }
-        .stamp-bottom {
-            font-size: 7px;
-            font-weight: 800;
-            color: #38BDF8;
-            letter-spacing: 0.4px;
-            text-transform: uppercase;
-        }
-
-        /* Footer Brand Bar */
-        .footer-brand-bar {
+        /* Footer */
+        .footer-bar {
             text-align: center;
             margin-top: 24px;
-            padding-top: 16px;
+            padding-top: 14px;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             font-size: 11px;
             color: var(--text-muted);
         }
-        .footer-brand-bar strong {
-            color: var(--harpai-blue);
+        .footer-bar strong {
+            color: #FFFFFF;
         }
 
         /* Loading & Error States */
@@ -795,14 +705,13 @@
             padding: 100px 20px;
         }
         .spinner-radar {
-            width: 60px;
-            height: 60px;
-            border: 4px solid var(--border-card);
-            border-top-color: var(--cyan-accent);
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--border-card);
+            border-top-color: #FFFFFF;
             border-radius: 50%;
-            animation: spinRadar 0.9s linear infinite;
-            margin: 0 auto 24px;
-            box-shadow: 0 0 25px rgba(14, 165, 233, 0.3);
+            animation: spinRadar 0.8s linear infinite;
+            margin: 0 auto 20px;
         }
         @keyframes spinRadar { to { transform: rotate(360deg); } }
 
@@ -812,14 +721,14 @@
             bottom: 30px;
             left: 50%;
             transform: translateX(-50%) translateY(100px);
-            background: #0284C7;
-            color: #FFFFFF;
-            padding: 10px 24px;
-            border-radius: 30px;
-            font-size: 13px;
-            font-weight: 700;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.6);
-            transition: transform 0.3s ease;
+            background: #FFFFFF;
+            color: #0F121A;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 800;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.8);
+            transition: transform 0.25s ease;
             z-index: 9999;
             pointer-events: none;
         }
@@ -828,74 +737,66 @@
         }
 
         /* ==========================================================================
-           A4 Print / PDF Engine Stylesheet
+           A4 Print / PDF Engine Stylesheet (Temiz Resmi Beyaz/Siyah Baskı)
            ========================================================================== */
         @media print {
             body {
                 background: #FFFFFF !important;
-                color: #0F172A !important;
+                color: #000000 !important;
                 padding: 0 !important;
-                font-size: 11px !important;
+                font-size: 10px !important;
             }
             .action-bar, #toast-msg { display: none !important; }
             .report-container { max-width: 100% !important; margin: 0 !important; }
             .security-frame {
-                border: 2px solid #CBD5E1 !important;
+                border: 1px solid #000000 !important;
                 border-radius: 0 !important;
                 background: #FFFFFF !important;
                 box-shadow: none !important;
-                padding: 18px !important;
+                padding: 14px !important;
             }
-            .security-frame::before { display: none !important; }
-            .cert-header { border-bottom: 2px solid #0F172A !important; padding-bottom: 14px !important; margin-bottom: 16px !important; }
-            .cert-emblem { background: #F1F5F9 !important; border-color: #0F172A !important; box-shadow: none !important; color: #0F172A !important; }
-            .cert-top-category { color: #0369A1 !important; }
-            .cert-doc-title { -webkit-text-fill-color: #0F172A !important; color: #0F172A !important; font-size: 22px !important; }
-            .harpai-brand-badge { background: #F1F5F9 !important; border-color: #0F172A !important; color: #0F172A !important; }
-            .harpai-brand-badge strong { color: #0F172A !important; }
-            .cert-serial-pill { background: #F8FAFC !important; border-color: #CBD5E1 !important; color: #0F172A !important; }
-            .custody-strip { background: #F8FAFC !important; border-color: #CBD5E1 !important; border-left-color: #0F172A !important; }
-            .custody-item-val { color: #0F172A !important; }
-            .gauge-card, .pillars-card, .opinion-box, .info-cell, .category-card {
+            .cert-header { border-bottom: 1px solid #000000 !important; padding-bottom: 10px !important; margin-bottom: 12px !important; }
+            .cert-emblem { background: #F1F5F9 !important; border-color: #000000 !important; color: #000000 !important; }
+            .cert-top-category { color: #475569 !important; }
+            .cert-doc-title { color: #000000 !important; font-size: 20px !important; }
+            .harpia-brand-badge { background: #F8FAFC !important; border-color: #CBD5E1 !important; color: #000000 !important; }
+            .harpia-brand-badge strong { color: #000000 !important; }
+            .cert-serial-pill { background: #F8FAFC !important; border-color: #CBD5E1 !important; color: #000000 !important; }
+            .custody-strip { background: #F8FAFC !important; border-color: #CBD5E1 !important; }
+            .custody-item-val { color: #000000 !important; }
+            .gauge-card, .pillars-card, .opinion-box, .info-cell, .compact-category-block, .verification-card {
                 background: #FFFFFF !important;
-                border: 1px solid #E2E8F0 !important;
+                border: 1px solid #CBD5E1 !important;
                 box-shadow: none !important;
                 page-break-inside: avoid;
             }
-            .gauge-inner-text .gauge-number { color: #0F172A !important; }
+            .gauge-inner-text .gauge-number { color: #000000 !important; }
             .gauge-bg-circle { stroke: #E2E8F0 !important; }
-            .pillars-title, .opinion-title, .section-header span.icon, .seal-heading { color: #0284C7 !important; }
-            .pillar-name, .opinion-text, .info-cell-val { color: #0F172A !important; }
-            .table-custom th { background: #F8FAFC !important; color: #475569 !important; border-color: #E2E8F0 !important; }
-            .table-custom td { border-color: #F1F5F9 !important; color: #0F172A !important; }
-            .test-name-bold { color: #0F172A !important; }
+            .pillar-name, .opinion-text, .info-cell-val, .compact-category-title, .chip-title { color: #000000 !important; }
+            .test-chip { background: #F8FAFC !important; border-color: #E2E8F0 !important; }
             .badge-pass { background: #ECFDF5 !important; color: #047857 !important; border-color: #A7F3D0 !important; }
             .badge-fail { background: #FEF2F2 !important; color: #B91C1C !important; border-color: #FECACA !important; }
             .badge-skip { background: #F1F5F9 !important; color: #475569 !important; border-color: #CBD5E1 !important; }
-            .seal-container { background: #F8FAFC !important; border-color: #0F172A !important; page-break-inside: avoid; }
-            .sha-hash-box { background: #F1F5F9 !important; border-color: #CBD5E1 !important; color: #0F172A !important; }
+            .sha-hash-box { background: #F1F5F9 !important; border-color: #CBD5E1 !important; color: #000000 !important; }
             .btn-hash-copy { display: none !important; }
-            .forensic-stamp { border-color: #0F172A !important; outline-color: #0F172A !important; background: transparent !important; }
-            .stamp-top, .stamp-bottom { color: #0F172A !important; }
         }
 
         /* Mobile Ergonomics */
         @media (max-width: 768px) {
-            body { padding: 12px 8px 60px; }
-            .security-frame { padding: 20px 16px; border-radius: 14px; }
-            .cert-header { flex-direction: column; align-items: stretch; gap: 16px; }
+            body { padding: 10px 8px 40px; }
+            .security-frame { padding: 18px 14px; border-radius: 12px; }
+            .cert-header { flex-direction: column; align-items: stretch; gap: 14px; }
             .cert-meta-box { align-items: flex-start; }
-            .custody-strip { grid-template-columns: 1fr 1fr; gap: 12px; }
+            .custody-strip { grid-template-columns: 1fr 1fr; gap: 10px; }
             .hero-section { grid-template-columns: 1fr; }
-            .grid-3, .grid-4 { grid-template-columns: 1fr 1fr; }
-            .seal-container { flex-direction: column; align-items: flex-start; }
-            .forensic-stamp { align-self: center; }
+            .grid-3 { grid-template-columns: 1fr 1fr; }
+            .compact-chips-grid { grid-template-columns: 1fr; }
             .action-bar { flex-direction: column; align-items: stretch; gap: 10px; }
             .action-btn-group { justify-content: stretch; }
             .btn-action { flex: 1; justify-content: center; }
         }
         @media (max-width: 480px) {
-            .grid-3, .grid-4 { grid-template-columns: 1fr; }
+            .grid-3 { grid-template-columns: 1fr; }
             .custody-strip { grid-template-columns: 1fr; }
         }
     </style>
@@ -907,18 +808,18 @@
     <!-- Loading State -->
     <div id="loading-state">
         <div class="spinner-radar"></div>
-        <h2 style="font-size: 20px; font-weight: 800; color: #FFFFFF;">Zenith Diagnostics Doğrulanıyor</h2>
-        <p style="font-size: 13px; color: var(--text-muted); margin-top: 8px;">
-            FIPS 180-4 Kriptografik SHA-256 İmzası ve Sensör Telemetrisi Buluttan Çözülüyor...
+        <h2 style="font-size: 18px; font-weight: 800; color: #FFFFFF;">Zenith Diagnostics Yükleniyor</h2>
+        <p style="font-size: 12px; color: var(--text-muted); margin-top: 6px;">
+            Cihaz donanım ve sensör telemetrisi veritabanından alınıyor...
         </p>
     </div>
 
     <!-- Error State -->
     <div id="error-state" style="display: none;">
-        <div style="font-size: 54px; margin-bottom: 16px;">🛡️</div>
-        <h2 id="error-title" style="font-size: 22px; color: var(--crimson-fail); font-weight: 800;">Rapor Bulunamadı</h2>
-        <p id="error-desc" style="font-size: 14px; color: var(--text-muted); margin-top: 10px; max-width: 520px; margin-left: auto; margin-right: auto; line-height: 1.6;"></p>
-        <button class="btn-action btn-print" onclick="window.location.reload()" style="margin-top: 24px;">
+        <div style="font-size: 48px; margin-bottom: 14px;">⚠️</div>
+        <h2 id="error-title" style="font-size: 20px; color: var(--status-fail); font-weight: 800;">Rapor Bulunamadı</h2>
+        <p id="error-desc" style="font-size: 13px; color: var(--text-muted); margin-top: 8px; max-width: 480px; margin-left: auto; margin-right: auto; line-height: 1.5;"></p>
+        <button class="btn-action btn-print" onclick="window.location.reload()" style="margin-top: 20px;">
             <span>🔄</span> Yeniden Dene
         </button>
     </div>
@@ -931,11 +832,9 @@
             <div class="action-bar-left">
                 <div class="action-logo-badge">🛡️</div>
                 <div>
-                    <div class="action-bar-title">
-                        <span>Zenith Diagnostics</span>
-                    </div>
+                    <div class="action-bar-title">Zenith Diagnostics</div>
                     <div class="action-bar-sub">
-                        <span>Resmi Ekspertiz Belgesi</span> &bull; <span>Developed and secured by <strong>Harpai Academy</strong></span>
+                        <span>Cihaz Raporu</span> &bull; <span>Developed and secured by <strong>Harpia Academy</strong></span>
                     </div>
                 </div>
             </div>
@@ -944,67 +843,62 @@
                     <span>📋</span> Linki Kopyala
                 </button>
                 <button class="btn-action btn-print" onclick="window.print()">
-                    <span>🖨️</span> PDF Olarak İndir / Yazdır
+                    <span>🖨️</span> PDF / Yazdır
                 </button>
             </div>
         </div>
 
-        <!-- Security Frame (Official Certificate Shell) -->
+        <!-- Clean Executive Frame -->
         <div class="security-frame">
 
-            <!-- 1. Official Certificate Header -->
+            <!-- 1. Official Header -->
             <div class="cert-header">
                 <div class="cert-emblem-wrap">
                     <div class="cert-emblem">🛡️</div>
                     <div>
-                        <div class="cert-top-category">ELEKTRONİK & DONANIM ADLİ BİLİŞİM MUAYENESİ</div>
+                        <div class="cert-top-category">CİHAZ DONANIM DEĞERLENDİRMESİ</div>
                         <h1 class="cert-doc-title">ZENITH DIAGNOSTICS</h1>
-                        <div class="cert-doc-sub">RESMİ DONANIM & SİSTEM EKSPERTİZ BELGESİ</div>
+                        <div class="cert-doc-sub">CİHAZ DONANIM VE SAĞLIK RAPORU</div>
                         
-                        <!-- Harpai Academy Brand Badge -->
+                        <!-- Harpia Academy Brand Badge -->
                         <div>
-                            <div class="harpai-brand-badge">
-                                <span class="harpai-badge-dot"></span>
-                                <span>DEVELOPED AND SECURED BY <strong>HARPAI ACADEMY</strong></span>
+                            <div class="harpia-brand-badge">
+                                <span class="harpia-badge-dot"></span>
+                                <span>DEVELOPED AND SECURED BY <strong>HARPIA ACADEMY</strong></span>
                             </div>
-                        </div>
-
-                        <div class="cert-standards-line">
-                            Standartlar: <b>ISO/IEC 27037:2012</b> &bull; <b>NIST SP 800-86</b> &bull; <b>FIPS 180-4</b>
                         </div>
                     </div>
                 </div>
 
                 <div class="cert-meta-box">
-                    <div class="cert-serial-pill" id="cert-serial">SERTİFİKA: ZN-2026-XXXX</div>
+                    <div class="cert-serial-pill" id="cert-serial">RAPOR NO: ZN-2026-XXXX</div>
                     <div class="cert-qr-wrap">
                         <div id="cert-qr-code"></div>
                         <div class="cert-qr-text">
                             <div>Karekod ile</div>
-                            <div>Orijinalliği</div>
-                            <div style="color: var(--cyan-accent);">Doğrula</div>
+                            <div>Doğrula</div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- 2. Chain of Custody (Kanıt Zinciri) -->
+            <!-- 2. Summary Information Strip -->
             <div class="custody-strip">
                 <div>
-                    <div class="custody-item-lbl">Oturum Kimliği (UUID)</div>
+                    <div class="custody-item-lbl">Rapor Kimliği (UUID)</div>
                     <div class="custody-item-val" id="custody-session">-</div>
                 </div>
                 <div>
-                    <div class="custody-item-lbl">Tanzim Tarihi / Saat</div>
+                    <div class="custody-item-lbl">Oluşturulma Tarihi</div>
                     <div class="custody-item-val" id="custody-date">-</div>
                 </div>
                 <div>
-                    <div class="custody-item-lbl">Denetim Metodu</div>
-                    <div class="custody-item-val" style="color: var(--cyan-accent);">HAL & Sensör Telemetrisi</div>
+                    <div class="custody-item-lbl">Ölçüm Yöntemi</div>
+                    <div class="custody-item-val">HAL & Sensör Telemetrisi</div>
                 </div>
                 <div>
-                    <div class="custody-item-lbl">Adli Bütünlük</div>
-                    <div class="custody-item-val" style="color: var(--emerald-pass);">✓ Kriptografik Onaylı (Harpai Core)</div>
+                    <div class="custody-item-lbl">Veri Bütünlüğü</div>
+                    <div class="custody-item-val" style="color: var(--status-pass);">✓ SHA-256 Doğrulandı</div>
                 </div>
             </div>
 
@@ -1024,7 +918,7 @@
                     </div>
                     <div class="grade-badge-card" id="grade-badge">GRADE -</div>
                     <div style="font-size: 11px; color: var(--text-muted); font-weight: 700; margin-top: 6px; text-transform: uppercase;">
-                        Genel Güven Endeksi
+                        Genel Donanım Puanı
                     </div>
                 </div>
 
@@ -1032,18 +926,18 @@
                 <div class="pillars-card">
                     <div class="pillars-header">
                         <div class="pillars-title">
-                            <span>🏛️</span> 4 Temel Adli Güven Sütunu
+                            <span>📊</span> 4 Temel Donanım & Sistem Puanı
                         </div>
-                        <div style="font-size: 11px; color: var(--text-muted); font-weight: 600;">Ağırlıklı Analiz Matrisi</div>
+                        <div style="font-size: 11px; color: var(--text-muted); font-weight: 600;">Sistem Ağırlığı</div>
                     </div>
 
                     <div class="pillar-row">
                         <div class="pillar-info">
-                            <span class="pillar-name">1. Donanım & Çekirdek Orijinalliği</span>
+                            <span class="pillar-name">1. Donanım & Çekirdek Bütünlüğü</span>
                             <span class="pillar-score" id="pillar-hw-val">%95</span>
                         </div>
                         <div class="progress-track">
-                            <div class="progress-fill" id="pillar-hw-bar" style="width: 95%; background: var(--emerald-pass);"></div>
+                            <div class="progress-fill" id="pillar-hw-bar" style="width: 95%; background: var(--status-pass);"></div>
                         </div>
                     </div>
 
@@ -1053,7 +947,7 @@
                             <span class="pillar-score" id="pillar-bat-val">%90</span>
                         </div>
                         <div class="progress-track">
-                            <div class="progress-fill" id="pillar-bat-bar" style="width: 90%; background: var(--cyan-accent);"></div>
+                            <div class="progress-fill" id="pillar-bat-bar" style="width: 90%; background: #38BDF8;"></div>
                         </div>
                     </div>
 
@@ -1063,40 +957,40 @@
                             <span class="pillar-score" id="pillar-sensor-val">%100</span>
                         </div>
                         <div class="progress-track">
-                            <div class="progress-fill" id="pillar-sensor-bar" style="width: 100%; background: var(--emerald-pass);"></div>
+                            <div class="progress-fill" id="pillar-sensor-bar" style="width: 100%; background: var(--status-pass);"></div>
                         </div>
                     </div>
 
                     <div class="pillar-row">
                         <div class="pillar-info">
-                            <span class="pillar-name">4. Güvenlik Çipi & Kök Doğrulaması</span>
+                            <span class="pillar-name">4. Güvenlik & Sistem Kararlılığı</span>
                             <span class="pillar-score" id="pillar-sec-val">%100</span>
                         </div>
                         <div class="progress-track">
-                            <div class="progress-fill" id="pillar-sec-bar" style="width: 100%; background: var(--gold-accent);"></div>
+                            <div class="progress-fill" id="pillar-sec-bar" style="width: 100%; background: #94A3B8;"></div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- 4. Executive Conclusion Box -->
+            <!-- 4. Executive Summary Box -->
             <div class="opinion-box">
                 <div class="opinion-title">
-                    <span>📜</span> Uzman Adli Bilişim Mütalaası & Teşhis Kararı
+                    <span>📋</span> Donanım Teşhis & Değerlendirme Özeti
                 </div>
                 <div class="opinion-text">
-                    İşbu resmi ekspertiz belgesi, cihazın tüm donanım katmanlarının, entegre sensörlerinin ve işletim sistemi çekirdeğinin Zenith Diagnostics & Harpai Academy adli bilişim teknikleriyle incelenmesi neticesinde otomatik olarak tanzim edilmiştir. Yapılan derinlemesine donanım testlerinde anakart, ekran ve işlemci modüllerinin fabrika normlarına uygun çalıştığı teyit edilmiş olup cihaz donanımsal ve adli bilişim açısından güvenli sınıftadır.
+                    İşbu rapor, cihazın tüm donanım bileşenlerinin, entegre sensörlerinin ve sistem telemetrisinin Zenith Diagnostics test modülleriyle tahlil edilmesi neticesinde tanzim edilmiştir. Yapılan donanım testlerinde anakart, ekran, batarya ve işlemci modüllerinin çalışma verileri incelenmiş olup cihazın güncel sağlık durumu aşağıda özetlenmiştir.
                 </div>
             </div>
 
             <!-- 5. Device Passport & Silicon Level Info -->
             <div class="section-wrap">
                 <div class="section-header">
-                    <div><span class="icon">📱</span> 1. Cihaz Kimlik Pasaportu & Yonga Seti (Silicon) Katmanı</div>
+                    <div><span class="icon">📱</span> 1. Cihaz Kimliği & Yonga Seti Bilgileri</div>
                     <div class="section-count-badge">DOĞRULANDI</div>
                 </div>
 
-                <div class="grid-3" style="margin-bottom: 14px;">
+                <div class="grid-3" style="margin-bottom: 12px;">
                     <div class="info-cell">
                         <div class="info-cell-top">Üretici & Model</div>
                         <div class="info-cell-val" id="id-device-model">-</div>
@@ -1121,8 +1015,8 @@
                         <div class="info-cell-sub" id="id-storage-type">UFS High-Speed Flash</div>
                     </div>
                     <div class="info-cell" style="grid-column: span 2;">
-                        <div class="info-cell-top">Cihaz Adli Parmak İzi (Build Fingerprint)</div>
-                        <div class="info-cell-val" id="id-fingerprint" style="font-size: 11px; color: var(--cyan-accent);">-</div>
+                        <div class="info-cell-top">Cihaz Parmak İzi (Build Fingerprint)</div>
+                        <div class="info-cell-val" id="id-fingerprint" style="font-size: 11px; color: var(--text-secondary);">-</div>
                     </div>
                 </div>
             </div>
@@ -1130,15 +1024,15 @@
             <!-- 6. Battery Deep Telemetry -->
             <div class="section-wrap">
                 <div class="section-header">
-                    <div><span class="icon">⚡</span> 2. Batarya Sağlığı & Hücre Tahlili (Deep Telemetry)</div>
+                    <div><span class="icon">⚡</span> 2. Batarya Durumu & Güç Telemetrisi</div>
                     <div class="section-count-badge" id="bat-status-badge">İYİ (SAĞLAM)</div>
                 </div>
 
-                <div class="grid-3" style="margin-bottom: 14px;">
+                <div class="grid-3" style="margin-bottom: 12px;">
                     <div class="info-cell">
                         <div class="info-cell-top">Gerçek Sağlık Yüzdesi</div>
-                        <div class="info-cell-val" id="bat-health" style="font-size: 20px; color: var(--emerald-pass);">-%</div>
-                        <div class="info-cell-sub">Coulomb Sayacı & SysFS Doğrulaması</div>
+                        <div class="info-cell-val" id="bat-health" style="font-size: 20px; color: var(--status-pass);">-%</div>
+                        <div class="info-cell-sub">Coulomb Sayacı & SysFS Telemetrisi</div>
                     </div>
                     <div class="info-cell">
                         <div class="info-cell-top">Şarj Döngüsü (Cycle Count)</div>
@@ -1146,9 +1040,9 @@
                         <div class="info-cell-sub">Fabrika Eşik Değeri &lt; 800</div>
                     </div>
                     <div class="info-cell">
-                        <div class="info-cell-top">Sıcaklık & Çalışma Voltajı</div>
+                        <div class="info-cell-top">Sıcaklık & Voltaj</div>
                         <div class="info-cell-val" id="bat-temp-volt">-</div>
-                        <div class="info-cell-sub">Termal Güvenlik Sınırı İçi</div>
+                        <div class="info-cell-sub">Çalışma Güvenlik Sınırı İçi</div>
                     </div>
                 </div>
 
@@ -1159,56 +1053,47 @@
                         <div class="info-cell-sub">Tasarım Değeri</div>
                     </div>
                     <div class="info-cell">
-                        <div class="info-cell-top">Hücre Teknolojisi</div>
+                        <div class="info-cell-top">Hücre Kimyası</div>
                         <div class="info-cell-val" id="bat-tech">Li-Polymer</div>
                         <div class="info-cell-sub">Orijinal Kimya</div>
                     </div>
                     <div class="info-cell">
-                        <div class="info-cell-top">Şarj Devresi / Port</div>
+                        <div class="info-cell-top">Şarj Portu</div>
                         <div class="info-cell-val" id="bat-port">Normal (Bağlı Değil)</div>
                         <div class="info-cell-sub">Fiziksel Veri Yolu Açık</div>
                     </div>
                 </div>
             </div>
 
-            <!-- 7. Categorized Hardware Inspection Matrix -->
+            <!-- 7. Compact Hardware Test Grid (Kompakt 3 Sütunlu Izgara) -->
             <div class="section-wrap">
                 <div class="section-header">
-                    <div><span class="icon">🛠️</span> 3. Kategorize Donanım Muayene Matrisi</div>
-                    <div class="section-count-badge" id="matrix-total-badge">31 Modül Tahlil Edildi</div>
+                    <div><span class="icon">🛠️</span> 3. Donanım Test Sonuçları</div>
+                    <div class="section-count-badge" id="matrix-total-badge">31 Modül Test Edildi</div>
                 </div>
 
                 <div id="inspection-categories-container">
-                    <!-- Dinamik olarak kategoriler halinde doldurulacak -->
+                    <!-- Dinamik olarak kompakt çipler halinde doldurulacak -->
                 </div>
             </div>
 
-            <!-- 8. Cryptographic Seal & Legal Stamp -->
-            <div class="seal-container">
-                <div class="seal-content">
-                    <div class="seal-heading">
-                        <span>🔒</span> 4. Kriptografik İspat ve Kanıt Zinciri Mührü
-                    </div>
-                    <div class="sha-hash-box">
-                        <div class="sha-text" id="sha-hash-full">SHA-256: -</div>
-                        <button class="btn-hash-copy" onclick="copyHash()">Kopyala</button>
-                    </div>
-                    <div class="legal-disclaimer">
-                        <b>YASAL ADLİ UYARI:</b> İşbu ekspertiz raporu 5070 Sayılı Elektronik İmza Kanunu ve ISO/IEC 27037 standardına uygun olarak elektronik ortamda tanzim edilmiş olup yukarıdaki SHA-256 kriptografik özeti ile değiştirilemez şekilde mühürlenmiştir. Herhangi bir parametre değişikliğinde mühür geçersiz kalır.
-                    </div>
+            <!-- 8. Cryptographic Hash Box & Clean Verification -->
+            <div class="verification-card">
+                <div class="verification-header">
+                    <span>🔒</span> 4. Veri Bütünlüğü ve Kriptografik Doğrulama
                 </div>
-
-                <!-- Rotated Official Rubber Stamp -->
-                <div class="forensic-stamp">
-                    <div class="stamp-top">ZENITH DIAGNOSTICS</div>
-                    <div class="stamp-center">🛡️</div>
-                    <div class="stamp-bottom">HARPAI ACADEMY &bull; CERTIFIED</div>
+                <div class="sha-hash-box">
+                    <span id="sha-hash-full">SHA-256: -</span>
+                    <button class="btn-hash-copy" onclick="copyHash()">Kopyala</button>
+                </div>
+                <div class="verification-note">
+                    Bu rapor, cihazın yerel donanım telemetrisi üzerinden oluşturulmuş olup yukarıdaki benzersiz SHA-256 kriptografik özeti ile doğrulanmaktadır. Herhangi bir parametre değişikliğinde veri bütünlüğü geçersiz kalır.
                 </div>
             </div>
 
-            <!-- 9. Footer Brand Bar -->
-            <div class="footer-brand-bar">
-                Zenith Diagnostics Engine v8.4 &bull; Developed and secured by <strong>Harpai Academy</strong> &bull; ISO/IEC 27037:2012 Certified
+            <!-- 9. Clean Footer -->
+            <div class="footer-bar">
+                Zenith Diagnostics Engine v8.4 &bull; Developed and secured by <strong>Harpia Academy</strong>
             </div>
 
         </div> <!-- /security-frame -->
@@ -1258,18 +1143,18 @@
             clearTimeout(timeoutId);
 
             if (!response.ok) {
-                throw new Error("Adli sunucu erişim hatası: " + response.statusText);
+                throw new Error("Sunucu erişim hatası: " + response.statusText);
             }
 
             const data = await response.json();
             if (!data || data.length === 0) {
-                showError("Rapor Bulunamadı", "Belirtilen kriptografik özete ait onaylanmış resmi adli tıp ekspertiz raporu veri tabanında bulunamadı.");
+                showError("Rapor Bulunamadı", "Belirtilen kriptografik özete ait onaylanmış cihaz donanım raporu veritabanında bulunamadı.");
                 return;
             }
 
             renderReport(data[0]);
         } catch (err) {
-            showError("Bağlantı Hatası", err.message || "Rapor yüklenirken adli sunucu ile bağlantı kurulamadı.");
+            showError("Bağlantı Hatası", err.message || "Rapor yüklenirken sunucu ile bağlantı kurulamadı.");
         }
     }
 
@@ -1289,29 +1174,29 @@
         const brand = id.brand || "";
         const model = id.model || record.device_model || "Cihaz";
         const fullName = `${brand} ${model}`.trim();
-        document.title = `Zenith Diagnostics — ${fullName} | Secured by Harpai Academy`;
+        document.title = `Zenith Diagnostics — ${fullName} | Harpia Academy`;
 
-        // Sertifika Seri No & QR Kod
+        // Seri No & QR Kod
         const shortHash = currentHash ? currentHash.substring(0, 8).toUpperCase() : "VERIFIED";
-        document.getElementById("cert-serial").textContent = `SERTİFİKA: ZN-2026-${shortHash}`;
+        document.getElementById("cert-serial").textContent = `RAPOR NO: ZN-2026-${shortHash}`;
 
-        // Canlı QR Kod Oluşturma
+        // QR Kod
         try {
             const qrContainer = document.getElementById("cert-qr-code");
             qrContainer.innerHTML = "";
             new QRCode(qrContainer, {
                 text: window.location.href,
-                width: 50,
-                height: 50,
-                colorDark: "#0F172A",
+                width: 46,
+                height: 46,
+                colorDark: "#0F121A",
                 colorLight: "#FFFFFF",
                 correctLevel: QRCode.CorrectLevel.M
             });
         } catch (e) {
-            console.warn("QR Code render fallback", e);
+            console.warn("QR render fallback", e);
         }
 
-        // Kanıt Zinciri
+        // Özet Bilgi Şeridi
         document.getElementById("custody-session").textContent = record.session_id ? record.session_id.substring(0, 18) + "..." : "Kayıtlı Oturum";
         const dateStr = new Date(record.created_at || Date.now()).toLocaleString("tr-TR", { timeZone: "Europe/Istanbul" });
         document.getElementById("custody-date").textContent = dateStr;
@@ -1330,20 +1215,20 @@
         const gradeBadge = document.getElementById("grade-badge");
         gradeBadge.textContent = grade;
         if (score >= 80) {
-            gaugeBar.style.stroke = "var(--emerald-pass)";
-            gradeBadge.style.background = "var(--emerald-bg)";
-            gradeBadge.style.color = "var(--emerald-pass)";
-            gradeBadge.style.border = "1px solid var(--emerald-border)";
+            gaugeBar.style.stroke = "var(--status-pass)";
+            gradeBadge.style.background = "var(--status-pass-bg)";
+            gradeBadge.style.color = "var(--status-pass)";
+            gradeBadge.style.border = "1px solid var(--status-pass-border)";
         } else if (score >= 60) {
-            gaugeBar.style.stroke = "var(--amber-warn)";
-            gradeBadge.style.background = "var(--amber-bg)";
-            gradeBadge.style.color = "var(--amber-warn)";
-            gradeBadge.style.border = "1px solid var(--amber-border)";
+            gaugeBar.style.stroke = "var(--status-warn)";
+            gradeBadge.style.background = "var(--status-warn-bg)";
+            gradeBadge.style.color = "var(--status-warn)";
+            gradeBadge.style.border = "1px solid var(--status-warn-border)";
         } else {
-            gaugeBar.style.stroke = "var(--crimson-fail)";
-            gradeBadge.style.background = "var(--crimson-bg)";
-            gradeBadge.style.color = "var(--crimson-fail)";
-            gradeBadge.style.border = "1px solid var(--crimson-border)";
+            gaugeBar.style.stroke = "var(--status-fail)";
+            gradeBadge.style.background = "var(--status-fail-bg)";
+            gradeBadge.style.color = "var(--status-fail)";
+            gradeBadge.style.border = "1px solid var(--status-fail-border)";
         }
 
         // 4 Güven Sütunu
@@ -1379,28 +1264,27 @@
         document.getElementById("bat-tech").textContent = battery.technology || "Li-Polymer";
         document.getElementById("bat-status-badge").textContent = battery.healthStatus || (batHealth >= 80 ? "İyi (Sağlam)" : "Servis Önerilir");
 
-        // Kategorize Donanım Muayene Matrisi
-        renderCategorizedItems(items);
+        // Kompakt Donanım Test Matrisi Render
+        renderCompactCategories(items);
 
-        // Kriptografik Mühür
+        // Kriptografik Özet
         document.getElementById("sha-hash-full").textContent = `SHA-256: ${currentHash}`;
     }
 
-    function renderCategorizedItems(items) {
+    function renderCompactCategories(items) {
         const container = document.getElementById("inspection-categories-container");
         container.innerHTML = "";
 
-        // Kategoriler Haritası
         const categories = [
             {
                 id: "conn",
-                name: "1. Bağlantı, Şebeke & Konum Birimleri",
+                name: "1. Bağlantı & Şebeke Birimleri",
                 icon: "📶",
                 match: ["WIFI", "BLUETOOTH", "NFC", "CELLULAR", "GPS", "NETWORK"]
             },
             {
                 id: "camera",
-                name: "2. Optik, Kamera & Görüntüleme Modülleri",
+                name: "2. Kamera & Optik Modüller",
                 icon: "📸",
                 match: ["CAMERA", "FLASH", "LENS", "OIS", "AUTOFOCUS", "TORCH"]
             },
@@ -1412,13 +1296,11 @@
             },
             {
                 id: "sensors",
-                name: "4. Hesaplama, Sensörler & Giriş/Çıkış Arayüzleri",
+                name: "4. Sensörler, Giriş/Çıkış & Ses",
                 icon: "🧠",
-                match: [] // Geri kalan tüm testler
+                match: [] // Geri kalanlar
             }
         ];
-
-        let totalAssigned = 0;
 
         categories.forEach(cat => {
             const catItems = items.filter(item => {
@@ -1430,109 +1312,106 @@
             });
 
             if (catItems.length === 0) return;
-            totalAssigned += catItems.length;
 
             const passedInCat = catItems.filter(i => i.status === "PASSED").length;
 
-            const card = document.createElement("div");
-            card.className = "category-card";
+            const block = document.createElement("div");
+            block.className = "compact-category-block";
 
-            let rowsHtml = "";
-            catItems.forEach((item, idx) => {
+            let chipsHtml = "";
+            catItems.forEach(item => {
                 const isPass = item.status === "PASSED";
                 const isFail = item.status === "FAILED";
                 const badgeClass = isPass ? "badge-pass" : isFail ? "badge-fail" : "badge-skip";
                 const icon = isPass ? "✓" : isFail ? "✗" : "○";
-                const statusLabel = isPass ? "Verified" : isFail ? "Failed" : "Atlanan";
+                const label = isPass ? "Başarılı" : isFail ? "Başarısız" : "Atlanan";
+                const itemIcon = getTestIcon(item.type);
 
-                rowsHtml += `
-                    <tr>
-                        <td style="width: 35px; color: var(--text-muted); font-family: 'JetBrains Mono'; font-size: 11px;">${idx + 1}</td>
-                        <td style="width: 35%;">
-                            <div class="test-name-bold">${formatTestTitle(item.type)}</div>
-                            <div class="test-desc-text">${escapeHtml(item.description || "Donanım tahlili")}</div>
-                        </td>
-                        <td style="font-family: 'JetBrains Mono'; font-size: 11px; color: var(--text-secondary);">
-                            ${formatMetricDetail(item)}
-                        </td>
-                        <td style="text-align: right; width: 120px;">
-                            <span class="badge-status ${badgeClass}">${icon} ${statusLabel}</span>
-                        </td>
-                    </tr>
+                chipsHtml += `
+                    <div class="test-chip">
+                        <div class="chip-left">
+                            <span class="chip-icon">${itemIcon}</span>
+                            <span class="chip-title">${formatTestTitle(item.type)}</span>
+                        </div>
+                        <span class="chip-badge ${badgeClass}">${icon} ${label}</span>
+                    </div>
                 `;
             });
 
-            card.innerHTML = `
-                <div class="category-header">
-                    <div class="category-name"><span>${cat.icon}</span> ${cat.name}</div>
-                    <div class="category-stats">${passedInCat} / ${catItems.length} Başarılı</div>
+            block.innerHTML = `
+                <div class="compact-category-title">
+                    <div><span>${cat.icon}</span> ${cat.name}</div>
+                    <div class="stats">${passedInCat} / ${catItems.length} Başarılı</div>
                 </div>
-                <table class="table-custom">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Donanım Bileşeni / Test</th>
-                            <th>Ölçülen Adli Parametre</th>
-                            <th style="text-align: right;">Durum</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        ${rowsHtml}
-                    </tbody>
-                </table>
+                <div class="compact-chips-grid">
+                    ${chipsHtml}
+                </div>
             `;
 
-            container.appendChild(card);
+            container.appendChild(block);
         });
 
-        document.getElementById("matrix-total-badge").textContent = `${items.length} Modül Tahlil Edildi`;
+        document.getElementById("matrix-total-badge").textContent = `${items.length} Modül Test Edildi`;
+    }
+
+    function getTestIcon(type) {
+        if (!type) return "⚙️";
+        const t = type.toUpperCase();
+        if (t.includes("WIFI")) return "📶";
+        if (t.includes("BLUETOOTH")) return "🔷";
+        if (t.includes("NFC")) return "💳";
+        if (t.includes("GPS")) return "📍";
+        if (t.includes("CELLULAR") || t.includes("MODEM")) return "📡";
+        if (t.includes("CAMERA") || t.includes("LENS")) return "📷";
+        if (t.includes("FLASH") || t.includes("TORCH")) return "⚡";
+        if (t.includes("BATTERY") || t.includes("CHARGING")) return "🔋";
+        if (t.includes("SPEAKER") || t.includes("EARPIECE")) return "🔊";
+        if (t.includes("MICROPHONE")) return "🎙️";
+        if (t.includes("TOUCH")) return "👆";
+        if (t.includes("DISPLAY") || t.includes("PIXEL")) return "🖥️";
+        if (t.includes("FINGERPRINT") || t.includes("BIOMETRIC")) return "🔒";
+        if (t.includes("VIBRATION")) return "📳";
+        if (t.includes("BUTTON")) return "🔘";
+        if (t.includes("CPU") || t.includes("RAM") || t.includes("STORAGE")) return "⚡";
+        return "🧩";
     }
 
     function formatTestTitle(type) {
         if (!type) return "Donanım Testi";
         const map = {
-            "TOUCH_SCREEN": "Dokunmatik Ekran Sayısallaştırıcı",
-            "DISPLAY_DEAD_PIXELS": "Panel Piksel Bütünlüğü & Renk",
-            "VIBRATION_MOTOR": "Haptik Titreşim Motoru",
-            "BIOMETRIC_FINGERPRINT": "Biyometrik Parmak İzi Sensörü",
-            "PHYSICAL_BUTTONS": "Ses & Güç Fiziksel Tuşları",
-            "SPEAKER_LOUDSPEAKER": "Ana Hoparlör Akustiği",
-            "EARPIECE_RECEIVER": "Ahize Alıcısı",
+            "TOUCH_SCREEN": "Dokunmatik Ekran",
+            "DISPLAY_DEAD_PIXELS": "Piksel Bütünlüğü & Renk",
+            "VIBRATION_MOTOR": "Titreşim Motoru",
+            "BIOMETRIC_FINGERPRINT": "Parmak İzi Okuyucu",
+            "PHYSICAL_BUTTONS": "Fiziksel Tuşlar",
+            "SPEAKER_LOUDSPEAKER": "Ana Hoparlör",
+            "EARPIECE_RECEIVER": "Ahize Hoparlörü",
             "MICROPHONE_PRIMARY": "Birincil Mikrofon",
-            "MICROPHONE_SECONDARY": "Gürültü Engelleyici Mikrofon",
-            "CAMERA_BACK_WIDE": "Ana Kamera (Geniş Açı)",
-            "CAMERA_FRONT": "Ön Selfie Kamerası",
-            "CAMERA_AUTOFOCUS": "Optik Otofokus Mekanizması",
-            "CAMERA_OIS": "Optik Görüntü Sabitleyici (OIS)",
-            "CAMERA_FLASH": "Kamera LED Flaşı",
-            "BATTERY_HEALTH": "Batarya Kimyasal Sağlığı",
-            "CHARGING_PORT": "USB Şarj ve Veri İletim Portu",
-            "RAM_HEALTH": "RAM Bellek Bütünlüğü & Tahsis",
-            "STORAGE_READ_WRITE": "Dahili Depolama I/O Hızı",
-            "CPU_STRESS_THERMAL": "İşlemci & Termal Stres Tahlili",
-            "WIFI_ADAPTER": "Wi-Fi Radyo & Bağlantı",
-            "BLUETOOTH_CHIP": "Bluetooth 5.x RF Çipi",
-            "NFC_SENSOR": "NFC Temassız İşlem Denetleyicisi",
-            "GPS_ANTENNA": "GNSS / GPS Konumlandırma",
-            "CELLULAR_MODEM": "Hücresel Modem & SIM Tepsisi",
-            "INFRARED_REMOTE": "Kızılötesi (IR Blaster) Verici",
+            "MICROPHONE_SECONDARY": "Gürültü Önleyici Mikrofon",
+            "CAMERA_BACK_WIDE": "Arka Ana Kamera",
+            "CAMERA_FRONT": "Ön Kamera",
+            "CAMERA_AUTOFOCUS": "Otofokus Motoru",
+            "CAMERA_OIS": "Optik Sabitleyici (OIS)",
+            "CAMERA_FLASH": "Kamera Flaşı",
+            "BATTERY_HEALTH": "Batarya Sağlığı",
+            "CHARGING_PORT": "Şarj Portu & Veri Yolu",
+            "RAM_HEALTH": "RAM Bellek",
+            "STORAGE_READ_WRITE": "Depolama Okuma/Yazma",
+            "CPU_STRESS_THERMAL": "İşlemci & Termal Stres",
+            "WIFI_ADAPTER": "Wi-Fi Bağlantısı",
+            "BLUETOOTH_CHIP": "Bluetooth 5.x",
+            "NFC_SENSOR": "NFC Denetleyicisi",
+            "GPS_ANTENNA": "GPS / Konum",
+            "CELLULAR_MODEM": "Hücresel Modem & SIM",
+            "INFRARED_REMOTE": "Kızılötesi (IR Blaster)",
             "LIGHT_SENSOR": "Ortam Işığı Sensörü",
             "PROXIMITY_SENSOR": "Yakınlık Sensörü",
             "ACCELEROMETER": "İvmeölçer Sensörü",
             "GYROSCOPE": "Jiroskop Sensörü",
             "MAGNETOMETER": "Manyetometre (Pusula)",
-            "BAROMETER": "Barometre Basınç Sensörü"
+            "BAROMETER": "Barometre Basınç"
         };
         return map[type] || type.replace(/_/g, " ");
-    }
-
-    function formatMetricDetail(item) {
-        if (!item) return "Metrik kaydedildi";
-        const desc = item.description || "";
-        if (desc.includes("MB/s") || desc.includes("cores") || desc.includes("allocated") || desc.includes("primes")) {
-            return escapeHtml(desc);
-        }
-        return item.status === "PASSED" ? "HAL Yanıtı: Nominal (0x00)" : "Test kaydı doğrulandı";
     }
 
     function copyReportLink() {
@@ -1548,7 +1427,7 @@
     function copyHash() {
         if (navigator.clipboard && currentHash) {
             navigator.clipboard.writeText(currentHash).then(() => {
-                showToast("SHA-256 Özeti Panoya Kopyalandı!");
+                showToast("SHA-256 Özeti Kopyalandı!");
             });
         }
     }
@@ -1557,7 +1436,7 @@
         const t = document.getElementById("toast-msg");
         t.textContent = text;
         t.classList.add("show");
-        setTimeout(() => t.classList.remove("show"), 2200);
+        setTimeout(() => t.classList.remove("show"), 2000);
     }
 
     function showError(title, desc) {
@@ -1566,11 +1445,6 @@
         document.getElementById("error-state").style.display = "block";
         document.getElementById("error-title").textContent = title;
         document.getElementById("error-desc").textContent = desc;
-    }
-
-    function escapeHtml(str) {
-        if (!str) return "";
-        return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     }
 
     window.addEventListener("DOMContentLoaded", loadReport);
