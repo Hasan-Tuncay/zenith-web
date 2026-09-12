@@ -830,18 +830,23 @@
             .security-frame { padding: 12px 10px; border-radius: 8px; }
             .cert-header { flex-direction: column; align-items: stretch; gap: 10px; }
             .cert-meta-box { justify-content: space-between; }
-            .custody-strip { grid-template-columns: 1fr 1fr; gap: 8px; }
-            .executive-strip { grid-template-columns: 1fr; gap: 10px; }
-            .exec-score-box, .exec-pillars-box { border-right: none; border-bottom: 1px solid var(--border-card); padding-right: 0; padding-bottom: 10px; }
-            .split-grid { grid-template-columns: 1fr; gap: 10px; }
-            .compact-chips-grid { grid-template-columns: 1fr 1fr; }
+            .custody-strip { grid-template-columns: 1fr 1fr; gap: 6px; }
+            .executive-strip { grid-template-columns: 1fr; gap: 8px; }
+            .exec-score-box { border-right: none; border-bottom: 1px solid var(--border-card); padding-right: 0; padding-bottom: 8px; }
+            .exec-pillars-box { border-right: none; border-bottom: 1px solid var(--border-card); padding-right: 0; padding-bottom: 8px; }
+            .split-grid { grid-template-columns: 1fr; gap: 8px; }
+            .compact-chips-grid { grid-template-columns: 1fr 1fr; gap: 6px; }
             .action-bar { flex-direction: column; align-items: stretch; gap: 8px; }
             .action-btn-group { justify-content: stretch; }
             .btn-action { flex: 1; justify-content: center; }
         }
         @media (max-width: 480px) {
-            .custody-strip { grid-template-columns: 1fr; }
-            .compact-chips-grid { grid-template-columns: 1fr; }
+            .custody-strip { grid-template-columns: 1fr 1fr; gap: 6px; }
+            .compact-chips-grid { grid-template-columns: 1fr 1fr; gap: 5px; }
+            .test-chip { padding: 4px 6px; min-height: 24px; }
+            .chip-icon { font-size: 11px; }
+            .chip-title { font-size: 9.5px; }
+            .chip-badge { font-size: 8px; padding: 1.5px 4px; }
         }
     </style>
 </head>
