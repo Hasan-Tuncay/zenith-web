@@ -1413,8 +1413,16 @@
 
     async function loadReport() {
         const params = new URLSearchParams(window.location.search);
-        const hash = params.get("hash")?.trim();
-        const session = params.get("session")?.trim();
+        let hash = (params.get("hash") || params.get("h"))?.trim();
+        let session = (params.get("session") || params.get("session_id") || params.get("sessionId") || params.get("id"))?.trim();
+
+        // Path veya hash içerisinden UUID tespit et (/audit/0b5dc8db-88bf-4421-a613-bc215812beca)
+        if (!session) {
+            const uuidMatch = (window.location.pathname + window.location.hash).match(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i);
+            if (uuidMatch) {
+                session = uuidMatch[0];
+            }
+        }
 
         if (!hash && !session) {
             showError("Parametre Eksik", "Lütfen geçerli bir SHA-256 rapor özeti (?hash=...) veya oturum kodu (?session=...) belirtin.");
@@ -1422,10 +1430,15 @@
         }
 
         try {
-            let url = `${SUPABASE_URL}/rest/v1/audit_logs?select=*`;
+            let url = `${SUPABASE_URL}/rest/v1/audit_logs?select=*&order=created_at.desc&limit=1`;
             if (hash) {
-                url += `&sha256_hash=eq.${encodeURIComponent(hash)}`;
-            } else {
+                if (hash.length === 64) {
+                    url += `&sha256_hash=eq.${encodeURIComponent(hash)}`;
+                } else {
+                    // Prefix arama (Örn: QR koddan gelen 12 haneli kısa hash: 77b33cc5d815)
+                    url += `&sha256_hash=like.${encodeURIComponent(hash)}*`;
+                }
+            } else if (session) {
                 url += `&session_id=eq.${encodeURIComponent(session)}`;
             }
 
